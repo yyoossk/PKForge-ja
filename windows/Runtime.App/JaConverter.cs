@@ -46,8 +46,11 @@ namespace PKForgeJa
             try
             {
                 if (!IsTextProperty(property)) return;
-                if (binding is Binding b && b.Converter is not JaConverter && string.IsNullOrEmpty(b.StringFormat))
+                if (binding is Binding b && b.Converter is not JaConverter)
+                {
                     b.Converter = new JaConverter(b.Converter);
+                    if (!string.IsNullOrEmpty(b.StringFormat)) b.StringFormat = JaText.T(b.StringFormat);
+                }
             }
             catch
             {

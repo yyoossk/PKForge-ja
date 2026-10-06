@@ -37,6 +37,11 @@ if [[ $alive -ge 6 ]]; then
     n=$((n + 1))
     adb shell input tap $x 965; sleep 6
     adb exec-out screencap -p > "$out/ui-tab$n.png"
+    if [[ $n -eq 4 ]]; then                                   # ふしぎなカード（ポケモン名の確認）
+      adb shell input tap 960 574; sleep 10
+      adb exec-out screencap -p > "$out/ui-cards.png"
+      adb shell input keyevent KEYCODE_BACK; sleep 3
+    fi
     adb shell input keyevent KEYCODE_BACK; sleep 3
   done
 fi
