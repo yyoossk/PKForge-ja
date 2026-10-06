@@ -21,6 +21,19 @@ for i in $(seq 1 12); do
   adb exec-out screencap -p > "$out/screen-$i.png" || true
   if adb shell pidof "$pkg" >/dev/null 2>&1; then alive=$((alive + 1)); else break; fi
 done
+# 画面を少し操作して、ほかの画面も撮る
+if [[ $alive -ge 6 ]]; then
+  adb shell input tap 1065 202; sleep 2                      # 「Got it」
+  for k in 1 2 3 4 5 6; do adb shell input tap 960 1010; sleep 2; done   # 案内を進める
+  adb exec-out screencap -p > "$out/ui-home.png"
+  n=0
+  for x in 200 580 960 1340 1720; do
+    n=$((n + 1))
+    adb shell input tap $x 965; sleep 6
+    adb exec-out screencap -p > "$out/ui-tab$n.png"
+    adb shell input keyevent KEYCODE_BACK; sleep 3
+  done
+fi
 adb logcat -d > "$out"/logcat-all.txt || true
 grep -iE "FATAL|AndroidRuntime|monodroid|mono-rt|MissingMethod|TypeLoad|PKForgeJa|Unhandled" "$out"/logcat-all.txt > "$out"/logcat.txt || true
 tail -80 "$out"/logcat.txt
