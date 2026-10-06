@@ -60,6 +60,7 @@ jobs:
           target: google_apis
           arch: x86_64
           disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -skin 1920x1080
           script: |
             bash windows/smoke-test.sh original.apk org.pkforge.shurt smoke/original > logs/smoke-original.log 2>&1 || echo '本家版もエミュレーターで動かない'
             bash windows/smoke-test.sh PKForge-ja.apk org.pkforge.shurt.ja smoke/ja > logs/smoke-ja.log 2>&1

@@ -5,10 +5,16 @@ apk="$1"
 pkg="${2:-org.pkforge.shurt.ja}"
 out="${3:-smoke}"
 mkdir -p "$out"
+adb shell settings put system accelerometer_rotation 0 || true
+adb shell settings put system user_rotation 1 || true
+adb shell am force-stop "$pkg" || true
+sleep 3
 adb logcat -c || true
 adb install -r "$apk" 2>&1 | tee "$out"/install.txt
 grep -q Success "$out"/install.txt || { echo "インストール失敗"; exit 1; }
-adb shell monkey -p "$pkg" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
+act=$(adb shell cmd package resolve-activity --brief -c android.intent.category.LAUNCHER "$pkg" | tail -1 | tr -d '\r')
+echo "起動: $act"
+adb shell am start -W -n "$act" || adb shell monkey -p "$pkg" -c android.intent.category.LAUNCHER 1
 alive=0
 for i in $(seq 1 12); do
   sleep 10
