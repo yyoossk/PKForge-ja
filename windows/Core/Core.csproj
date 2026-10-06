@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>PKForgeJa.Patcher</AssemblyName>
+    <RootNamespace>PKForgeJa.Patcher</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="dnlib" Version="4.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- 先にランタイムをビルドしてから埋め込む -->
+    <ProjectReference Include="../Runtime.Chrome/Runtime.Chrome.csproj" ReferenceOutputAssembly="false" Private="false" />
+    <ProjectReference Include="../Runtime.App/Runtime.App.csproj" ReferenceOutputAssembly="false" Private="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ui-table.txt" LogicalName="ui-table.txt" />
+    <EmbeddedResource Include="../../signing/pkforge-ja.p12" LogicalName="pkforge-ja.p12" />
+    <EmbeddedResource Include="../Runtime.Chrome/bin/$(Configuration)/net10.0/PKForge.Chrome.dll" LogicalName="PKForge.Chrome.Runtime.dll" />
+    <EmbeddedResource Include="../Runtime.App/bin/$(Configuration)/net10.0/PKForgeJa.RuntimeApp.dll" LogicalName="PKForgeJa.RuntimeApp.dll" />
+  </ItemGroup>
+</Project>

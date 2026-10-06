@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- パッチャーがこのアセンブリの型を PKForge.App.dll に移植する。 -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>PKForgeJa.RuntimeApp</AssemblyName>
+    <RootNamespace>PKForgeJa</RootNamespace>
+    <Nullable>disable</Nullable>
+    <NoWarn>CS8632</NoWarn>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <DebugType>none</DebugType>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.20" />
+    <ProjectReference Include="../Runtime.Chrome/Runtime.Chrome.csproj" />
+  </ItemGroup>
+</Project>

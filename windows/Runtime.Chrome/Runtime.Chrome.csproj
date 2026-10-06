@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- パッチャーがこのアセンブリの型を PKForge.Chrome.dll に移植する。
+       参照先が一致するよう、アセンブリ名を PKForge.Chrome にしてある。 -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>PKForge.Chrome</AssemblyName>
+    <RootNamespace>PKForgeJa</RootNamespace>
+    <Nullable>disable</Nullable>
+    <NoWarn>CS8632</NoWarn>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <DebugType>none</DebugType>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+</Project>

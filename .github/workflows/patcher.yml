@@ -1,0 +1,99 @@
+name: パッチャーをビルド・検証
+
+on:
+  push:
+    branches: [main]
+    paths: ['windows/**', 'ja/**', 'tool/build_table.py', 'signing/**', '.github/workflows/patcher.yml']
+  workflow_dispatch:
+    inputs:
+      apk_tag:
+        description: '検証に使う本家のタグ（空なら最新）'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: 本家 APK に当てて検証
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: 翻訳テーブルを作る
+        run: python3 tool/build_table.py
+      - name: ビルド
+        run: dotnet build windows/Cli/Cli.csproj -c Release
+      - name: 本家の APK を取得
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ inputs.apk_tag }}"
+          if [[ -z "$tag" ]]; then tag=$(gh release view --repo Shurt/PKForge --json tagName -q .tagName); fi
+          gh release download "$tag" --repo Shurt/PKForge --pattern '*.apk' --output original.apk
+          echo "TAG=$tag" >> "$GITHUB_ENV"
+      - name: 日本語化
+        run: dotnet windows/Cli/bin/Release/net10.0/pkforge-ja.dll original.apk PKForge-ja.apk
+      - name: 署名・配置・マニフェストを検証
+        run: |
+          bt=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          "$bt/zipalign" -c -P 16 -v 4 PKForge-ja.apk | tail -3
+          "$bt/apksigner" verify --verbose --min-sdk-version 24 PKForge-ja.apk
+          "$bt/aapt" dump badging PKForge-ja.apk | head -5
+      - name: KVM を有効化
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: エミュレーターで起動テスト
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          script: |
+            bash windows/smoke-test.sh original.apk org.pkforge.shurt smoke/original || echo '本家版もエミュレーターで動かない'
+            bash windows/smoke-test.sh PKForge-ja.apk org.pkforge.shurt.ja smoke/ja
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-result
+          path: |
+            PKForge-ja.apk
+            smoke/
+
+  windows:
+    name: Windows 版をビルド
+    needs: test
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: 翻訳テーブルを作る
+        run: python tool/build_table.py
+      - name: 発行（単一 exe）
+        run: >
+          dotnet publish windows/Gui/Gui.csproj -c Release -r win-x64 --self-contained true
+          -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:EnableCompressionInSingleFile=true -o out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PKForgeJaPatcher
+          path: out/PKForgeJaPatcher.exe
+      - name: リリース
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          tag="patcher-$(date -u +%Y%m%d)-${{ github.run_number }}"
+          gh release create "$tag" out/PKForgeJaPatcher.exe \
+            --repo "$GITHUB_REPOSITORY" --title "PKForge 日本語化パッチャー ($tag)" --latest \
+            --notes "PKForgeJaPatcher.exe をダウンロードして実行してください（インストール不要）。本家 ${TAG:-最新版} で動作確認済み。"

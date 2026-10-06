@@ -1,0 +1,62 @@
+name: 翻訳辞書を更新
+
+# 本家が更新されたら新しい文字列を調べ、（ANTHROPIC_API_KEY があれば）自動翻訳して辞書に追加する。
+# Windows のパッチャーは起動時にこの辞書（windows/Core/ui-table.txt）を取りに来るので、
+# パッチャー自体を入れ直さなくても新しい訳が使われる。
+on:
+  schedule:
+    - cron: '7 18 * * *'        # 毎日 03:07 (JST)
+  workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: '本家のタグ/ブランチ（空なら最新リリースタグ）'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dictionary
+  cancel-in-progress: false
+
+env:
+  UPSTREAM: https://github.com/Shurt/PKForge
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 本家のソースを取得
+        shell: bash
+        run: |
+          set -euo pipefail
+          ref="${{ inputs.upstream_ref }}"
+          if [[ -z "$ref" ]]; then
+            ref=$(git ls-remote --tags --refs "$UPSTREAM" 'v*' | sed 's#.*refs/tags/##' \
+                  | grep -E '^v[0-9]+(\.[0-9]+)*$' | sort -V | tail -1)
+          fi
+          git clone --depth 1 --branch "$ref" --recurse-submodules --shallow-submodules "$UPSTREAM" upstream
+          echo "REF=$ref" >> "$GITHUB_ENV"
+          echo "本家: $ref" >> "$GITHUB_STEP_SUMMARY"
+      - name: 未翻訳の文字列を調べる
+        run: python3 tool/pkforge_ja.py extract upstream --out untranslated.json --github-summary
+      - name: 自動翻訳（ANTHROPIC_API_KEY がある場合のみ）
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 tool/pkforge_ja.py translate --todo untranslated.json
+      - name: 実行時テーブルを作り直してコミット
+        run: |
+          python3 tool/build_table.py
+          if ! git diff --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add ja/strings.json windows/Core/ui-table.txt
+            git commit -m "辞書を更新（本家 $REF）"
+            git push
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: untranslated
+          path: untranslated.json

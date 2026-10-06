@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Runtime.Chrome/Runtime.Chrome.csproj" />
+  <Project Path="Runtime.App/Runtime.App.csproj" />
+  <Project Path="Core/Core.csproj" />
+  <Project Path="Cli/Cli.csproj" />
+  <Project Path="Gui/Gui.csproj" />
+</Solution>
