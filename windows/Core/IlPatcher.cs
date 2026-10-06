@@ -48,8 +48,59 @@ public sealed class IlPatcher
             if (t.IsGlobalModuleType) continue;
             src.Types.Remove(t);
             if (target.Find(t.FullName, false) != null) t.Name = t.Name.String + "_ja";
+            // 元のモジュールでの行番号を捨てる（移植先で新しく採番させる）
+            foreach (var x in t.GetTypes().Prepend(t))
+            {
+                x.Rid = 0;
+                foreach (var f in x.Fields) f.Rid = 0;
+                foreach (var p in x.Properties) p.Rid = 0;
+                foreach (var e in x.Events) e.Rid = 0;
+                foreach (var m in x.Methods)
+                {
+                    m.Rid = 0;
+                    foreach (var pd in m.ParamDefs) pd.Rid = 0;
+                    foreach (var gp in m.GenericParameters) gp.Rid = 0;
+                }
+                foreach (var gp in x.GenericParameters) gp.Rid = 0;
+                foreach (var ii in x.Interfaces) ii.Rid = 0;
+            }
             target.Types.Add(t);
             moved.Add(t);
+        }
+        // 移植したコードが参照する型・メンバーも移植先のモジュールに取り込み直す
+        var importer = new Importer(target, ImporterOptions.TryToUseDefs);
+        foreach (var t in moved.SelectMany(x => x.GetTypes().Prepend(x)))
+        {
+            if (t.BaseType != null) t.BaseType = importer.Import(t.BaseType);
+            foreach (var ii in t.Interfaces) ii.Interface = importer.Import(ii.Interface);
+            foreach (var f in t.Fields) f.FieldSig = importer.Import(f.FieldSig);
+            foreach (var m in t.Methods)
+            {
+                m.MethodSig = importer.Import(m.MethodSig);
+                foreach (var o in m.Overrides.ToList())
+                {
+                    m.Overrides.Remove(o);
+                    m.Overrides.Add(new MethodOverride((IMethodDefOrRef)importer.Import(o.MethodBody), (IMethodDefOrRef)importer.Import(o.MethodDeclaration)));
+                }
+                if (!m.HasBody) continue;
+                foreach (var local in m.Body.Variables) local.Type = importer.Import(local.Type);
+                foreach (var eh in m.Body.ExceptionHandlers)
+                    if (eh.CatchType != null) eh.CatchType = importer.Import(eh.CatchType);
+                foreach (var ins in m.Body.Instructions)
+                {
+                    ins.Operand = ins.Operand switch
+                    {
+                        TypeDef => ins.Operand,
+                        MethodDef => ins.Operand,
+                        FieldDef => ins.Operand,
+                        ITypeDefOrRef tr => importer.Import(tr),
+                        IMethod me => importer.Import(me),
+                        IField fe => importer.Import(fe),
+                        MethodSig ms => importer.Import(ms),
+                        _ => ins.Operand,
+                    };
+                }
+            }
         }
         return moved;
     }
