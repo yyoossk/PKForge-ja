@@ -14,12 +14,18 @@ adb install -r "$apk" 2>&1 | tee "$out"/install.txt
 grep -q Success "$out"/install.txt || { echo "インストール失敗"; exit 1; }
 act=$(adb shell cmd package resolve-activity --brief -c android.intent.category.LAUNCHER "$pkg" | tail -1 | tr -d '\r')
 echo "起動: $act"
-adb shell am start -W -n "$act" || adb shell monkey -p "$pkg" -c android.intent.category.LAUNCHER 1
+# 本家にも起動直後の画面再生成で落ちることがある（エミュレーター特有）ので、3 回まで試す
 alive=0
-for i in $(seq 1 12); do
-  sleep 10
-  adb exec-out screencap -p > "$out/screen-$i.png" || true
-  if adb shell pidof "$pkg" >/dev/null 2>&1; then alive=$((alive + 1)); else break; fi
+for attempt in 1 2 3; do
+  adb shell am start -W -n "$act" >/dev/null 2>&1
+  alive=0
+  for i in $(seq 1 9); do
+    sleep 10
+    adb exec-out screencap -p > "$out/screen-$attempt-$i.png" || true
+    if adb shell pidof "$pkg" >/dev/null 2>&1; then alive=$((alive + 1)); else break; fi
+  done
+  echo "試行 $attempt: ${alive}0 秒動作"
+  [[ $alive -ge 6 ]] && break
 done
 # 画面を少し操作して、ほかの画面も撮る
 if [[ $alive -ge 6 ]]; then
