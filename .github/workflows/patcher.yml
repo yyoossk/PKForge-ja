@@ -66,6 +66,15 @@ jobs:
       - name: ログを注釈に出す（Claude が読めるように）
         if: always()
         run: python3 windows/annotate.py logs
+      - name: 結果をブランチ ci-results に保存（Claude が読めるように）
+        if: always()
+        run: |
+          mkdir -p pub && cp -r smoke logs pub/ 2>/dev/null || true
+          cd pub
+          git init -q && git checkout -q -b ci-results
+          git -c user.name=ci -c user.email=ci@example.com add -A
+          git -c user.name=ci -c user.email=ci@example.com commit -qm "run ${{ github.run_number }}" || true
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" ci-results
       - uses: actions/upload-artifact@v4
         if: always()
         with:

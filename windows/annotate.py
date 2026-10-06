@@ -11,5 +11,10 @@ def emit(title, lines):
 root = pathlib.Path(sys.argv[1])
 for log in sorted(root.glob('*.log')):
     lines = log.read_text(encoding='utf-8', errors='replace').splitlines()
-    errors = [l for l in lines if re.search(r'error|エラー|失敗|FATAL|Exception|NG', l, re.I)]
+    errors = []
+    for i, l in enumerate(lines):
+        if re.search(r'FATAL EXCEPTION|JavaProxyThrowable:|UNHANDLED', l):
+            errors.extend(lines[i:i + 8])
+        elif re.search(r'error|エラー|失敗|Exception:', l, re.I) and not re.search(r'^\S+ \S+\s+\d+\s+\d+ E AndroidRuntime: \tat ', l):
+            errors.append(l)
     emit(log.name, (errors[:60] + ['---- 末尾 ----'] + lines[-60:]) if errors else lines[-80:])
