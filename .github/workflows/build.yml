@@ -1,0 +1,179 @@
+name: 日本語版をビルド
+
+on:
+  schedule:
+    - cron: '7 18 * * *'        # 毎日 03:07 (JST) に本家の更新を確認
+  workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: '本家のタグ/ブランチ（空なら最新リリースタグ。main で開発版）'
+        required: false
+        default: ''
+      force:
+        description: '変更がなくてもビルドする'
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths: ['ja/**', 'tool/**', '.github/workflows/build.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-ja
+  cancel-in-progress: false
+
+env:
+  UPSTREAM: https://github.com/Shurt/PKForge
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      ref: ${{ steps.up.outputs.ref }}
+      sha: ${{ steps.up.outputs.sha }}
+      version: ${{ steps.up.outputs.version }}
+      build: ${{ steps.decide.outputs.build }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 本家の最新版を調べる
+        id: up
+        shell: bash
+        run: |
+          set -euo pipefail
+          ref="${{ inputs.upstream_ref }}"
+          if [[ -z "$ref" ]]; then
+            ref=$(git ls-remote --tags --refs "$UPSTREAM" 'v*' | sed 's#.*refs/tags/##' \
+                  | grep -E '^v[0-9]+(\.[0-9]+)*$' | sort -V | tail -1)
+          fi
+          sha=$(git ls-remote "$UPSTREAM" "refs/tags/$ref^{}" "refs/tags/$ref" "refs/heads/$ref" | head -1 | cut -f1)
+          [[ -n "$sha" ]] || { echo "本家に $ref が見つかりません" >&2; exit 1; }
+          if [[ "$ref" =~ ^v([0-9]+(\.[0-9]+)*)$ ]]; then version="${BASH_REMATCH[1]}"; else version="0.0.0"; fi
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "本家: $ref ($sha)" >> "$GITHUB_STEP_SUMMARY"
+      - name: 前回のビルドと比べる
+        id: decide
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          state="${{ steps.up.outputs.sha }}-$(cat ja/* tool/*.py | sha256sum | cut -c1-16)"
+          last=$(gh release view --repo "$GITHUB_REPOSITORY" --json body -q .body 2>/dev/null | sed -n 's/^state: //p' || true)
+          if [[ "${{ inputs.force }}" == "true" || "$state" != "$last" ]]; then
+            echo "build=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "build=false" >> "$GITHUB_OUTPUT"
+            echo "変更なし（本家・辞書とも前回と同じ）のでスキップしました。" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  build:
+    needs: check
+    if: needs.check.outputs.build == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: ja-tool
+      - name: 本家のソースを取得
+        run: |
+          git clone --recurse-submodules --shallow-submodules "$UPSTREAM" upstream
+          git -C upstream checkout --recurse-submodules ${{ needs.check.outputs.sha }}
+          git -C upstream submodule update --init --recursive --depth 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 未翻訳の文字列を調べる
+        run: python ja-tool/tool/pkforge_ja.py extract upstream --out untranslated.json
+      - name: 新しい文字列を自動翻訳（ANTHROPIC_API_KEY がある場合のみ）
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python ja-tool/tool/pkforge_ja.py translate --todo untranslated.json
+          cd ja-tool
+          if ! git diff --quiet ja/strings.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add ja/strings.json
+            git commit -m "自動翻訳: 本家 ${{ needs.check.outputs.ref }} の新しい文字列"
+            git push
+          fi
+      - name: 日本語化パッチを当てる
+        run: |
+          python ja-tool/tool/pkforge_ja.py extract upstream --out untranslated.json --github-summary
+          python ja-tool/tool/pkforge_ja.py apply upstream --repo "$GITHUB_REPOSITORY"
+      - name: 未翻訳一覧を保存
+        uses: actions/upload-artifact@v4
+        with:
+          name: untranslated
+          path: untranslated.json
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: MAUI Android ワークロード
+        run: dotnet workload install maui-android
+      - name: APK をビルド
+        id: apk
+        shell: bash
+        working-directory: upstream
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          version="${{ needs.check.outputs.version }}.${{ github.run_number }}"
+          code=$((10000 + ${{ github.run_number }}))
+          if [[ -n "${KEYSTORE_BASE64:-}" ]]; then
+            printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/ks.p12"
+          else
+            cp ../ja-tool/signing/pkforge-ja.p12 "$RUNNER_TEMP/ks.p12"
+            KEYSTORE_PASSWORD=pkforge-ja; KEY_ALIAS=pkforge-ja; KEY_PASSWORD=pkforge-ja
+          fi
+          dotnet restore src/PKForge.App/PKForge.App.csproj
+          dotnet publish src/PKForge.App/PKForge.App.csproj --no-restore \
+            --configuration Release \
+            --framework net10.0-android \
+            --output "$RUNNER_TEMP/out" \
+            -p:RuntimeIdentifier=android-arm64 \
+            -p:ApplicationId=org.pkforge.shurt.ja \
+            -p:ApplicationDisplayVersion="$version" \
+            -p:ApplicationVersion="$code" \
+            -p:AndroidPackageFormats=apk \
+            -p:AndroidKeyStore=true \
+            -p:AndroidSigningKeyStore="$RUNNER_TEMP/ks.p12" \
+            -p:AndroidSigningStorePass="$KEYSTORE_PASSWORD" \
+            -p:AndroidSigningKeyAlias="$KEY_ALIAS" \
+            -p:AndroidSigningKeyPass="$KEY_PASSWORD"
+          apk=$(find "$RUNNER_TEMP/out" -maxdepth 1 -name '*-Signed.apk' | head -1)
+          [[ -n "$apk" ]] || { echo "APK が見つかりません" >&2; exit 1; }
+          mkdir -p ../release
+          cp "$apk" "../release/PKForge-ja-v${version}-arm64.apk"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: リリースを公開
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="v${{ steps.apk.outputs.version }}"
+          state="${{ needs.check.outputs.sha }}-$(cat ja-tool/ja/* ja-tool/tool/*.py | sha256sum | cut -c1-16)"
+          cat > notes.md <<EOF
+          PKForge 日本語版（本家 [${{ needs.check.outputs.ref }}](${UPSTREAM}/releases/tag/${{ needs.check.outputs.ref }}) を自動で日本語化）
+
+          state: ${state}
+          EOF
+          sed -i 's/^          //' notes.md
+          gh release create "$tag" release/*.apk \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "PKForge 日本語版 $tag" \
+            --notes-file notes.md \
+            --latest

@@ -1,0 +1,54 @@
+{
+ "include": [
+  "src/PKForge.App/**/*.cs",
+  "src/PKForge.Domain/**/*.cs",
+  "src/PKForge.Engine/**/*.cs",
+  "src/PKForge.Chrome/**/*.cs"
+ ],
+ "exclude": [
+  "src/PKForge.App/Platforms/**",
+  "src/PKForge.Engine/RadicalRed/RadicalRedData.cs"
+ ],
+ "force_translate": [],
+ "never_translate": [],
+ "code_patches": [
+  {
+   "name": "アプリIDを分ける（本家版と共存できるように）",
+   "file": "src/PKForge.App/PKForge.App.csproj",
+   "find": "<ApplicationId>org\\.pkforge\\.shurt</ApplicationId>",
+   "replace": "<ApplicationId>org.pkforge.shurt.ja</ApplicationId>",
+   "required": true
+  },
+  {
+   "name": "アプリ名",
+   "file": "src/PKForge.App/PKForge.App.csproj",
+   "find": "<ApplicationTitle>PKForge Personal</ApplicationTitle>",
+   "replace": "<ApplicationTitle>PKForge 日本語版</ApplicationTitle>"
+  },
+  {
+   "name": "アプリ内アップデートの確認先を日本語版リポジトリにする",
+   "file": "src/PKForge.App/Services/AppUpdateService.cs",
+   "find": "repos/Shurt/PKForge/releases/latest",
+   "replace": "repos/${repo}/releases/latest"
+  },
+  {
+   "name": "ゲーム内データ（ポケモン名・わざ・どうぐ等）を日本語にする",
+   "file": "src/PKForge.App/MauiProgram.cs",
+   "find": "(public static MauiApp CreateMauiApp\\(\\)\\s*\\{)",
+   "replace": "\\1\n        PKHeX.Core.GameInfo.CurrentLanguage = \"ja\";\n        PKHeX.Core.GameInfo.Strings = PKHeX.Core.GameInfo.GetStrings(\"ja\");",
+   "required": true
+  },
+  {
+   "name": "画面に出すポケモン名を日本語にする",
+   "file": "src/PKForge.Engine/*.cs",
+   "find": "(SpeciesName\\.GetSpeciesName\\([^;]*?, \\(int\\)LanguageID\\.)English\\)",
+   "replace": "\\1Japanese)"
+  },
+  {
+   "name": "タイプ名・とくせい名を日本語にする",
+   "file": "src/PKForge.Engine/SaveEngineSession.cs",
+   "find": "GameInfo\\.GetStrings\\(\"en\"\\)\\.(Types|abilitylist)",
+   "replace": "GameInfo.Strings.\\1"
+  }
+ ]
+}
