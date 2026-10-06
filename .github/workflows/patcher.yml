@@ -27,7 +27,9 @@ jobs:
       - name: 翻訳テーブルを作る
         run: python3 tool/build_table.py
       - name: ビルド
-        run: dotnet build windows/Cli/Cli.csproj -c Release
+        run: |
+          mkdir -p logs
+          dotnet build windows/Cli/Cli.csproj -c Release 2>&1 | tee logs/build.log; exit ${PIPESTATUS[0]}
       - name: 本家の APK を取得
         env:
           GH_TOKEN: ${{ github.token }}
@@ -37,13 +39,15 @@ jobs:
           gh release download "$tag" --repo Shurt/PKForge --pattern '*.apk' --output original.apk
           echo "TAG=$tag" >> "$GITHUB_ENV"
       - name: 日本語化
-        run: dotnet windows/Cli/bin/Release/net10.0/pkforge-ja.dll original.apk PKForge-ja.apk
+        run: dotnet windows/Cli/bin/Release/net10.0/pkforge-ja.dll original.apk PKForge-ja.apk 2>&1 | tee logs/patch.log; exit ${PIPESTATUS[0]}
       - name: 署名・配置・マニフェストを検証
         run: |
           bt=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
-          "$bt/zipalign" -c -P 16 -v 4 PKForge-ja.apk | tail -3
-          "$bt/apksigner" verify --verbose --min-sdk-version 24 PKForge-ja.apk
-          "$bt/aapt" dump badging PKForge-ja.apk | head -5
+          {
+            "$bt/zipalign" -c -P 16 -v 4 PKForge-ja.apk | tail -3
+            "$bt/apksigner" verify --verbose --min-sdk-version 24 PKForge-ja.apk
+            "$bt/aapt" dump badging PKForge-ja.apk | head -5
+          } 2>&1 | tee logs/verify.log; exit ${PIPESTATUS[0]}
       - name: KVM を有効化
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -57,8 +61,11 @@ jobs:
           arch: x86_64
           disable-animations: true
           script: |
-            bash windows/smoke-test.sh original.apk org.pkforge.shurt smoke/original || echo '本家版もエミュレーターで動かない'
-            bash windows/smoke-test.sh PKForge-ja.apk org.pkforge.shurt.ja smoke/ja
+            bash windows/smoke-test.sh original.apk org.pkforge.shurt smoke/original > logs/smoke-original.log 2>&1 || echo '本家版もエミュレーターで動かない'
+            bash windows/smoke-test.sh PKForge-ja.apk org.pkforge.shurt.ja smoke/ja > logs/smoke-ja.log 2>&1
+      - name: ログを注釈に出す（Claude が読めるように）
+        if: always()
+        run: python3 windows/annotate.py logs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -66,6 +73,7 @@ jobs:
           path: |
             PKForge-ja.apk
             smoke/
+            logs/
 
   windows:
     name: Windows 版をビルド
