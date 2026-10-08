@@ -106,7 +106,7 @@ jobs:
       - name: コンパイル（書き換えで壊れた箇所は自動で英語に戻してやり直す）
         shell: bash
         run: |
-          set -uo pipefail
+          set +e -uo pipefail
           for i in 1 2 3 4 5 6 7 8; do
             echo "::group::コンパイル $i 回目"
             dotnet build up/src/PKForge.App/PKForge.App.csproj -c Debug -f net10.0-android \

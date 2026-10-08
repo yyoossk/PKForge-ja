@@ -75,14 +75,51 @@ def site_kind(src: str, lit) -> str:
             return 'pattern'
     if _WHEN_AFTER.search(after) and (_CASE_BEFORE.search(before) or _ARM_BEFORE.search(before)):
         return 'pattern'
-    # const 宣言・属性・既定値引数（コンパイル時定数が要る場所）
-    stmt_start = max(src.rfind(';', 0, lit.start), src.rfind('{', 0, lit.start), src.rfind('}', 0, lit.start))
-    stmt = src[stmt_start + 1:lit.start]
+    # const 宣言・属性・既定値引数（文字列やコメントの中の ; { } ( ) に惑わされないよう、それらを消した版で見る）
+    code = masked(src)
+    stmt_start = max(code.rfind(';', 0, lit.start), code.rfind('{', 0, lit.start), code.rfind('}', 0, lit.start))
+    stmt = code[stmt_start + 1:lit.start]
     if re.search(r'\bconst\b', stmt):
         return 'const'
     if re.search(r'^\s*\[\s*[\w.]+', before):
         return 'const'
+    # 既定値引数: 「型 名前 = "…"」で、いちばん内側の開き括弧が (
+    if re.search(r'[\w>?\]]\s+@?\w+\s*=\s*$', code[max(0, lit.start - 200):lit.start]):
+        depth = 0
+        for ch in reversed(code[:lit.start]):
+            if ch in ')]}':
+                depth += 1
+            elif ch in '([{':
+                if depth == 0:
+                    if ch == '(':
+                        return 'const'
+                    break
+                depth -= 1
+            elif ch == ';' and depth == 0:
+                break
     return 'expr'
+
+
+_MASKED: dict[int, str] = {}
+
+
+def masked(src: str) -> str:
+    """文字列リテラルの中身とコメントを空白にした src（長さは同じ）"""
+    key = id(src)
+    if key in _MASKED:
+        return _MASKED[key]
+    chars = list(src)
+    for lit in P.walk(Lexer(src).literals()):
+        for k, s_, e_ in lit.parts:
+            if k == 'text':
+                for i in range(s_, e_):
+                    if chars[i] != '\n':
+                        chars[i] = ' '
+    out = ''.join(chars)
+    out = re.sub(r'//[^\n]*', lambda m: ' ' * len(m.group(0)), out)
+    out = re.sub(r'/\*.*?\*/', lambda m: re.sub(r'[^\n]', ' ', m.group(0)), out, flags=re.S)
+    _MASKED[key] = out
+    return out
 
 
 def project_class(rel: str) -> str | None:
