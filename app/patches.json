@@ -1,0 +1,324 @@
+{
+ "code_patches": [
+  {
+   "name": "アプリIDを分ける（本家版と共存）",
+   "file": "src/PKForge.App/PKForge.App.csproj",
+   "find": "<ApplicationId>org\\.pkforge\\.shurt</ApplicationId>",
+   "replace": "<ApplicationId>org.pkforge.shurt.dex</ApplicationId>",
+   "required": true,
+   "min": 1
+  },
+  {
+   "name": "アプリ名",
+   "file": "src/PKForge.App/PKForge.App.csproj",
+   "find": "<ApplicationTitle>PKForge Personal</ApplicationTitle>",
+   "replace": "<ApplicationTitle>PKForge Dex</ApplicationTitle>",
+   "required": true,
+   "min": 1
+  },
+  {
+   "name": "アイコン・スプラッシュの背景色",
+   "file": "src/PKForge.App/PKForge.App.csproj",
+   "find": "(<Maui(?:Icon|SplashScreen) Include=\"[^\"]+\" Color=\")#[0-9A-Fa-f]{6}\"",
+   "replace": "\\g<1>#0E0B0C\"",
+   "required": true,
+   "min": 2
+  },
+  {
+   "name": "アプリ内アップデートの確認先をこのリポジトリに",
+   "file": "src/PKForge.App/Services/AppUpdateService.cs",
+   "find": "repos/Shurt/PKForge/releases/latest",
+   "replace": "repos/${repo}/releases/latest",
+   "required": true,
+   "min": 1
+  },
+  {
+   "name": "起動時に表示言語を設定（ポケモン名なども）",
+   "file": "src/PKForge.App/MauiProgram.cs",
+   "find": "(public static MauiApp CreateMauiApp\\(\\)\\s*\\{)",
+   "replace": "\\1\\n        global::PKForgeI18n.LangSetup.Init();",
+   "required": true,
+   "min": 1
+  },
+  {
+   "name": "ポケモン名を表示言語で",
+   "file": "src/PKForge.Engine/**/*.cs",
+   "find": "(SpeciesName\\.GetSpeciesName\\([^;]*?, \\(int\\))LanguageID\\.English\\)",
+   "replace": "\\1GameLanguage.GetLanguage(GameInfo.CurrentLanguage))",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "タイプ名・とくせい名を表示言語で",
+   "file": "src/PKForge.Engine/SaveEngineSession.cs",
+   "find": "GameInfo\\.GetStrings\\(\"en\"\\)\\.(Types|abilitylist)",
+   "replace": "GameInfo.Strings.\\1",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "設定メニューに「言語」を追加",
+   "file": "src/PKForge.App/Views/HomePage.cs",
+   "find": "(\\n(\\s*)new PadOption\\([^\\n]*IconPath: \"music\"\\),)",
+   "replace": "\\n\\2new PadOption(global::PKForgeI18n.LangSetup.MenuText, IconPath: \"gears\"),\\1",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "「言語」を選んだときの処理",
+   "file": "src/PKForge.App/Views/HomePage.cs",
+   "find": "(if \\(choice == hiddenOption\\) \\{ await ShowHiddenSavesAsync\\(\\); return; \\})",
+   "replace": "\\1\\n        if (choice == global::PKForgeI18n.LangSetup.MenuText) { await global::PKForgeI18n.LangSetup.ShowPickerAsync(_hostGrid); return; }",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 LogoVoid",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor LogoVoid = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x0E, 0x0B, 0x0C);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 LogoDeep",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor LogoDeep = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x1A, 0x14, 0x16);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 LogoDeck",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor LogoDeck = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x26, 0x1B, 0x1E);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 LogoGrid",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor LogoGrid = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xB3, 0x12, 0x2E);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 LogoBlue",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor LogoBlue = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xE3, 0x26, 0x3A);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 LogoCyan",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor LogoCyan = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x4F, 0xD2, 0xFF);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 SelectFill",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor SelectFill = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x7A, 0x10, 0x20);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 SelectBorder",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor SelectBorder = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x4F, 0xD2, 0xFF);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 SelectInk",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor SelectInk = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xFF, 0xFF, 0xFF);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 Ink",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor Ink = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xF7, 0xF3, 0xF3);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 InkSoft",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor InkSoft = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xC9, 0xB4, 0xB8);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 IndigoLight",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor IndigoLight = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xE3, 0x26, 0x3A);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 Indigo",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor Indigo = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xFF, 0x4D, 0x5E);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 IndigoDeep",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor IndigoDeep = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xB3, 0x12, 0x2E);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 IndigoInk",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor IndigoInk = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xFF, 0xFF, 0xFF);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 SummaryBg",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor SummaryBg = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x1A, 0x14, 0x16);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 SummaryPanel",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor SummaryPanel = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x26, 0x1B, 0x1E);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 SummaryStripe",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor SummaryStripe = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x8E, 0x0F, 0x24);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 DexCyan",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor DexCyan = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xE3, 0x26, 0x3A);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 DexGrid",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor DexGrid = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x4F, 0xD2, 0xFF);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 StorageGreen",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor StorageGreen = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x1E, 0x18, 0x1A);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 StoragePanel",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor StoragePanel = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x3A, 0x1F, 0x24);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 RecessBlue",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor RecessBlue = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x7A, 0x10, 0x20);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 BagNavy",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor BagNavy = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x26, 0x1B, 0x1E);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 BagNavyDeep",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor BagNavyDeep = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x0E, 0x0B, 0x0C);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 BagCyan",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor BagCyan = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xE3, 0x26, 0x3A);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 BagCyanEdge",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor BagCyanEdge = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xFF, 0x6B, 0x78);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 BagSelected",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor BagSelected = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0x7A, 0x10, 0x20);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 CursorRed",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor CursorRed = )new\\([^)]*\\);",
+   "replace": "\\g<1>new(0xFF, 0xD2, 0x3F);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 HousingLine",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor HousingLine = )[^;]+;",
+   "replace": "\\g<1>new(0x3A, 0x22, 0x26);",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "配色 HousingDot",
+   "file": "src/PKForge.Chrome/Pksm.cs",
+   "find": "(SKColor HousingDot = )[^;]+;",
+   "replace": "\\g<1>new(0xB3, 0x12, 0x2E);",
+   "required": false,
+   "min": 1
+  }
+ ]
+}

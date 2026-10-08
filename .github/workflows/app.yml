@@ -1,0 +1,215 @@
+name: PKForge Dex（多言語版アプリ）
+
+# 本家 Shurt/PKForge の新しいリリースを毎日チェックし、出ていたら
+#   ソース取得 → 9 言語化 + 赤×黒の図鑑テーマ → APK ビルド → 署名 → エミュレーターで確認 → Release 公開
+# を自動で行う。アプリは起動時にこのリポジトリの最新 Release を見て、アップデートを知らせる。
+on:
+  schedule:
+    - cron: '23 19 * * *'        # 毎日 04:23 (JST)
+  push:
+    branches: [main]
+    paths:
+      - 'i18n/**'
+      - 'ja/strings.json'
+      - 'app/**'
+      - 'tool/pkforge_i18n.py'
+      - 'tool/pkforge_ja.py'
+      - 'tool/cslex.py'
+      - '.github/workflows/app.yml'
+  workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: '本家のタグ（空なら最新リリース）'
+        required: false
+        default: ''
+      force:
+        description: '同じ本家バージョンでも作り直す'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pkforge-dex
+  cancel-in-progress: false
+
+env:
+  UPSTREAM: https://github.com/Shurt/PKForge
+  PACKAGE: org.pkforge.shurt.dex
+
+jobs:
+  check:
+    name: 本家の更新を確認
+    runs-on: ubuntu-latest
+    outputs:
+      build: ${{ steps.v.outputs.build }}
+      ref: ${{ steps.v.outputs.ref }}
+      version: ${{ steps.v.outputs.version }}
+      code: ${{ steps.v.outputs.code }}
+    steps:
+      - id: v
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ref="${{ inputs.upstream_ref }}"
+          if [[ -z "$ref" ]]; then
+            ref=$(git ls-remote --tags --refs "$UPSTREAM" 'v*' | sed 's#.*refs/tags/##' \
+                  | grep -E '^v[0-9]+(\.[0-9]+)*$' | sort -V | tail -1)
+          fi
+          base="${ref#v}"
+          version="${base}.${GITHUB_RUN_NUMBER}"
+          code=$((200000 + GITHUB_RUN_NUMBER))
+          build=true
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            if gh release list --repo "$GITHUB_REPOSITORY" --limit 100 --json tagName -q '.[].tagName' \
+                 | grep -qE "^v${base//./\\.}\.[0-9]+$"; then
+              build=false
+            fi
+          fi
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          echo "build=$build" >> "$GITHUB_OUTPUT"
+          echo "本家 $ref → PKForge Dex $version（ビルド: $build）" >> "$GITHUB_STEP_SUMMARY"
+
+  build:
+    name: ビルド・検証・公開
+    needs: check
+    if: needs.check.outputs.build == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    env:
+      REF: ${{ needs.check.outputs.ref }}
+      VERSION: ${{ needs.check.outputs.version }}
+      CODE: ${{ needs.check.outputs.code }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: 本家のソースを取得
+        run: |
+          git clone --depth 1 --branch "$REF" --recurse-submodules --shallow-submodules "$UPSTREAM" up
+          mkdir -p orig && cp -a up/src orig/src
+          mkdir -p logs
+      - name: 新しい文字列を自動翻訳（ANTHROPIC_API_KEY がある場合）
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 tool/pkforge_i18n.py translate up 2>&1 | tee logs/translate.log
+      - name: 多言語化・テーマを適用
+        run: python3 tool/pkforge_i18n.py apply up --repo "$GITHUB_REPOSITORY" --summary "$GITHUB_STEP_SUMMARY" 2>&1 | tee logs/apply.log
+      - name: MAUI Android を準備
+        run: dotnet workload install maui-android 2>&1 | tail -5
+      - name: コンパイル（書き換えで壊れた箇所は自動で英語に戻してやり直す）
+        shell: bash
+        run: |
+          set -uo pipefail
+          for i in 1 2 3 4 5 6 7 8; do
+            echo "::group::コンパイル $i 回目"
+            dotnet build up/src/PKForge.App/PKForge.App.csproj -c Debug -f net10.0-android \
+              -p:RuntimeIdentifier=android-arm64 -p:AndroidPackageFormats=apk -p:AndroidKeyStore=false \
+              -nologo -clp:ErrorsOnly > "logs/compile-$i.log" 2>&1
+            rc=$?
+            grep -E "error|Build succeeded" "logs/compile-$i.log" | sort -u | head -60
+            echo "::endgroup::"
+            if [[ $rc -eq 0 ]]; then echo "コンパイル成功（$i 回目）"; exit 0; fi
+            python3 tool/pkforge_i18n.py blame up orig "logs/compile-$i.log" 2>&1 | tee "logs/blame-$i.log"
+            brc=${PIPESTATUS[0]}
+            if [[ $brc -ne 0 ]]; then echo "自動修正できないエラーです"; exit 1; fi
+            rm -rf up/src && cp -a orig/src up/src
+            python3 tool/pkforge_i18n.py apply up --repo "$GITHUB_REPOSITORY" > "logs/apply-$i.log" 2>&1
+          done
+          exit 1
+      - name: 署名付き APK を作る
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet publish up/src/PKForge.App/PKForge.App.csproj -c Release -f net10.0-android \
+            -o publish \
+            -p:RuntimeIdentifier=android-arm64 \
+            -p:ApplicationDisplayVersion="$VERSION" \
+            -p:ApplicationVersion="$CODE" \
+            -p:AndroidPackageFormats=apk \
+            -p:AndroidKeyStore=true \
+            -p:AndroidSigningKeyStore="$PWD/signing/pkforge-ja.p12" \
+            -p:AndroidSigningStorePass=pkforge-ja \
+            -p:AndroidSigningKeyAlias=pkforge-ja \
+            -p:AndroidSigningKeyPass=pkforge-ja -nologo 2>&1 | tail -40 | tee logs/publish.log
+          apk=$(find publish -maxdepth 1 -name '*-Signed.apk' | head -1)
+          [[ -n "$apk" ]] || { echo "APK が見つかりません"; exit 1; }
+          mkdir -p release
+          cp "$apk" "release/PKForge-Dex-v${VERSION}-arm64.apk"
+          bt=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          {
+            "$bt/apksigner" verify --verbose release/*.apk | head -5
+            "$bt/aapt" dump badging release/*.apk | head -3
+          } 2>&1 | tee logs/verify.log
+          (cd release && sha256sum *.apk > "PKForge-Dex-v${VERSION}-arm64.apk.sha256")
+      - name: KVM を有効化
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: エミュレーターで 9 言語の起動テスト
+        id: smoke
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -skin 1920x1080
+          script: bash app/smoke-test.sh release/PKForge-Dex-v${{ needs.check.outputs.version }}-arm64.apk ${{ env.PACKAGE }} smoke > logs/smoke.log 2>&1 || (tail -60 logs/smoke.log; exit 1)
+      - name: 自動で直した内容をリポジトリに保存
+        if: success() && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add i18n ja/strings.json
+          if ! git diff --cached --quiet; then
+            git commit -m "多言語版: 辞書・除外リストを更新（本家 $REF）"
+            git pull --rebase -q && git push -q
+          fi
+      - name: Release を公開
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${VERSION}" release/* \
+            --repo "$GITHUB_REPOSITORY" --latest \
+            --title "PKForge Dex v${VERSION}（多言語版・本家 ${REF}）" \
+            --notes "$(cat <<EOF
+          本家 PKForge ${REF} を元にした **PKForge Dex**（多言語版）です。
+
+          - 対応言語: 日本語 / English / 简体中文 / 繁體中文 / 한국어 / Français / Deutsch / Español / Italiano
+            （端末の言語に自動で合わせます。設定 → 「言語 / Language」で切り替え）
+          - ポケモン名・わざ・どうぐ・とくせいなども選んだ言語で表示
+          - 赤×黒の図鑑風デザイン
+          - 本家と別アプリ（${PACKAGE}）なので並べてインストールできます
+          - 本家が更新されると自動で新しい版が出て、アプリ内で通知されます
+
+          **PKForge-Dex-v${VERSION}-arm64.apk** をダウンロードしてインストールしてください。
+          EOF
+          )"
+      - name: 結果をブランチ ci-app に保存（Claude が読めるように）
+        if: always()
+        run: |
+          mkdir -p pub && cp -r logs pub/ 2>/dev/null || true
+          cp -r smoke pub/ 2>/dev/null || true
+          cd pub
+          echo "run ${{ github.run_number }} / $REF / $VERSION / ${{ job.status }}" > STATUS.txt
+          git init -q && git checkout -q -b ci-app
+          git -c user.name=ci -c user.email=ci@example.com add -A
+          git -c user.name=ci -c user.email=ci@example.com commit -qm "run ${{ github.run_number }}" || true
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" ci-app
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pkforge-dex
+          path: |
+            release/
+            smoke/
+            logs/

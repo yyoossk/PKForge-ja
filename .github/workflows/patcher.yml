@@ -116,5 +116,5 @@ jobs:
         run: |
           tag="patcher-$(date -u +%Y%m%d)-${{ github.run_number }}"
           gh release create "$tag" out/PKForgeJaPatcher.exe \
-            --repo "$GITHUB_REPOSITORY" --title "PKForge 日本語化パッチャー ($tag)" --latest \
+            --repo "$GITHUB_REPOSITORY" --title "PKForge 日本語化パッチャー ($tag)" --latest=false \
             --notes "PKForgeJaPatcher.exe をダウンロードして実行してください（インストール不要）。本家 ${TAG:-最新版} で動作確認済み。"
