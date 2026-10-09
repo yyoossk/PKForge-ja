@@ -36,7 +36,7 @@ run_lang() {   # $1 = ロケール, $2 = 画面を巡回するか
   if [[ $alive -ge 5 ]]; then
     ok=$((ok + 1))
     adb shell input tap 1065 202; sleep 2                                     # 初回案内を閉じる
-    for k in 1 2 3 4 5 6; do adb shell input tap 960 1010; sleep 2; done
+    for k in 1 2 3 4 5 6 7 8; do adb shell input tap 960 1058; sleep 2; done  # 吹き出しを送る（下端のヒント行を押す）
     adb exec-out screencap -p > "$dir/2-home.png"
     if [[ "$tour" == yes ]]; then
       n=0
@@ -47,8 +47,8 @@ run_lang() {   # $1 = ロケール, $2 = 画面を巡回するか
         adb shell input keyevent KEYCODE_BACK; sleep 3
       done
     fi
-    # 設定メニュー（Start ボタン相当 = 設定カード）。BUTTON_START で開く
-    adb shell input keyevent KEYCODE_BUTTON_START; sleep 4
+    # 設定メニュー（右下の設定カード）
+    adb shell input tap 1720 985; sleep 4
     adb exec-out screencap -p > "$dir/4-settings.png"
     adb shell input keyevent KEYCODE_BACK; sleep 2
   fi

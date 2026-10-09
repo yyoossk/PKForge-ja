@@ -50,7 +50,7 @@ public static class LangSetup
             var saved = Preferences.Default.Get(PreferenceKey, "auto");
             var index = IndexOf(saved);
             if (index < 0)
-                index = L_App.FromCulture(System.Globalization.CultureInfo.CurrentUICulture.Name);
+                index = L_App.FromCulture(DeviceLanguageTag());
             Current = index;
             System.AppContext.SetData("PKForgeI18n.Lang", index);
             var code = Languages[index].PkHex;
@@ -62,6 +62,28 @@ public static class LangSetup
             Current = 0;
             System.AppContext.SetData("PKForgeI18n.Lang", 0);
         }
+    }
+
+    /// <summary>端末（またはアプリ別の言語設定）の言語タグ。.NET の CultureInfo は Android の設定を拾わないことがあるので直接読む。</summary>
+    private static string DeviceLanguageTag()
+    {
+#if ANDROID
+        try
+        {
+            var locales = Android.App.Application.Context.Resources?.Configuration?.Locales;
+            if (locales is not null && locales.Size() > 0)
+            {
+                var tag = locales.Get(0)?.ToLanguageTag();
+                if (!string.IsNullOrEmpty(tag)) return tag;
+            }
+            var def = Java.Util.Locale.Default?.ToLanguageTag();
+            if (!string.IsNullOrEmpty(def)) return def;
+        }
+        catch
+        {
+        }
+#endif
+        return System.Globalization.CultureInfo.CurrentUICulture.Name;
     }
 
     private static int IndexOf(string code)
@@ -96,9 +118,7 @@ public static class LangSetup
         }
         if (code == saved) return;
         Preferences.Default.Set(PreferenceKey, code);
-        var next = code == "auto"
-            ? L_App.FromCulture(System.Globalization.CultureInfo.CurrentUICulture.Name)
-            : IndexOf(code);
+        var next = code == "auto" ? L_App.FromCulture(DeviceLanguageTag()) : IndexOf(code);
         if (next == Current) return;
         await PadMenu.ShowAsync(host, RestartTitle[next], RestartBody[next], RestartButton[next]);
         Restart();
