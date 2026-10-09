@@ -1,0 +1,31 @@
+Performing Streamed Install
+Success
+起動: org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity
+en-US: 7 回生存確認
+10-09 00:35:17.620  4246  4246 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-09 00:35:17.719  4246  4246 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+ja-JP: 7 回生存確認
+10-09 00:37:36.373  6026  6026 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-09 00:37:36.443  6026  6026 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+zh-CN: 7 回生存確認
+10-09 00:39:57.906  6425  6425 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-09 00:39:57.969  6425  6425 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+zh-TW: 7 回生存確認
+10-09 00:41:28.145  6714  6714 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-09 00:41:28.212  6714  6714 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+ko-KR: 7 回生存確認
+10-09 00:42:58.669  6882  6882 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-09 00:42:58.734  6882  6882 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+fr-FR: 7 回生存確認
+10-09 00:44:29.229  7058  7058 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-09 00:44:29.295  7058  7058 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+de-DE: 7 回生存確認
+10-09 00:45:59.618  7347  7347 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-09 00:45:59.687  7347  7347 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+es-ES: 7 回生存確認
+10-09 00:47:30.035  7519  7519 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-09 00:47:30.101  7519  7519 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+it-IT: 7 回生存確認
+10-09 00:49:00.663  7687  7687 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-09 00:49:00.732  7687  7687 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+起動できた言語: 9 / 9

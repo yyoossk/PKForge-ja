@@ -1,0 +1,49 @@
+書き換えたファイル 150 / 書き換え箇所 5067 / 除外キー 0
+  ja: 5049 箇所
+  zh-Hans: 5039 箇所
+  zh-Hant: 5045 箇所
+  ko: 5037 箇所
+  fr: 4873 箇所
+  de: 4732 箇所
+  es: 4931 箇所
+  it: 4862 箇所
+[OK] アプリIDを分ける（本家版と共存）: 1 箇所
+[OK] アプリ名: 1 箇所
+[OK] アイコン・スプラッシュの背景色: 2 箇所
+[OK] アプリ内アップデートの確認先をこのリポジトリに: 1 箇所
+[OK] 起動時に表示言語を設定（ポケモン名なども）: 1 箇所
+[OK] ポケモン名を表示言語で: 17 箇所
+[OK] タイプ名・とくせい名を表示言語で: 3 箇所
+[OK] 設定メニューに「言語」を追加: 1 箇所
+[OK] 「言語」を選んだときの処理: 1 箇所
+[OK] 配色 LogoVoid: 1 箇所
+[OK] 配色 LogoDeep: 1 箇所
+[OK] 配色 LogoDeck: 1 箇所
+[OK] 配色 LogoGrid: 1 箇所
+[OK] 配色 LogoBlue: 1 箇所
+[OK] 配色 LogoCyan: 1 箇所
+[OK] 配色 SelectFill: 1 箇所
+[OK] 配色 SelectBorder: 1 箇所
+[OK] 配色 SelectInk: 1 箇所
+[OK] 配色 Ink: 1 箇所
+[OK] 配色 InkSoft: 1 箇所
+[OK] 配色 IndigoLight: 1 箇所
+[OK] 配色 Indigo: 1 箇所
+[OK] 配色 IndigoDeep: 1 箇所
+[OK] 配色 IndigoInk: 1 箇所
+[OK] 配色 SummaryBg: 1 箇所
+[OK] 配色 SummaryPanel: 1 箇所
+[OK] 配色 SummaryStripe: 1 箇所
+[OK] 配色 DexCyan: 1 箇所
+[OK] 配色 DexGrid: 1 箇所
+[OK] 配色 StorageGreen: 1 箇所
+[OK] 配色 StoragePanel: 1 箇所
+[OK] 配色 RecessBlue: 1 箇所
+[OK] 配色 BagNavy: 1 箇所
+[OK] 配色 BagNavyDeep: 1 箇所
+[OK] 配色 BagCyan: 1 箇所
+[OK] 配色 BagCyanEdge: 1 箇所
+[OK] 配色 BagSelected: 1 箇所
+[OK] 配色 CursorRed: 1 箇所
+[OK] 配色 HousingLine: 1 箇所
+[OK] 配色 HousingDot: 1 箇所

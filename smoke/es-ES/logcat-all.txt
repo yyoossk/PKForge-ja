@@ -1,0 +1,294 @@
+--------- beginning of system
+10-09 00:47:24.978   520  2587 W ActivityTaskManager: callingPackage for (uid=2000, pid=7516) has no WPC
+10-09 00:47:24.979   520  2587 D CompatibilityChangeReporter: Compat change id reported: 265464455; UID 10192; state: DISABLED
+10-09 00:47:24.979   520  2587 D CompatibilityChangeReporter: Compat change id reported: 265452344; UID 10192; state: DISABLED
+10-09 00:47:24.979   520  2587 D CompatibilityChangeReporter: Compat change id reported: 266124927; UID 10192; state: DISABLED
+10-09 00:47:24.979   520  2587 D CompatibilityChangeReporter: Compat change id reported: 265451093; UID 10192; state: DISABLED
+10-09 00:47:24.979   520  2587 D CompatibilityChangeReporter: Compat change id reported: 265456536; UID 10192; state: DISABLED
+10-09 00:47:24.979   520  2587 D CompatibilityChangeReporter: Compat change id reported: 255940284; UID 10192; state: DISABLED
+10-09 00:47:24.979   520  2587 D CompatibilityChangeReporter: Compat change id reported: 236283604; UID 10192; state: DISABLED
+10-09 00:47:24.980   520  2587 D CompatibilityChangeReporter: Compat change id reported: 263959004; UID 10192; state: DISABLED
+10-09 00:47:24.980   520  2587 D CompatibilityChangeReporter: Compat change id reported: 264304459; UID 10192; state: DISABLED
+10-09 00:47:24.980   520  2587 D CompatibilityChangeReporter: Compat change id reported: 264301586; UID 10192; state: DISABLED
+10-09 00:47:24.980   520  2587 D CompatibilityChangeReporter: Compat change id reported: 254631730; UID 10192; state: DISABLED
+10-09 00:47:24.980   520  2587 D CompatibilityChangeReporter: Compat change id reported: 273509367; UID 10192; state: DISABLED
+10-09 00:47:24.980   520  2587 D CompatibilityChangeReporter: Compat change id reported: 263259275; UID 10192; state: DISABLED
+10-09 00:47:24.980   520  2587 D CompatibilityChangeReporter: Compat change id reported: 174042980; UID 10192; state: DISABLED
+10-09 00:47:24.980   520  2587 D CompatibilityChangeReporter: Compat change id reported: 174042936; UID 10192; state: DISABLED
+10-09 00:47:24.980   520  2587 D CompatibilityChangeReporter: Compat change id reported: 181136395; UID 10192; state: DISABLED
+10-09 00:47:24.981   520  2587 D CompatibilityChangeReporter: Compat change id reported: 184838306; UID 10192; state: DISABLED
+10-09 00:47:24.981   520  2587 D CompatibilityChangeReporter: Compat change id reported: 185004937; UID 10192; state: DISABLED
+10-09 00:47:24.981   520  2587 D CompatibilityChangeReporter: Compat change id reported: 194480991; UID 10192; state: ENABLED
+10-09 00:47:24.982   827   863 W Looper  : Drained
+10-09 00:47:24.984   520  2587 D CompatibilityChangeReporter: Compat change id reported: 197654537; UID 10192; state: ENABLED
+10-09 00:47:24.985   520  2587 D CompatibilityChangeReporter: Compat change id reported: 205907456; UID 10192; state: ENABLED
+10-09 00:47:24.986   520  2587 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity} with LAUNCH_MULTIPLE from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+10-09 00:47:24.988   520   542 D CompatibilityChangeReporter: Compat change id reported: 135634846; UID 10192; state: DISABLED
+10-09 00:47:24.988   520   542 D CompatibilityChangeReporter: Compat change id reported: 177438394; UID 10192; state: DISABLED
+10-09 00:47:24.988   520   542 D CompatibilityChangeReporter: Compat change id reported: 135772972; UID 10192; state: DISABLED
+10-09 00:47:24.988   520   542 D CompatibilityChangeReporter: Compat change id reported: 135754954; UID 10192; state: ENABLED
+--------- beginning of main
+10-09 00:47:24.990   827   882 D SplashScreenView: Build android.window.SplashScreenView{ee74c46 V.E...... ......ID 0,0-0,0}
+10-09 00:47:24.990   827   882 D SplashScreenView: Icon: view: android.widget.ImageView{5dcfe07 V.ED..... ......I. 0,0-0,0 #10204f0 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@4e87b34 size: 192
+10-09 00:47:24.990   827   882 D SplashScreenView: Branding: view: android.view.View{abe7d5d G.ED..... ......I. 0,0-0,0 #10204ef android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-09 00:47:24.990  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:24.990  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(1), isTaskbarPresent: true
+10-09 00:47:24.990   520   550 D CompatibilityChangeReporter: Compat change id reported: 143937733; UID 10192; state: ENABLED
+10-09 00:47:24.994   520   602 D CompatibilityChangeReporter: Compat change id reported: 265195908; UID 10192; state: ENABLED
+10-09 00:47:24.995   335   335 D Zygote  : Forked child process 7519
+10-09 00:47:24.996   520   550 I ActivityManager: Start proc 7519:org.pkforge.shurt.dex/u0a192 for next-top-activity {org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity}
+10-09 00:47:25.001   520  2235 D CompatibilityChangeReporter: Compat change id reported: 168419799; UID 10192; state: DISABLED
+10-09 00:47:25.001   520  2235 D CompatibilityChangeReporter: Compat change id reported: 273564678; UID 10192; state: DISABLED
+10-09 00:47:25.004   827   863 V WindowManagerShell: Transition requested: android.os.BinderProxy@3be6d2 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=15 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity } baseActivity=ComponentInfo{org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity} topActivity=ComponentInfo{org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity} origActivity=null realActivity=ComponentInfo{org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity} numActivities=1 lastActiveTime=795287 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@24173a3} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{a2c16a0 crc64376d3ec655035be1.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-09 00:47:25.019   520  2467 D CoreBackPreview: Window{167924d u0 Splash Screen org.pkforge.shurt.dex}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@4136a13, mPriority=0, mIsAnimationCallback=false}
+10-09 00:47:25.026  1083  1929 D EGL_emulation: app_time_stats: avg=658.43ms min=81.76ms max=1770.36ms count=3
+10-09 00:47:25.029   399   399 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+10-09 00:47:25.047  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.058  7519  7519 I forge.shurt.dex: Using CollectorTypeCC GC.
+10-09 00:47:25.060  1083  1929 D EGL_emulation: app_time_stats: avg=291.88ms min=35.77ms max=1041.59ms count=7
+10-09 00:47:25.075  7519  7519 W forge.shurt.dex: Unexpected CPU variant for x86: x86_64.
+10-09 00:47:25.075  7519  7519 W forge.shurt.dex: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+10-09 00:47:25.135  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.172   827   863 V WindowManagerShell: onTransitionReady android.os.BinderProxy@3be6d2: {id=21 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@f5b76f7} m=OPEN f=NONE leash=Surface(name=Task=15)/@0xca219b8 sb=Rect(0, 0 - 1920, 1080) eb=Rect(0, 0 - 1920, 1080) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@23b1964} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x12b3391 sb=Rect(0, 0 - 1920, 1080) eb=Rect(0, 0 - 1920, 1080) d=0}]}
+10-09 00:47:25.173   827   863 V WindowManagerShell: Playing animation for (#21)android.os.BinderProxy@3be6d2@0
+10-09 00:47:25.173   827   863 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@d8ca5d6
+10-09 00:47:25.173   827   863 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@8ee0057
+10-09 00:47:25.173   827   863 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@bbad744
+10-09 00:47:25.176   827   863 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@ebc902d
+10-09 00:47:25.176   827   863 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+10-09 00:47:25.177   827   863 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@a054962
+10-09 00:47:25.177   827   863 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@4684af3
+10-09 00:47:25.177   827   863 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@23023b0
+10-09 00:47:25.177   827   863 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=21 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@f5b76f7} m=OPEN f=NONE leash=Surface(name=Task=15)/@0xca219b8 sb=Rect(0, 0 - 1920, 1080) eb=Rect(0, 0 - 1920, 1080) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@23b1964} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x12b3391 sb=Rect(0, 0 - 1920, 1080) eb=Rect(0, 0 - 1920, 1080) d=0}]}
+10-09 00:47:25.177   827   863 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@dbbad19, appThread = android.app.IApplicationThread$Stub$Proxy@1fc81de, debugName = LauncherToDream }}
+10-09 00:47:25.183   520   539 V WindowManager: Sent Transition #21 createdAt=10-09 00:47:24.981 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=15 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity } baseActivity=ComponentInfo{org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity} topActivity=ComponentInfo{org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity} origActivity=null realActivity=ComponentInfo{org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity} numActivities=1 lastActiveTime=795287 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{5eb1b4e Task{84ec638 #15 type=standard A=10192:org.pkforge.shurt.dex}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{3c0946f crc64376d3ec655035be1.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-09 00:47:25.183   520   539 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+10-09 00:47:25.183   520   539 V WindowManager:     info={id=21 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{5eb1b4e Task{84ec638 #15 type=standard A=10192:org.pkforge.shurt.dex}}} m=OPEN f=NONE leash=Surface(name=Task=15)/@0x4482450 sb=Rect(0, 0 - 1920, 1080) eb=Rect(0, 0 - 1920, 1080) d=0},{WCT{RemoteToken{129f575 Task{d3114d4 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xa246598 sb=Rect(0, 0 - 1920, 1080) eb=Rect(0, 0 - 1920, 1080) d=0}]}
+10-09 00:47:25.184  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.207   827   863 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@7c91fbf, appThread = android.app.IApplicationThread$Stub$Proxy@508e68c, debugName = QuickstepLaunchHome }}
+10-09 00:47:25.207   827   863 V WindowManagerShell:  Delegate animation for #21 to null
+10-09 00:47:25.207   827   863 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@37f0229
+10-09 00:47:25.207   827   863 V WindowManagerShell: start default transition animation, info = {id=21 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@f5b76f7} m=OPEN f=NONE leash=Surface(name=Task=15)/@0xca219b8 sb=Rect(0, 0 - 1920, 1080) eb=Rect(0, 0 - 1920, 1080) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@23b1964} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x12b3391 sb=Rect(0, 0 - 1920, 1080) eb=Rect(0, 0 - 1920, 1080) d=0}]}
+10-09 00:47:25.208   827   863 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@4a7a882 animAttr=0x13 type=OPEN isEntrance=false
+10-09 00:47:25.219   827   863 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@12bcace animAttr=0x12 type=OPEN isEntrance=true
+10-09 00:47:25.223  7519  7519 I ndk_translation: Initialized NDK translation (aarch64), version 0.2.3
+10-09 00:47:25.232   827   863 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@37f0229
+10-09 00:47:25.232   827   863 W Looper  : Slow dispatch took 60ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@92e30fc m=0
+10-09 00:47:25.244  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.296   827   870 W Looper  : Slow dispatch took 38ms wmshell.anim h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@f4265a6 m=0
+10-09 00:47:25.296   827   863 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#21)android.os.BinderProxy@3be6d2@0
+10-09 00:47:25.297   520   539 V WindowManager: Finish Transition #21: created at 10-09 00:47:24.981 collect-started=0.038ms request-sent=4.412ms started=24.841ms ready=168.139ms sent=190.2ms finished=315.468ms
+10-09 00:47:25.298   827   863 V WindowManagerShell: Track 0 became idle
+10-09 00:47:25.301   827   863 V WindowManagerShell: All active transition animations finished
+10-09 00:47:25.305  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.355  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.389  7519  7519 E forge.shurt.dex: Not starting debugger since process cannot load the jdwp agent.
+10-09 00:47:25.433  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.446  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.460  7519  7519 D CompatibilityChangeReporter: Compat change id reported: 171979766; UID 10192; state: ENABLED
+10-09 00:47:25.460  7519  7519 D CompatibilityChangeReporter: Compat change id reported: 242716250; UID 10192; state: ENABLED
+10-09 00:47:25.461   520  2235 D CompatibilityChangeReporter: Compat change id reported: 170503758; UID 10192; state: ENABLED
+10-09 00:47:25.467  7519  7519 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-09 00:47:25.467  7519  7519 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-09 00:47:25.475  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.476  7519  7519 D nativeloader: Configuring clns-6 for other apk /data/app/~~3CsEC5PeSo2AbG0doFBEmQ==/org.pkforge.shurt.dex-ym2Sbvmm1GaU34gdflu6tg==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~3CsEC5PeSo2AbG0doFBEmQ==/org.pkforge.shurt.dex-ym2Sbvmm1GaU34gdflu6tg==/lib/arm64:/data/app/~~3CsEC5PeSo2AbG0doFBEmQ==/org.pkforge.shurt.dex-ym2Sbvmm1GaU34gdflu6tg==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/org.pkforge.shurt.dex
+10-09 00:47:25.499  7519  7519 V GraphicsEnvironment: Currently set values for:
+10-09 00:47:25.499  7519  7519 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-09 00:47:25.499  7519  7519 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-09 00:47:25.499  7519  7519 V GraphicsEnvironment: ANGLE GameManagerService for org.pkforge.shurt.dex: false
+10-09 00:47:25.499  7519  7519 V GraphicsEnvironment: org.pkforge.shurt.dex is not listed in per-application setting
+10-09 00:47:25.499  7519  7519 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-09 00:47:25.501  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.520  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.543  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.563  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.581  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.606  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.623  1083  1083 D b/260135164: updateIconAlphaForHome - setIconsAlpha(0), isTaskbarPresent: true
+10-09 00:47:25.793  7519  7519 D DOTNET  : AndroidCryptoNative_InitLibraryOnLoad: jint AndroidCryptoNative_InitLibraryOnLoad(JavaVM *, void *) in /__w/1/s/src/runtime/src/native/libs/System.Security.Cryptography.Native.Android/pal_jni.c
+10-09 00:47:25.795  7519  7519 D DOTNET  : GetOptionalClassGRef: optional class com/android/org/conscrypt/OpenSSLEngineImpl was not found
+10-09 00:47:25.792  7519  7519 W forge.shurt.dex: type=1400 audit(0.0:73): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=399 scontext=u:r:untrusted_app:s0:c192,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=org.pkforge.shurt.dex
+10-09 00:47:26.034  7519  7519 D org.pkforge.shurt.dex: Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+10-09 00:47:26.034  7519  7519 D org.pkforge.shurt.dex: I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt72l.dat
+10-09 00:47:26.032  7519  7519 W forge.shurt.dex: type=1400 audit(0.0:74): avc:  denied  { getattr } for  path="/dev/pmsg0" dev="tmpfs" ino=399 scontext=u:r:untrusted_app:s0:c192,c256,c512,c768 tcontext=u:object_r:pmsg_device:s0 tclass=chr_file permissive=0 app=org.pkforge.shurt.dex
+10-09 00:47:26.913   520  3183 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+10-09 00:47:26.929  7519  7519 I forge.shurt.dex: Explicit concurrent copying GC freed 12866(629KB) AllocSpace objects, 2(40KB) LOS objects, 49% free, 2013KB/4026KB, paused 22us,4us total 3.188ms
+10-09 00:47:27.045  7519  7519 I PKForge : 2026-10-09 00:47:27.001 +00:00 INFO  [app] Iniciado · PKForge 1.0.9.4 (200004) · Google sdk_gphone64_x86_64 · Android 14 (API 34)
+10-09 00:47:27.150  7519  7519 I PKForgeBoot: CreateMauiApp enter
+10-09 00:47:27.315  7519  7519 I PKForgeBoot: builder.Build()
+10-09 00:47:27.409  7519  7519 I PKForgeBoot: App ctor
+10-09 00:47:27.548   520  2467 I ActivityManager: Flag disabled. Ignoring finishAttachApplication from uid: 10192. pid: 7519
+10-09 00:47:27.576  7519  7546 D libEGL  : loaded /vendor/lib64/egl/libEGL_emulation.so
+10-09 00:47:27.577  7519  7546 D libEGL  : loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+10-09 00:47:27.579  7519  7546 D libEGL  : loaded /vendor/lib64/egl/libGLESv2_emulation.so
+10-09 00:47:27.602  7519  7519 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+10-09 00:47:27.703  7519  7519 I PKForgeBoot: CreateWindow enter
+10-09 00:47:27.703  7519  7519 I PKForgeBoot: resolving HomePage
+10-09 00:47:27.786   827   827 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-09 00:47:28.115  7519  7519 I PKForgeBoot: HomePage resolved
+10-09 00:47:28.229  7519  7519 I forge.shurt.dex: Explicit concurrent copying GC freed 3613(284KB) AllocSpace objects, 4(528KB) LOS objects, 49% free, 2226KB/4452KB, paused 27us,5us total 3.651ms
+10-09 00:47:28.353  7519  7519 I forge.shurt.dex: Explicit concurrent copying GC freed 133(22KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 2220KB/4440KB, paused 13us,5us total 2.968ms
+10-09 00:47:29.108  7519  7519 D CompatibilityChangeReporter: Compat change id reported: 210923482; UID 10192; state: ENABLED
+10-09 00:47:29.134  7519  7519 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+10-09 00:47:29.134  7519  7519 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+10-09 00:47:29.451  7519  7519 D CompatibilityChangeReporter: Compat change id reported: 171228096; UID 10192; state: ENABLED
+10-09 00:47:29.703  7519  7519 D CompatibilityChangeReporter: Compat change id reported: 237531167; UID 10192; state: DISABLED
+10-09 00:47:29.704  7519  7519 W OpenGLRenderer: Unknown dataspace 0
+10-09 00:47:29.707  7519  7519 I Choreographer: Skipped 222 frames!  The application may be doing too much work on its main thread.
+10-09 00:47:29.854   520  2467 D CoreBackPreview: Window{a70f357 u0 org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@d0f1862, mPriority=0, mIsAnimationCallback=false}
+10-09 00:47:29.917  7519  7544 W OpenGLRenderer: Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-09 00:47:29.933   135   135 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+10-09 00:47:29.936  7519  7544 I Gralloc4: mapper 4.x is not supported
+--------- beginning of kernel
+10-09 00:47:30.077     0     0 I servicemanager: Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+10-09 00:47:30.035  7519  7519 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-09 00:47:30.101  7519  7519 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+10-09 00:47:30.945   520   539 W system_server: Failed to determine oat file name for dex location /data/app/~~3CsEC5PeSo2AbG0doFBEmQ==/org.pkforge.shurt.dex-ym2Sbvmm1GaU34gdflu6tg==/base.apk: Dalvik cache directory does not exist
+10-09 00:47:30.945   520   539 W ziparchive: Unable to open '/data/app/~~3CsEC5PeSo2AbG0doFBEmQ==/org.pkforge.shurt.dex-ym2Sbvmm1GaU34gdflu6tg==/base.dm': No such file or directory
+10-09 00:47:30.947   520   539 I ActivityTaskManager: Displayed org.pkforge.shurt.dex/crc64376d3ec655035be1.MainActivity for user 0: +5s965ms
+10-09 00:47:30.954  7519  7548 I OpenGLRenderer: Davey! duration=4949ms; Flags=1, FrameTimelineVsyncId=22537, IntendedVsync=796297533323, Vsync=799997533175, InputEventId=0, HandleInputStart=800009749289, AnimationStart=800009750119, PerformTraversalsStart=800009816651, DrawStart=800273035505, FrameDeadline=796314199989, FrameInterval=800009517646, FrameStartTime=16666666, SyncQueued=800509520662, SyncStart=800509890723, IssueDrawCommandsStart=800515207987, SwapBuffers=801123192225, FrameCompleted=801247769464, DequeueBufferDuration=29880, QueueBufferDuration=705967, GpuCompleted=801247769464, SwapBuffersCompleted=801241539852, DisplayPresentTime=60129542155, CommandSubmissionCompleted=801123192225, 
+10-09 00:47:30.959   827   880 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@4eda6ff
+10-09 00:47:30.959   520  1694 D CoreBackPreview: Window{167924d u0 Splash Screen org.pkforge.shurt.dex EXITING}: Setting back callback null
+10-09 00:47:30.960   520  1694 W InputManager-JNI: Input channel object '167924d Splash Screen org.pkforge.shurt.dex (client)' was disposed without first being removed with the input manager!
+10-09 00:47:30.972  1083  2322 D OneSearchSuggestProvider: Shut down the binder channel
+10-09 00:47:30.973  1083  1380 I IPCThreadState: oneway function results for code 2 on binder at 0x7ad95394ab20 will be dropped but finished with status UNKNOWN_TRANSACTION
+10-09 00:47:30.984  1650  2883 I PBSessionCacheImpl: Deleted sessionId[7258568249407318] from persistence.
+10-09 00:47:30.987   827   890 D EGL_emulation: app_time_stats: avg=3925.59ms min=18.64ms max=7832.55ms count=2
+10-09 00:47:30.993  1014  1336 D BtGatt.ScanManager: uid 10131 isForeground true scanMode -1
+10-09 00:47:30.993  1014  1336 D BtGatt.ScanManager: uid 10131 isForeground true scanMode -1
+10-09 00:47:31.005  1650  2327 I A       : Using proto config with mendel
+10-09 00:47:31.006  1650  2327 I A       : Using proto config with mendel
+10-09 00:47:31.006  1650  2327 W SearchServiceCore: Abort, client detached.
+10-09 00:47:31.007  1650  2327 I MicroDetectionState: Should stop hotword detection immediately - true
+10-09 00:47:31.007  1650  2327 I A       : Using proto config with mendel
+10-09 00:47:31.007  1650  2327 I A       : Using proto config with mendel
+10-09 00:47:31.016  1083  1143 I ImeTracker: com.google.android.apps.nexuslauncher:58a8c62b: onRequestHide at ORIGIN_CLIENT_HIDE_SOFT_INPUT reason HIDE_SOFT_INPUT
+10-09 00:47:31.016   520  1694 I ImeTracker: com.google.android.apps.nexuslauncher:58a8c62b: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-09 00:47:31.213   520  2467 D ConnectivityService: requestNetwork for uid/pid:10192/7519 activeRequest: null callbackRequest: 166 [NetworkRequest [ REQUEST id=167, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: org.pkforge.shurt.dex UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647
+10-09 00:47:31.218   520   760 D ConnectivityService: NetReassign [167 : null → 100] [c 1] [a 0] [i 1]
+10-09 00:47:31.218   520   753 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=167, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: org.pkforge.shurt.dex UnderlyingNetworks: Null] ]
+10-09 00:47:31.218   520   753 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=167, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: org.pkforge.shurt.dex UnderlyingNetworks: Null] ]
+10-09 00:47:31.218   520   753 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=167, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: org.pkforge.shurt.dex UnderlyingNetworks: Null] ]
+10-09 00:47:31.218   520   753 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=167, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: org.pkforge.shurt.dex UnderlyingNetworks: Null] ]
+10-09 00:47:31.220  7519  7519 I Choreographer: Skipped 87 frames!  The application may be doing too much work on its main thread.
+10-09 00:47:31.252  1014  1336 D BtGatt.ScanManager: uid 10131 isForeground true scanMode -1
+10-09 00:47:31.252  1014  1336 D BtGatt.ScanManager: uid 10131 isForeground true scanMode -1
+10-09 00:47:31.260  5184  5197 I FontLog : Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+10-09 00:47:31.261  5184  5197 I FontLog : Query [emojicompat-emoji-font] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+10-09 00:47:31.262  5184  5197 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+10-09 00:47:31.272   520  1694 D CompatibilityChangeReporter: Compat change id reported: 214016041; UID 10192; state: ENABLED
+10-09 00:47:31.276   520  1694 I ImeTracker: org.pkforge.shurt.dex:c238510d: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+10-09 00:47:31.276   520  1694 I ImeTracker: org.pkforge.shurt.dex:c238510d: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-09 00:47:31.283  1488  1488 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3227 
+10-09 00:47:31.284  1488  1488 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 0, unlocked = true
+10-09 00:47:31.284  1488  1488 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=org.pkforge.shurt.dex fieldId=0 fieldName=null extras=null}, false)
+10-09 00:47:31.284  1488  1488 I GoogleInputMethodService: GoogleInputMethodService.shouldHideHeaderOnInitialState():4008 ShouldHideHeaderOnInitialState = false
+10-09 00:47:31.284  1488  1488 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 2, unlocked = true
+10-09 00:47:31.322  5184  5197 I FontLog : Pulling font file for id = 13, cache size = 5 [CONTEXT service_id=132 ]
+10-09 00:47:31.336  5184  5197 I FontLog : Pulling font file for id = 13, cache size = 5 [CONTEXT service_id=132 ]
+10-09 00:47:31.623   334  7563 I resolv  : GetAddrInfoHandler::run: {100 100 100 983140 10192 0}
+10-09 00:47:31.628   334  7565 I resolv  : res_nmkquery: (QUERY, IN, A)
+10-09 00:47:31.628   334  7564 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+10-09 00:47:31.637   334  7565 I resolv  : res_nsend: used send_dg 48 terrno: 0
+10-09 00:47:31.638   334  7565 I resolv  : doQuery: rcode=0, ancount=1, return value=48
+10-09 00:47:31.639   334  7564 I resolv  : res_nsend: used send_dg 116 terrno: 0
+10-09 00:47:31.639   334  7564 I resolv  : doQuery: rcode=0, ancount=0, return value=116
+10-09 00:47:31.643   334  7567 I resolv  : res_nmkquery: (QUERY, IN, A)
+10-09 00:47:31.643   334  7567 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x73c3cad032d0
+10-09 00:47:31.643   334  7567 I resolv  : doQuery: rcode=0, ancount=1, return value=48
+10-09 00:47:31.644   334  7566 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+10-09 00:47:31.644   334  7566 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x73c31ad0e770
+10-09 00:47:31.644   334  7566 I resolv  : doQuery: rcode=0, ancount=0, return value=116
+10-09 00:47:31.944   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:47:32.866   520   609 D ActivityManager: freezing 1654 android.process.acore
+10-09 00:47:33.001   520  1694 W ProcessStats: Tracking association SourceState{801901c org.pkforge.shurt.dex/10192 BTop #12741} whose proc state 2 is better than process ProcessState{c7a578e com.google.android.gms.persistent/10131 pkg=com.google.android.gms} proc state 4 (117 skipped)
+10-09 00:47:35.278  7519  7568 D ProfileInstaller: Installing profile for org.pkforge.shurt.dex
+10-09 00:47:37.367  1014  1336 D BtGatt.ScanManager: uid 10131 isForeground true scanMode -1
+10-09 00:47:37.367  1014  1336 D BtGatt.ScanManager: uid 10131 isForeground true scanMode -1
+10-09 00:47:37.786   827   827 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-09 00:47:40.956   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:47:43.009  1650  2327 I WorkerManager: dispose()
+10-09 00:47:43.009  1650  2327 W A       : Queue length for executor EventBus is now 11. Perhaps some tasks are too long, or the pool is too small.
+10-09 00:47:43.960   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:47:46.964   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:47:47.786   827   827 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-09 00:47:48.594   520   609 D ActivityManager: freezing 7242 com.google.android.gms
+10-09 00:47:57.786   827   827 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-09 00:48:00.034  1578  1988 I AiAiEcho: Predicting[0]: 
+10-09 00:48:00.034  1578  1988 I AiAiEcho: EchoTargets: 
+10-09 00:48:00.034  1578  1988 I AiAiEcho: Filtered by AiAi flag check: 
+10-09 00:48:00.035  1578  1988 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata: 
+10-09 00:48:00.035   827   890 D EGL_emulation: app_time_stats: avg=14524.03ms min=12.86ms max=29035.20ms count=2
+10-09 00:48:00.035  1578  1988 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+10-09 00:48:00.047   827   827 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+10-09 00:48:01.384   520  1694 D WifiNl80211Manager: Scan result ready event
+10-09 00:48:01.384   520  1694 D WifiNative: Scan result ready event
+10-09 00:48:04.991   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:48:07.787   827   827 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-09 00:48:07.995   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:48:11.000   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:48:14.005   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:48:17.009   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:48:17.787   827   827 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-09 00:48:19.108     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+10-09 00:48:19.969   520   753 E WifiStaIfaceAidlImpl: installApfPacketFilter failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+10-09 00:48:20.010   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:48:23.014   827   827 D StatusBarIconController: ignoring old pipeline callback because the new wifi icon is enabled
+10-09 00:48:27.166  7586  7586 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+10-09 00:48:27.166  7586  7586 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+10-09 00:48:27.179   135   135 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+10-09 00:48:27.179  7586  7587 I Gralloc4: mapper 4.x is not supported
+10-09 00:48:27.327     0     0 I servicemanager: Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+10-09 00:48:27.308  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=1065.0, y[0]=202.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=857607, downTime=857607, deviceId=-1, source=0x1002, displayId=0, eventId=-656112128 }
+10-09 00:48:27.340  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=1065.0, y[0]=202.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=857607, downTime=857607, deviceId=-1, source=0x1002, displayId=0, eventId=-1030574677 }
+10-09 00:48:27.789   827   827 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-09 00:48:29.361  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=859662, downTime=859662, deviceId=-1, source=0x1002, displayId=0, eventId=-113329817 }
+10-09 00:48:29.392  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=859662, downTime=859662, deviceId=-1, source=0x1002, displayId=0, eventId=-907266359 }
+10-09 00:48:29.464  7519  7519 I forge.shurt.dex: Explicit concurrent copying GC freed 30010(1007KB) AllocSpace objects, 3(60KB) LOS objects, 49% free, 4364KB/8729KB, paused 15us,7us total 7.889ms
+10-09 00:48:29.696   520  2467 D CompatibilityChangeReporter: Compat change id reported: 161145287; UID 10192; state: ENABLED
+10-09 00:48:30.206  7519  7544 D EGL_emulation: app_time_stats: avg=14816.78ms min=36.73ms max=58530.31ms count=4
+10-09 00:48:31.756  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=862057, downTime=862057, deviceId=-1, source=0x1002, displayId=0, eventId=-366450214 }
+10-09 00:48:31.759  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=862057, downTime=862057, deviceId=-1, source=0x1002, displayId=0, eventId=-157557197 }
+10-09 00:48:31.809  7519  7544 D EGL_emulation: app_time_stats: avg=534.18ms min=65.86ms max=1459.45ms count=3
+10-09 00:48:33.811  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=864112, downTime=864112, deviceId=-1, source=0x1002, displayId=0, eventId=-859643046 }
+10-09 00:48:33.813  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=864112, downTime=864112, deviceId=-1, source=0x1002, displayId=0, eventId=-302263690 }
+10-09 00:48:33.918  7519  7519 I forge.shurt.dex: Explicit concurrent copying GC freed 5011(318KB) AllocSpace objects, 9(564KB) LOS objects, 49% free, 4509KB/9019KB, paused 13us,7us total 8.113ms
+10-09 00:48:34.157  7519  7544 D EGL_emulation: app_time_stats: avg=2347.06ms min=2347.06ms max=2347.06ms count=1
+10-09 00:48:36.028  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=866329, downTime=866329, deviceId=-1, source=0x1002, displayId=0, eventId=-21731845 }
+10-09 00:48:36.030  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=866329, downTime=866329, deviceId=-1, source=0x1002, displayId=0, eventId=-629420311 }
+10-09 00:48:36.064  7519  7544 D EGL_emulation: app_time_stats: avg=476.39ms min=44.24ms max=1752.67ms count=4
+10-09 00:48:37.790   827   827 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-09 00:48:37.797   827   890 D EGL_emulation: app_time_stats: avg=37762.36ms min=37762.36ms max=37762.36ms count=1
+10-09 00:48:38.066  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=868368, downTime=868368, deviceId=-1, source=0x1002, displayId=0, eventId=-784249781 }
+10-09 00:48:38.067  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=868368, downTime=868368, deviceId=-1, source=0x1002, displayId=0, eventId=-300196 }
+10-09 00:48:38.373  7519  7544 D EGL_emulation: app_time_stats: avg=2308.40ms min=2308.40ms max=2308.40ms count=1
+10-09 00:48:40.233  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=870534, downTime=870534, deviceId=-1, source=0x1002, displayId=0, eventId=-1014783814 }
+10-09 00:48:40.235  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=870534, downTime=870534, deviceId=-1, source=0x1002, displayId=0, eventId=-56535548 }
+10-09 00:48:40.276  7519  7519 I forge.shurt.dex: Explicit concurrent copying GC freed 14596(1025KB) AllocSpace objects, 36(2704KB) LOS objects, 49% free, 4972KB/9944KB, paused 16us,9us total 10.342ms
+10-09 00:48:40.313  7519  7544 D EGL_emulation: app_time_stats: avg=646.64ms min=45.32ms max=1837.96ms count=3
+10-09 00:48:42.312  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=872613, downTime=872613, deviceId=-1, source=0x1002, displayId=0, eventId=-769151711 }
+10-09 00:48:42.313  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=872613, downTime=872613, deviceId=-1, source=0x1002, displayId=0, eventId=-514662706 }
+10-09 00:48:42.577  7519  7544 D EGL_emulation: app_time_stats: avg=2263.74ms min=2263.74ms max=2263.74ms count=1
+10-09 00:48:44.467  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=874768, downTime=874768, deviceId=-1, source=0x1002, displayId=0, eventId=-680069758 }
+10-09 00:48:44.469  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=960.0, y[0]=1058.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=874768, downTime=874768, deviceId=-1, source=0x1002, displayId=0, eventId=-308838331 }
+10-09 00:48:44.503  7519  7544 D EGL_emulation: app_time_stats: avg=640.85ms min=46.19ms max=1810.10ms count=3
+10-09 00:48:46.553  7640  7640 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+10-09 00:48:46.553  7640  7640 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+10-09 00:48:46.713     0     0 I servicemanager: Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+10-09 00:48:46.565   135   135 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+10-09 00:48:46.566  7640  7641 I Gralloc4: mapper 4.x is not supported
+10-09 00:48:46.693  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_DOWN, actionButton=0, id[0]=0, x[0]=1720.0, y[0]=985.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=876992, downTime=876992, deviceId=-1, source=0x1002, displayId=0, eventId=-682548433 }
+10-09 00:48:46.695  1083  1083 D TaplEvents: TIS / TouchInteractionService.onInputEvent: MotionEvent { action=ACTION_UP, actionButton=0, id[0]=0, x[0]=1720.0, y[0]=985.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, classification=NONE, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=876992, downTime=876992, deviceId=-1, source=0x1002, displayId=0, eventId=-804365993 }
+10-09 00:48:46.816  7519  7519 I forge.shurt.dex: Explicit concurrent copying GC freed 12792(876KB) AllocSpace objects, 22(1880KB) LOS objects, 49% free, 5071KB/10142KB, paused 14us,7us total 10.161ms
+10-09 00:48:46.849  7519  7621 I forge.shurt.dex: Explicit concurrent copying GC freed 1505(135KB) AllocSpace objects, 2(264KB) LOS objects, 49% free, 5063KB/10126KB, paused 26us,7us total 9.348ms
+10-09 00:48:46.924  7519  7598 I forge.shurt.dex: Explicit concurrent copying GC freed 12191(823KB) AllocSpace objects, 8(1056KB) LOS objects, 49% free, 4432KB/8864KB, paused 19us,7us total 8.394ms
+10-09 00:48:47.166  7519  7544 D EGL_emulation: app_time_stats: avg=2663.34ms min=2663.34ms max=2663.34ms count=1
+10-09 00:48:47.790   827   827 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+10-09 00:48:51.048  7652  7652 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+10-09 00:48:51.048  7652  7652 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+10-09 00:48:51.063   135   135 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+10-09 00:48:51.063  7652  7653 I Gralloc4: mapper 4.x is not supported
+10-09 00:48:51.212     0     0 I servicemanager: Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+10-09 00:48:51.197  1488  1488 I GoogleInputMethodService: GoogleInputMethodService.onKeyDown():2444 Received KEYCODE_BACK. isAllViewsInvisible=false
+10-09 00:48:51.241   520   540 D AutofillManagerService: onBackKeyPressed()
+10-09 00:48:51.259  7519  7544 D EGL_emulation: app_time_stats: avg=1364.00ms min=53.17ms max=3983.34ms count=3
