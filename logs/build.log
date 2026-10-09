@@ -1,0 +1,15 @@
+  Determining projects to restore...
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/windows/Runtime.Chrome/Runtime.Chrome.csproj (in 110 ms).
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/windows/Core/Core.csproj (in 1.2 sec).
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/windows/Cli/Cli.csproj (in 1.2 sec).
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/windows/Runtime.App/Runtime.App.csproj (in 1.5 sec).
+  Runtime.Chrome -> /home/runner/work/PKForge-ja/PKForge-ja/windows/Runtime.Chrome/bin/Release/net10.0/PKForge.Chrome.dll
+  Runtime.App -> /home/runner/work/PKForge-ja/PKForge-ja/windows/Runtime.App/bin/Release/net10.0/PKForgeJa.RuntimeApp.dll
+  Core -> /home/runner/work/PKForge-ja/PKForge-ja/windows/Core/bin/Release/net10.0/PKForgeJa.Patcher.dll
+  Cli -> /home/runner/work/PKForge-ja/PKForge-ja/windows/Cli/bin/Release/net10.0/pkforge-ja.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.67

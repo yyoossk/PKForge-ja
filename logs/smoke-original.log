@@ -1,0 +1,7 @@
+Performing Streamed Install
+Success
+起動: org.pkforge.shurt/crc64376d3ec655035be1.MainActivity
+試行 1: 90 秒動作
+10-08 23:58:24.684  3656  3656 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-08 23:58:25.255  3656  3656 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail
+起動テスト OK（90 秒以上動作）
