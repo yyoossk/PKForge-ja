@@ -70,11 +70,14 @@ public static class LangSetup
 #if ANDROID
         try
         {
-            var locales = Android.App.Application.Context.Resources?.Configuration?.Locales;
-            if (locales is not null && locales.Size() > 0)
+            if (System.OperatingSystem.IsAndroidVersionAtLeast(24))
             {
-                var tag = locales.Get(0)?.ToLanguageTag();
-                if (!string.IsNullOrEmpty(tag)) return tag;
+                var locales = Android.App.Application.Context.Resources?.Configuration?.Locales;
+                if (locales is not null && locales.Size() > 0)
+                {
+                    var tag = locales.Get(0)?.ToLanguageTag();
+                    if (!string.IsNullOrEmpty(tag)) return tag;
+                }
             }
             var def = Java.Util.Locale.Default?.ToLanguageTag();
             if (!string.IsNullOrEmpty(def)) return def;
