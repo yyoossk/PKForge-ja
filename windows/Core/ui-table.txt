@@ -22,6 +22,7 @@ E	Forget this save's name, color, game choice and ROM-hack editing choice, and s
 E	Every slot is replaced with a random Pokémon from the Dream World list for this game, each with a move it can have there. All areas open.	すべての枠を、このゲームのドリームワールド一覧からランダムなポケモンに置き換えます。どれもそこで覚えられるわざを持ちます。全エリアが開放されます。
 E	No Pokémon that has left this save since then would come back. The destination's current state is preserved as a new restore point first.	その後このセーブから離れたポケモンが戻ってくることはありません。復元先の現在の状態は、先に新しい復元ポイントとして保存されます。
 T	{0} appears busy watching something in the distance. You follow its gaze. A very ordinary pebble is receiving extraordinary attention.	{0}は遠くの何かを見るのに忙しそう。視線を追ってみると、ごく普通の小石がとびきりの注目を浴びていた。	
+E	This location no longer matches the observation, or its source could not be read. Refresh local copies or sync again before opening it.	この場所は観測内容と一致しなくなったか、ソースを読み取れませんでした。開く前にローカルのコピーを更新するか、もう一度同期してください。
 E	A game may then give away the only Pokémon of a species it has. It stays safe in your living dex, and every game gets a restore point.	ゲーム内で1匹しかいない種族も出せるようになります。そのポケモンはリビング図鑑で安全に保管され、すべてのゲームに復元ポイントが作られます。
 E	Save in game and close the emulator. Select its files root containing the emulated storage. Restart the game normally after editing.	ゲーム内でセーブしてエミュレータを閉じてください。エミュレートされたストレージを含む files のルートを選択します。編集後はゲームを通常どおり再起動してください。
 E	Your Pokémon from every game gather in new Bank boxes, sorted by Pokédex number. Nothing is lost if a game can't hold a species.	すべてのゲームのポケモンを新しいバンクのボックスに図鑑番号順で集めます。ゲームに入らない種族があっても失われません。
@@ -103,11 +104,13 @@ T	One per line, PKHeX style, added on top of the chips:\nLevel=100\nIV_HP={0}\nS
 E	Pokémon, moves or items may show wrong and editing can damage the save. Continue at your own risk.	ポケモン・わざ・道具が正しく表示されず、編集でセーブが壊れるおそれがあります。自己責任で続けてください。
 E	Reset both clocks: sets both to zero, so the game starts counting again from the cartridge clock. 	両方の時計をリセット: 両方を 0 にし、カートリッジの時計から改めて数え直させます。 
 T	{0} backup(s). Identified restore points can recover their original save without opening it first.	バックアップ {0} 件。識別済みの復元ポイントは、元のセーブを開かずに復元できます。	
+T	{0} missing entries have local copies. Choose a filter, then work through the copies save-by-save.	未所持の {0} 件にローカルのコピーがあります。フィルターを選び、セーブごとにコピーを順に確認してください。	
 E	Checkpoint transfer supports native Pokémon X/Y, OR/AS, Sun/Moon, and Ultra Sun/Ultra Moon saves.	Checkpoint転送は、ポケモン X・Y、オメガルビー・アルファサファイア、サン・ムーン、ウルトラサン・ウルトラムーンの純正セーブデータに対応しています。
 T	{0} noticed {1} struggling with a tangled branch and hurried over to help. Together, it was easy.	{0}は枝がからまって困っている{1}に気づき、急いで手伝いに行った。ふたりなら簡単だった。	
 T	{0} accepts the snack with solemn gratitude, then immediately checks whether there is another.	{0}はおやつをありがたく受け取って、すぐにもう一つないか確かめた。	
 T	{0} dives into the shallows, then surfaces with a splash that seems suspiciously aimed at you.	{0}は浅瀬にもぐり、水しぶきを上げて顔を出した。なんだか、きみをねらったみたいだ。	
 T	{0} notices a leaf on your shoulder before you do. It seems quite pleased with this discovery.	{0}はきみより先に、肩の葉っぱに気づいた。この発見がかなりうれしいみたい。	
+E	This shortcut stays limited to the referenced cards for this target and the open receiving game.	このショートカットは、このターゲットが参照するカードと、開いている受け取り側のゲームに限定されます。
 T	You stop trying to start an activity. {0} visibly settles. Doing nothing together counts too.	何かしようとするのをやめた。{0}は目に見えてくつろいだ。いっしょに何もしないのも立派な遊びだ。	
 T	{0} demonstrates a perfect measured stance. You try it. Your balance does not impress anyone.	{0}は完璧に整った構えを見せてくれた。まねしてみたけど、きみのバランスでは誰も感心しない。	
 T	{0} makes a tiny victory sound before the game has even started. Confidence is not a problem.	{0}はゲームが始まる前から、小さな勝利の声をあげた。自信はたっぷりだ。	
@@ -225,6 +228,7 @@ E	The PID is re-rolled: in Gen 3-5 that can also change the nature, gender or ab
 E	They fill the free slots from here on, then the next boxes. Taken slots are skipped.	ここから空きスロットに入れ、次のボックスへ続けます。使用中のスロットはスキップします。
 E	This Pokémon has a fixed event or in-game-trade OT and cannot be made yours legally.	このポケモンは配信またはゲーム内交換で親が固定されているため、正規のまま自分のポケモンにはできません。
 E	so legality checkers will likely flag this Pokémon even though the game can load it.	ゲームで読み込めても、正規チェックツールではこのポケモンが不正と判定される可能性が高いです。
+T	{0} The scan at {1} was incomplete, so this source retains its earlier observations.	{0} {1} のスキャンが完了しなかったため、このソースは以前の観測を保持しています。	
 T	{0} byte(s) changed. Raw edits skip format checks; a restore point is created first.	{0} バイト変更されています。直接編集は形式チェックを行いません。先に復元ポイントを作成します。	
 T	{0} prefers a little space. You sit nearby instead of crowding its favorite spot.	{0}は少し距離がほしいみたい。お気に入りの場所に押しかけず、近くに座ることにした。	
 E	Can recognize every regular resident by the sound of their walk through the meadow.	草原を歩く足音で、常連の住人がだれだかわかる。
@@ -265,6 +269,7 @@ T	Cannot restore '{0}' into '{1}'. This restore point belongs to a different fil
 E	Every box is selected: rescued Pokémon have nowhere to go, so they are released.	全ボックスが選択されているため、退避先がなくポケモンは逃がされます。
 T	Forget all {0} recorded gifts? The marks disappear; receiving again still works.	記録済みのおくりもの {0} 件をすべて消しますか？マークが消えるだけで、再度受け取ることはできます。	
 E	Has spent most of the day at the edge of the meadow, hoping someone will notice.	誰かに気づいてほしくて、一日のほとんどを草原のはしっこで過ごしていた。
+E	References include Pokémon gifts and any item or prerequisite gifts in the plan.	参照には、ポケモンの配信と、プランに含まれるどうぐや前提となる配信が含まれます。
 E	The in-app installer could not finish. The GitHub release page has the same APK.	アプリ内インストールを完了できませんでした。GitHub のリリースページに同じ APK があります。
 T	{0} and {1} chased cloud shadows over the plateau until they both needed a rest.	{0}と{1}は台地で雲の影を追いかけ、ふたりとも休みが必要になるまで走り回った。	
 T	{0} brings you a toasted berry. It blows on it very carefully before sharing.	{0}があぶったきのみを持ってきてくれた。分ける前に、とても念入りにフーフーしている。	
@@ -274,6 +279,7 @@ T	{0} turns a puddle into a stage, finishing its dance with an extravagant bow.	
 T	{0}'s eyes droop halfway through its own song. The final note becomes a yawn.	{0}は歌の途中でうとうと。最後の音はあくびになった。	
 E	. Nothing is overwritten. The current state stays available as a restore point.	。上書きはしません。現在の状態は復元ポイントとして残ります。
 E	Never takes a game's only one of a species, or your party, unless you allow it.	許可しない限り、ゲーム内で1匹しかいない種族やてもちのポケモンは使いません。
+E	None of this target's referenced Wonder Cards can be received by the open game.	このターゲットが参照するふしぎなカードは、開いているゲームでは受け取れません。
 E	Pokémon may go back to an older game; moves, Ability or Ball may change to fit.	古いゲームにも送ります。わざ・とくせい・ボールが合わせて変わることがあります。
 E	Rarity and special families. Combines with types, generation, power, and theme.	希少性や特別なグループ。タイプ・世代・強さ・テーマと組み合わせられます。
 T	Shininess could not be kept alongside the nature and gender in {0}'s PID rules.	{0}のPIDの規則では、色違いをせいかく・性別と両立できませんでした。	
@@ -296,6 +302,7 @@ T	Release {0}? Bank releases are permanent (the bank has no restore points yet).
 E	The egg hatches: an egg from a newer game cannot be carried into an older one.	タマゴは孵化します：新しいゲームのタマゴは古いゲームに持ち込めません。
 E	\n  The file is shorter than its header says; the missing slots read as empty.	\n  ファイルがヘッダーの記載より短いため、不足分の枠は空として読み込みます。
 E	\n\nThe destination's current state is preserved as a new restore point first.	\n\n復元先の現在の状態は、先に新しい復元ポイントとして保存されます。
+T	{0} lives inside {1}'s emulated storage. Close the emulator before opening it.	{0} は {1} のエミュレート保存領域内にあります。開く前にエミュレータを閉じてください。	
 T	{0} started a playful chase with {1}; it ended with both resting side by side.	{0}は{1}と楽しい追いかけっこを始めた。最後はふたり並んで休んでいた。	
 T	{0} prefers a slower game today. You roll the ball in short, gentle passes.	{0}は今日はゆっくりした遊びがいいみたい。短く、やさしくボールを転がし合った。	
 T	{0} settles beneath the broad leaves. Even the flowers seem to lean closer.	{0}は大きな葉っぱの下で落ち着いた。花たちまで近寄ってくるように見える。	
@@ -407,12 +414,15 @@ E	Every PC box is full. Free a box slot before withdrawing this Pokémon.	パソ
 E	Gen 3 Unown letters come from the PID: it was re-rolled (nature kept).	第3世代のアンノーンの文字はPIDで決まるため、PIDを再生成しました（せいかくは維持）。
 E	Move Shop and move mastery are only stored by Legends: Arceus Pokémon.	わざ屋と技の極めは Pokémon LEGENDS アルセウス のポケモンにのみ保存されます。
 E	Pick Eden's files root, the folder that contains its emulated storage.	Eden のファイルのルート（エミュレートされたストレージを含むフォルダ）を選んでください。
+E	The Pokédex response contains an invalid bank plan preparation status.	ポケモン図鑑のレスポンスに無効なバンクプランの準備状態が含まれています。
+E	The save changed while opening it. Refresh local copies or sync again.	開いている間にセーブが変更されました。ローカルのコピーを更新するか、もう一度同期してください。
 T	This save was set to open as {0}, but its bytes carry the {1} layout. 	このセーブデータは{0}として開くよう設定されていますが、中身は{1}の構造です。 	
 E	Unlocking sets each mission's story prerequisite flags, as PKHeX does.	解放すると、PKHeX と同様に各ミッションのストーリー前提フラグを設定します。
 T	{0} and {1} rested in a sheltered nook while clouds sailed below them.	{0}と{1}は風よけのすみっこで休み、その下を雲が流れていった。	
 T	{0}\n{1} marked. The current state stays available as a restore point.	{0}\n{1}匹を選択中。現在の状態は復元ポイントとして残ります。	
 T	{0} looks around the park and gives a small, deeply satisfied sigh.	{0}はパークを見わたして、小さく、心から満足そうなため息をついた。	
 E	 (re-derived from the ability slot in the target game's species data)	 （転送先ゲームの種族データのとくせい枠から再設定）
+E	Finish saving changes in the open save before switching to this copy.	このコピーに切り替える前に、開いているセーブの変更の保存を完了してください。
 E	No IV spread passes the IV checks (the origin fixes them to its PID).	個体値チェックを通る個体値がありません（出身によりPIDで固定されます）。
 E	Remembers the last rainstorm by the little rings it left in the pond.	この前の大雨を、池に残った小さな輪っかで覚えている。
 T	The bustle of the park seems to soften around {0}'s calm presence.	{0}の落ち着いた雰囲気に、パークのにぎわいもやわらいで見える。	
@@ -429,6 +439,7 @@ E	Every Poké Bean stack becomes 255. A restore point is created first.	すべ�
 E	It evolves on its next level-up; level it once in-game (or use HaX).	次のレベルアップで進化します。ゲーム内で1回レベルを上げてください（またはHaXを使用）。
 E	One of every form (Alolan Vulpix, each Unown…): more spaces to fill.	すべてのフォルムを1匹ずつ（アローラのロコン、各アンノーン…）。埋めるマスが増えます。
 E	Share the wonder card itself, or the Pokémon it gives as a .pk file.	ふしぎなカード自体か、受け取れるポケモンを .pk ファイルとして共有します。
+E	The Pokédex response did not include a mapping for this observation.	ポケモン図鑑のレスポンスに、この観測に対応するマッピングが含まれていませんでした。
 E	The living dex (the hack's species table needs hack-legal templates)	リビング図鑑（改造版の種族テーブルには改造版で正規のテンプレートが必要です）
 E	This Pokémon's Tera Type is fixed by its form and cannot be changed.	このポケモンのテラスタイプはフォルムで決まっているため変更できません。
 E	This journal is a playful Poképark story. Game data stays unchanged.	この日記はポケパークのお遊びストーリーです。ゲームデータは変わりません。
@@ -491,6 +502,8 @@ T	Minted: stats follow {0} ({1}); changing the nature keeps them.	ミント適�
 E	Nickname and OT changes are NOT legality-re-checked afterwards.	ニックネームと親の変更後は正規チェックを再実行しません。
 E	Removes every track. Your audio files on storage are untouched.	すべての曲を削除します。ストレージ上の音声ファイルはそのままです。
 E	The Entralink exists only in Black, White, Black 2 and White 2.	ハイリンクはブラック・ホワイト・ブラック2・ホワイト2にしかありません。
+E	The Pokédex response contains an invalid Wonder Card reference.	ポケモン図鑑のレスポンスに無効なふしぎなカードの参照が含まれています。
+E	The Pokédex response contains an invalid bank plan preparation.	ポケモン図鑑のレスポンスに無効なバンクプランの準備が含まれています。
 E	The Seagallop only runs after the S.S. Anne has left Vermilion.	シーギャロップ号はサント・アンヌ号がクチバを出港した後にのみ運航します。
 T	{0} Pokémon will be rewritten to their closest legal versions. 	{0}匹を最も近い正規の状態に書き換えます。 	
 T	{0} changed on disk during the run - is it open in an emulator?	実行中に{0}が変更されました。エミュレータで開いていませんか？	
@@ -501,6 +514,7 @@ E	HaX mode: the PID is rewritten even when that breaks legality.	HaXモード: �
 E	Left / right adjust · L / R change pouch · A opens exact count	左右で調整 · L/Rでポケット切替 · Aで個数入力
 E	Legality suggestions need a game with offline legality tables.	正規化の提案には、オフラインの正規判定データがあるゲームが必要です。
 E	SUMMARY ON THE TOP SCREEN  ·  L / R  NEXT POKéMON  ·  B  CLOSE	上画面に詳細  ·  L / R  次のポケモン  ·  B  閉じる
+E	The Pokédex response contains an invalid bank plan match rule.	ポケモン図鑑のレスポンスに無効なバンクプランの一致ルールが含まれています。
 E	They move, in order, into new boxes after the last one in use.	使用中の最後のボックスの後ろに、新しいボックスへ順に移動します。
 E	This Pokémon's format stores no trainer details beyond the OT.	このポケモンの形式には親以外のトレーナー情報がありません。
 E	This game does not expose a supported Mystery Gift card store.	このゲームには対応しているふしぎなカードの保存領域がありません。
@@ -512,6 +526,7 @@ T	{0} owned · {1} more obtainable · lit = legal for this Pokémon	所持{0} ·
 E	A real reorder of the bank's slots - stored bytes never move.	バンクの枠を実際に並べ替えます。保存データ自体は動きません。
 E	Keeps checking whether that flower has grown since yesterday.	あの花が昨日より伸びたか、何度も確かめに行っている。
 E	Let's Go (PB7) mons are not supported by the PKForge bank yet	Let's Go（PB7）のポケモンはPKForgeバンクにまだ対応していません
+T	No matching local copies were found in the fresh scan.\n\n{0}	再スキャンで一致するローカルのコピーは見つかりませんでした。\n\n{0}	
 E	No other games linked. Link another emulator or save on Home.	リンクされた他のゲームがありません。ホームで別のエミュレーターかセーブをリンクしてください。
 T	On the 3DS, select this backup under {0} and choose Restore. 	3DS で {0} の中からこのバックアップを選び、Restore を選んでください。 	
 T	Remove {0} · {1} from PKForge? Your files stay on the device.	{0} · {1} を PKForge から外しますか？ ファイルは端末に残ります。	
@@ -530,6 +545,7 @@ E	Checkpoint transfer requires a native, file-backed 3DS save.	Checkpoint転送�
 E	Honey trees exist only in Diamond, Pearl and Platinum saves.	あまいかおりのする木はダイヤモンド・パール・プラチナのセーブにのみあります。
 E	Its met location changed to one where it can legally appear.	出会った場所を正規に出現できる場所に変更しました。
 E	Locked boxes are protected - unlock or empty them one by one	ロック中のボックスは保護されています - 解除するか1つずつ空にしてください
+E	Open the receiving game first, then use this shortcut again.	先に受け取り側のゲームを開いてから、このショートカットをもう一度使ってください。
 E	Replace this preset with the current bag and its generation?	このプリセットを現在のバッグと世代で置き換えますか？
 E	Tells you what is left to catch, and in which of your games.	あと何を捕まえればよいか、どのゲームで捕まえられるかを教えます。
 E	The Pokédex response contains an incomplete checklist entry.	ポケモン図鑑のレスポンスに不完全なチェックリスト項目が含まれています。
@@ -541,6 +557,7 @@ T	{0} watched sparks rise near {1}, safely out of their reach.	{0}は{1}の近�
 T	{0} will leave this box and join {1} (box space permitting).	{0}はこのボックスを離れて{1}に加わります（ボックスに空きがあれば）。	
 T	{0}'s breath becomes silver mist in the crisp summit air.	澄んだ山頂の空気の中で、{0}の息が銀色の霧になった。	
 E	Already traded once: its trainer memories stay as they are.	交換済みのため、トレーナーとの思い出はそのままです。
+T	Fresh scan incomplete for {0}. Those sources were excluded.	{0} の再スキャンが完了しませんでした。これらのソースは除外されました。	
 E	Gen 1/2 shininess comes from the DVs; use the shiny switch.	第1・2世代の色違いは個体値で決まります。色違いスイッチを使ってください。
 E	Generated Pokémon will be owned by the open save's trainer.	生成したポケモンの親は、開いているセーブのトレーナーになります。
 E	It would land flagged as illegal (the game still loads it).	移動先で不正と判定されます（ゲームでは読み込めます）。
@@ -566,6 +583,7 @@ T	Origin game {0} did not exist yet in {1}: recorded as {2}.	出身ゲーム{0}�
 E	Read-only: record meanings and safe limits differ by game.	読み取り専用：記録の意味や安全な上限はゲームごとに異なります。
 E	Reading local holdings and exchanging collection metadata.	手持ちデータを読み込み、コレクションのメタデータをやり取りしています。
 E	Remove a linked emulator folder without resetting the app.	アプリをリセットせずに、連携中のエミュレータフォルダを解除します。
+E	Sync once to cache the local inventory used by this queue.	このキューで使うローカルの一覧をキャッシュするため、一度同期してください。
 E	The Pokédex response contains an incomplete mapping entry.	ポケモン図鑑のレスポンスに不完全な対応付けエントリーが含まれています。
 E	The Pokédex server URL cannot contain a query or fragment.	ポケモン図鑑サーバーのURLにクエリやフラグメントは含められません。
 E	This box's Pokémon are reordered and compacted to the top.	このボックスのポケモンを並べ替えて先頭に詰めます。
@@ -775,6 +793,7 @@ E	Its game keeps no other one (you allowed this).	元のゲームには他に残
 T	None of the selection could enter {0}'s format.	選択したポケモンはどれも {0} の形式に対応していません。	
 E	Pending sync does not match the saved identity.	保留中の同期が保存済みの ID と一致しません。
 E	READ-ONLY · this save's layout is not supported	読み取り専用 · このセーブの形式は非対応です
+E	Scanning every save and the PKForge Bank again.	すべてのセーブと PKForge バンクをもう一度スキャンしています。
 E	The set becomes a legal mon stored in the bank.	セットを正規のポケモンにしてバンクに保存します。
 E	Their moves, Ability or Ball may change to fit.	わざ・とくせい・ボールが合わせて変わることがあります。
 E	This Pokémon format stores no ribbons or marks.	このポケモンの形式はリボンやあかしを記録しません。
@@ -787,6 +806,7 @@ T	\nScan incomplete: {0} saves could not be read.	\nスキャン未完了: {0} �
 T	the write would turn a {0} save into a {1} one.	書き込むと{0}のセーブデータが{1}のものに変わってしまいます。	
 T	{0} and {1} had a brief disagreement near {2}, 	{0}と{1}は{2}の近くで少しもめたけど、 	
 T	{0} did not exist in {1} and cannot be kept.{2}	{0}は{1}に存在しないため、残せません。{2}	
+T	{0} targets · read-only copy from the last sync	ターゲット {0} 件 · 前回の同期からの読み取り専用コピー	
 T	{0} {1} to {2}; {3} could not enter that format	{0}: {1}匹 → {2}。{3}匹はその形式に非対応	
 E	Berries and daily events frozen? Fix the clock	きのみや日替わりイベントが止まった？時計を修正
 E	Each Pokédex source needs an observation list.	ポケモン図鑑の各ソースには観測データの一覧が必要です。
@@ -809,6 +829,7 @@ T	Version {0} will be offered again next launch.	バージョン {0} は次回�
 T	You need {0} in your bag, or turn on HaX mode.	バッグに{0}が必要です。またはHaXモードをオンにしてください。	
 T	the Pokémon slots could not be compared ({0}).	ポケモンのスロットを比較できませんでした（{0}）。	
 T	{0} listened to the wind around {1} while {2}.	{0}は{1}のまわりの風の音に耳をすませていた（{2}）。	
+T	{0} matching local copies in {1} sources.\n{2}	{1} 件のソースに一致するローカルのコピーが {0} 件あります。\n{2}	
 T	{0} save(s) on the shelf. Scanned {1} file(s).	棚にセーブ {0} 件。{1} ファイルをスキャンしました。	
 T	#{0} (intensity {1}, feeling {2}, detail {3})	#{0}（強さ {1}、気持ち {2}、詳細 {3}）	
 E	(coming soon). The save file was not touched.	（近日対応）。セーブデータは変更していません。
@@ -833,6 +854,7 @@ E	The downloaded update was not a complete APK.	ダウンロードした更新�
 E	The latest release did not include a version.	最新リリースにバージョン情報がありません。
 T	The remap covers {0} boxes, the bank has {1}.	割り当ては {0} ボックス分ですが、バンクには {1} ボックスあります。	
 E	This game has no Grand Underground inventory.	このゲームには地下大洞窟の所持品がありません。
+E	This save is no longer linked on this device.	このセーブは、この端末ではリンクされなくなりました。
 E	This species has multiple forms in this game.	このポケモンはこのゲームで複数のフォルムを持っています。
 T	White Forest level {0} · Black City level {1}	ホワイトフォレスト Lv. {0} · ブラックシティ Lv. {1}	
 E	offers you a berry, then keeps one for later.	きのみをひとつくれて、もうひとつはあとのためにとっておいた。
@@ -1048,6 +1070,7 @@ E	Lose 49+ HP, then pass the Dusty Bowl	HPを49以上減らして砂塵の窪地
 E	Mountain breezes above the cloud line	雲の上を吹きぬける山の風
 E	No importable Pokémon in those files.	それらのファイルに取り込めるポケモンはいません。
 T	PKSM banks have no slot for {0} ({1})	PKSMバンクには{0}（{1}）用のスロットがありません	
+E	Reading its current storage location.	現在の保存場所を読み取っています。
 T	SELECTED BYTE 0x{0} = 0x{1} ({2}/{3})	選択バイト 0x{0} = 0x{1}（{2}/{3}）	0,1
 E	That encounter card no longer exists.	その出現カードはもう存在しません。
 E	That slot does not exist in this box.	このボックスにそのスロットはありません。
@@ -1067,6 +1090,7 @@ T	{0} set(s) to place into empty slots.	空きに配置するセット: {0}件
 T	Audit: {0} clone groups, {1} flagged	監査: クローン{0}グループ、要確認{1}件	
 E	Berry fix (move past the 1-year bug)	きのみ修正（1年バグを回避）
 E	Broad leaves, flowers, and soft moss	大きな葉っぱに花、ふかふかのコケ
+E	Cached locations from the last sync.	前回の同期でキャッシュした場所です。
 E	Could not read the set (no species).	セットを読み込めませんでした（ポケモンが指定されていません）。
 T	Deposited {0} Pokémon into the bank.	ポケモン{0}匹をバンクに預けました。	
 E	Every action is one backed-up write.	どの操作もバックアップ付きで1回書き込みます。
@@ -1146,6 +1170,7 @@ E	Generated Pokémon obey trainer: ON	生成ポケモンにトレーナーを適
 E	How the Living Dex Autopilot works	リビング図鑑オートパイロットの使い方
 E	Land 3 critical hits in one battle	1回のバトルで急所に3回当てる
 E	Leave empty to use the game's name	空欄にするとゲーム名を使います
+E	Missing in HOME, available locally	HOMEにないがローカルにある
 E	Mist cools every warm nose nearby.	しぶきが近くの温かい鼻を冷やしていく。
 E	Nature rerolled; shiny state kept.	せいかくを再抽選しました。色違いの状態は維持しています。
 E	No legality analyzer is available.	正規チェック機能を利用できません。
@@ -1170,6 +1195,7 @@ T	\n{0} of them are already illegal.	\nうち{0}匹はすでに不正です。
 T	could not convert {0} to {1} ({2})	{0}を{1}に変換できませんでした（{2}）	
 E	dim corners and one trusted friend	うす暗いすみっこと信頼できる友だち
 E	the handover would make it illegal	引き継ぐと不正になります
+T	{0} Retained from an earlier sync.	{0} 前回の同期から保持されています。	
 T	{0} already in the Bank are sorted	バンク内の{0}匹を並べ替え	
 T	{0} cannot be the destination: {1}	{0}は移動先にできません：{1}	
 T	{0} explored around {1} while {2}.	{0}は{1}のあたりを探検していた（{2}）。	
@@ -1431,6 +1457,7 @@ E	A ball its encounter allows	出現条件に合うボール
 E	A box name cannot be empty.	ボックス名は空にできません。
 T	Awakening Values · {0}/1200	覚醒値 · {0}/1200	
 E	Cerulean City (Yellow gift)	ハナダシティ（ピカチュウ版でもらう）
+E	Copy changed or unavailable	コピーが変更されたか、利用できません
 E	Date / year / release order	日付 / 年 / 発売順
 E	Evolved by trade and moved.	交換進化させて移動しました。
 T	FAVORITE LITTLE THINGS  {0}	ちょっとした好きなもの  {0}	
@@ -1448,6 +1475,7 @@ E	Mark everything in this box	このボックスを全部マーク
 E	Move / carry within storage	ボックス内で移動
 E	No egg location suggestion.	タマゴの場所の提案はありません。
 E	No legal combination found.	正規の組み合わせが見つかりませんでした。
+E	Observed in the fresh scan.	再スキャンで確認されました。
 E	Omega Ruby & Alpha Sapphire	オメガルビー & アルファサファイア
 E	Only exists during a battle	バトル中のみ
 E	PKForge closed unexpectedly	PKForge が予期せず終了しました
@@ -1686,12 +1714,14 @@ E	Lose 294 HP from recoil	反動ダメージで294以上HPを失う
 E	Mt. Moon (Helix Fossil)	おつきみやま（かいのカセキ）
 E	Multi-select (- button)	複数選択（- ボタン）
 E	Open a single save file	セーブファイルを1つ開く
+E	Open target gift search	ターゲットの配信検索を開く
 E	Opening the card album…	カードアルバムを開いています…
 T	Origin game: {0} → {1}.	出身ゲーム: {0} → {1}。	
 T	PKSM export failed: {0}	PKSM の書き出しに失敗しました: {0}	
 T	PKSM import failed: {0}	PKSM の取り込みに失敗しました: {0}	
 T	Picker failed: {0}: {1}	選択に失敗しました: {0}: {1}	
 T	Placed a legal {0} {1}.	正規の{0} {1}を配置しました。	
+E	Referenced Wonder Cards	参照されるふしぎなカード
 E	Refill this pouch to 99	このポケットを99個に補充
 E	Reset local connection?	ローカル接続をリセットしますか？
 T	Save export failed: {0}	セーブの書き出しに失敗しました: {0}	
@@ -1737,6 +1767,7 @@ T	Box {0} slot {1} empty	ボックス{0} {1}番 空き
 E	CREATING YOUR POKéMON…	ポケモンを作成中…
 E	Capable of taking hits	打たれ強い
 E	Celadon Mansion (gift)	タマムシマンション（もらう）
+E	Checking local copies…	ローカルのコピーを確認中…
 E	Checkpoint receive PIN	Checkpoint 受信 PIN
 E	Clear every Bean stack	すべてのポケマメを消去
 E	Clear values / filters	値 / フィルターをクリア
@@ -1862,6 +1893,7 @@ E	Move to another game…	別のゲームへ移動…
 E	No game is connected.	ゲームが接続されていません。
 T	No saves found in {0}	{0} にセーブが見つかりません	
 E	Often lost in thought	考え事が多い
+E	Open save has changes	開いているセーブに変更があります
 T	PKSM: {0} imported{1}	PKSM: {0}匹を取り込み{1}	1
 E	Pick it up to move it	持ち上げて移動
 T	ROM hack ({0} layout)	ROMハック（{0}形式）	
@@ -1872,6 +1904,7 @@ E	Reports (audit, scan)	レポート（監査・スキャン）
 E	Scatters things often	物をよく散らかす
 E	Send to another game…	別のゲームに送る…
 E	Suggest relearn moves	思い出し技を提案
+E	This Bank Plan target	このバンクプランのターゲット
 E	Trade with Karrablast	カブルモと通信交換
 E	Trainer card updated.	トレーナーカードを更新しました。
 E	Undoing every change…	すべての変更を元に戻しています…
@@ -1889,6 +1922,7 @@ T	{0} selection to game	選択をゲームへ{0}
 T	{0} slot(s) not legal	{0}枠が不正	
 T	{0}: met {1} time(s).	{0}：{1}回遭遇。	
 T	{0}: {1} → {2} of {3}	{0}: {1} → {2} / {3}	
+T	{0}\n{1}\nFormat: {2}	{0}\n{1}\nフォーマット: {2}	
 E	── Recent activity ──	── 最近の動作 ──
 E	A  Choose    B  Back	A  決定    B  戻る
 E	A game / source game	ゲーム / 元のゲーム
@@ -1908,6 +1942,7 @@ E	Expert instructions…	上級者向け命令…
 E	Exploring the meadow	草原を探検中
 E	Export modified save	編集したセーブを書き出す
 E	Form & shiny updated	フォルム・色違いを更新しました
+E	Fresh scan complete.	再スキャンが完了しました。
 E	Generate living dex?	リビング図鑑を作成しますか？
 T	GitHub answered {0}.	GitHub の応答: {0}	
 T	Gives it {0} to hold	{0}を持たせる	
@@ -1997,6 +2032,7 @@ T	 {0} left unchanged	 {0}匹は変更なし
 T	 · {0} had no room.	 · {0}匹は空きなし。	
 T	0 - {0} (0 removes)	0 - {0}（0で削除）	
 E	Box is already last	すでに最後のボックスです
+E	Checking local copy	ローカルのコピーを確認中
 E	Choose a save file…	セーブデータを選択…
 E	Clear / susceptible	未感染にする
 T	Cloned {0} Pokémon.	{0}匹を複製しました。	
@@ -2105,6 +2141,7 @@ T	Highest level: {0}	最高レベル: {0}
 T	Import failed: {0}	取り込みに失敗しました: {0}	
 T	Import {0} set(s)…	{0}セットをインポート…	
 E	In-save gift inbox	セーブ内の受け取りボックス
+T	Last observed {0}.	最終確認: {0}。	
 E	Legalize selection	選択を正規化
 T	Legalize {0} ({1})	{0} を正規化（{1}）	
 E	Level (high first)	レベル（高い順）
@@ -2127,6 +2164,7 @@ E	Nothing to export.	書き出すものがありません。
 E	One card per event	配信ごとに 1 枚
 E	Open a save first.	先にセーブを開いてください。
 E	Overloaded thinker	考えすぎ屋さん
+T	Party position {0}	てもち {0}番目	
 E	Pokedex connection	図鑑連携
 E	Pokémon Omega Ruby	ポケモン オメガルビー
 E	Pokémon Ultra Moon	ポケモン ウルトラムーン
@@ -2169,6 +2207,7 @@ T	Update failed: {0}	アップデートに失敗しました: {0}
 E	What it never does	絶対にしないこと
 E	White Forest level	ホワイトフォレストのレベル
 T	Write aborted: {0}	書き込みを中止: {0}	
+T	\n\nReference: {0}	\n\n参照: {0}	
 T	box {0}, space {1}	ボックス{0}、{1}番目	
 E	every unlocked box	ロックされていない全ボックス
 E	the connected game	接続中のゲーム
@@ -2178,6 +2217,7 @@ T	{0} in rain or fog	{0}（雨か霧）
 T	{0} selected boxes	選択中の{0}ボックス	
 T	{0} unlocked boxes	ロックされていない{0}ボックス	
 T	{0} x{1} - saving…	{0} x{1} - 保存中…	1
+T	{0} · Wonder Cards	{0} · ふしぎなカード	
 T	{0} · matched: {1}	{0} · 一致: {1}	
 T	{0}: {1} shake(s).	{0}: 揺れ {1} 回。	
 T	  ·  {0} received	  ·  受け取り済み {0}	
@@ -2186,6 +2226,7 @@ E	 · story-critical	 · ストーリー重要
 T	 · {0} unreadable	 · 読込不可 {0}	
 E	6DV (perfect DVs)	6V（個体値最大・DV）
 E	6IV (perfect IVs)	6V（個体値最大）
+T	All missing ({0})	すべて未所持 ({0})	
 E	Any highest level	最高レベル指定なし
 E	Apply batch edit?	一括編集を適用しますか？
 E	Arrives as an Egg	タマゴで届く
@@ -2216,6 +2257,7 @@ E	Export / save out	エクスポート / 書き出し
 E	Fateful encounter	運命的な出会い
 E	Filling the bank…	バンクに書き込み中…
 T	Find copies · {0}	コピーを探す · {0}	
+E	Find local copies	ローカルのコピーを探す
 E	First empty boxes	先頭の空きボックス
 E	Flower enthusiast	お花大好き
 E	Friendly neighbor	人なつっこいご近所さん
@@ -2248,6 +2290,7 @@ E	Placing the sets…	セットを配置しています…
 E	Pokémon LeafGreen	ポケモン リーフグリーン
 E	Pokémon Ultra Sun	ポケモン ウルトラサン
 E	Potential updated	潜在能力を更新しました
+E	Preparation steps	準備の手順
 T	Preset error: {0}	プリセットエラー: {0}	
 E	Reading the sets…	セットを読み込んでいます…
 E	Release a Pokémon	ポケモンを逃がす
@@ -2294,6 +2337,7 @@ T	{0} Legality: {1}	{0} 正規チェック：{1}
 T	{0} loose file(s)	単体ファイル {0}個	
 T	{0} moved to {1}.	{0}を{1}に移動しました。	
 T	{0} · Trainer {1}	{0} · トレーナー {1}	
+T	{0} · preparation	{0} · 準備	
 T	{0} · slot {1} · 	{0} · スロット {1} · 	
 T	{0} · {1} learned	{0} · {1}個習得	
 T	{0} — high nibble	{0} — 上位4ビット	
@@ -2376,6 +2420,7 @@ E	Reading the set…	セットを読み込み中…
 T	Record {0} · {1}	記録 {0} · {1}	
 T	Relearn slot {0}	思い出し枠 {0}	
 E	Reset connection	接続をリセット
+E	Save unavailable	セーブを利用できません
 E	Scarlet & Violet	スカーレット & バイオレット
 E	Search checklist	チェックリストを検索
 E	Select a Pokémon	ポケモンを選んでください
@@ -2439,6 +2484,7 @@ E	An empty space.	空きスペースです。
 E	Back / previous	戻る / 前へ
 E	Backup received	バックアップを受信しました
 E	Bag and pouches	バッグとポケット
+E	Bank Plan gifts	バンクプランの配信
 T	Block {0} = {1}	ブロック {0} = {1}	
 E	Capture Bonuses	捕獲ボーナス
 E	Cartridge color	カートリッジの色
@@ -2531,6 +2577,8 @@ E	Trainer fashion	トレーナーの着せ替え
 E	Trainer records	トレーナー記録
 E	Unlink storage?	ストレージの連携を解除しますか？
 T	Wallpaper · {0}	壁紙 · {0}	
+T	\nLanguage: {0}	\n言語: {0}	
+T	\nNickname: {0}	\nニックネーム: {0}	
 E	a standard game	通常のゲーム
 E	already flagged	判定済み
 E	another Pokémon	ほかのポケモン
@@ -2560,6 +2608,7 @@ T	Bank · Box {0}	バンク · ボックス{0}
 E	Berry guardian	きのみの番人
 E	Box management	ボックス管理
 E	Box wallpaper…	ボックスの壁紙…
+T	Card {0} · {1}	カード {0} · {1}	
 E	Change server?	サーバーを変更しますか？
 E	DELETE PROFILE	プロフィールを削除
 E	Date deposited	預けた日
@@ -2797,6 +2846,7 @@ E	Unnamed block	名前のないブロック
 E	Verdant Grove	みどりの森
 T	Wallpaper {0}	壁紙 {0}	
 T	Where in {0}?	{0}のどこに？	
+T	\nSearch: {0}	\n検索: {0}	
 T	boxes {0}-{1}	ボックス{0}-{1}	
 E	highest first	大きい順
 E	restore point	件の復元ポイント
@@ -2845,6 +2895,7 @@ T	Caught · {0}	捕まえた · {0}
 E	Change work?	ワークを変更しますか？
 E	Cherish Ball	プレシャスボール
 E	Clock repair	時計の修復
+E	Copy changed	コピーが変更されました
 E	Copy to Bank	バンクへコピー
 E	Damage taken	受けたダメージ
 T	Day Care {0}	育て屋 {0}	
@@ -2919,6 +2970,7 @@ T	Nature   {0}	せいかく {0}
 E	Newest first	新しい順
 E	No findings.	問題は見つかりませんでした。
 E	No services.	サービスがありません。
+T	Normal ({0})	通常 ({0})	
 E	Normal order	通常順
 E	Not analyzed	未解析
 E	Not enabled.	有効になっていません。
@@ -3084,6 +3136,7 @@ E	Send anyway	それでも送る
 E	Send backup	バックアップを送信
 E	Send to 3DS	3DSに送る
 E	Set shakes…	揺れ回数を設定…
+T	Shiny ({0})	色違い ({0})	
 E	Shiny eggs?	色違いのタマゴにしますか？
 E	Shiny first	色違いが先
 E	Shiny forms	色違いフォルム
@@ -3105,6 +3158,7 @@ E	Which move?	どのわざ？
 E	Widget help	ウィジェットのヘルプ
 E	Y Unlabeled	Y ラベルなし
 T	\nItem: {0}	\nもちもの: {0}	
+T	\nKind: {0}	\n種類: {0}	
 E	batch edits	一括編集
 E	byte writes	バイト書き込み
 E	world edits	ワールド編集
@@ -3306,6 +3360,7 @@ E	Not shiny	色違いではない
 T	Note: {0}	メモ: {0}	
 E	OT gender	親の性別
 E	OT memory	親との思い出
+E	Open copy	コピーを開く
 E	Open save	セーブを開く
 E	POTENTIAL	潜在能力
 E	PURCHASED	購入済み
