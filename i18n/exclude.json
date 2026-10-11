@@ -1,1 +1,3 @@
-[]
+[
+ "PKM subclasses are preserved: PKHeX.Core is consumed whole and every entity type is referenced by EntityBlank."
+]
