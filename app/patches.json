@@ -439,6 +439,13 @@
    "find": "\\.Report\\(verbose: false\\)",
    "replace": ".Report(GameInfo.CurrentLanguage, verbose: false)",
    "required": false
+  },
+  {
+   "name": "正規チェック画面のポケモン名・わざ名・ボール名を表示言語で",
+   "file": "src/PKForge.Engine/LegalityAssistService.cs",
+   "find": "private static readonly GameStrings Strings = GameInfo\\.GetStrings\\(\"en\"\\);",
+   "replace": "private static GameStrings Strings => GameInfo.Strings;",
+   "required": false
   }
  ]
 }
