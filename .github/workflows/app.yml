@@ -148,6 +148,10 @@ jobs:
             "$bt/aapt" dump badging release/*.apk | head -3
           } 2>&1 | tee logs/verify.log
           (cd release && sha256sum *.apk > "PKForge-Dex-v${VERSION}-arm64.apk.sha256")
+      - name: 起動テスト用のセーブを作る
+        continue-on-error: true
+        run: |
+          dotnet run --project app/savegen -c Release -p:PKHeXCore="$PWD/up/external/PKHeX/PKHeX.Core/PKHeX.Core.csproj" -- "$PWD/PKForgeTest.sav" 2>&1 | tail -5 | tee logs/savegen.log
       - name: KVM を有効化
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -162,7 +166,7 @@ jobs:
           arch: x86_64
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -skin 1920x1080
-          script: bash app/smoke-test.sh release/PKForge-Dex-v${{ needs.check.outputs.version }}-arm64.apk ${{ env.PACKAGE }} smoke > logs/smoke.log 2>&1 || (tail -60 logs/smoke.log; exit 1)
+          script: bash app/smoke-test.sh release/PKForge-Dex-v${{ needs.check.outputs.version }}-arm64.apk ${{ env.PACKAGE }} smoke PKForgeTest.sav > logs/smoke.log 2>&1 || (tail -60 logs/smoke.log; exit 1)
       - name: 自動で直した内容をリポジトリに保存
         if: success() && github.ref == 'refs/heads/main'
         run: |

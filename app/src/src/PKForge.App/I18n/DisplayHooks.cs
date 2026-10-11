@@ -52,7 +52,14 @@ internal static class DisplayHooks
         var lang = LangSetup.Current;
         if (lang <= 0 || lang >= DisplayDict.ByLang.Length) return null;
         var dict = DisplayDict.ByLang[lang];
-        return dict is not null && dict.TryGetValue(text, out var hit) ? hit : null;
+        if (dict is not null && dict.TryGetValue(text, out var hit)) return hit;
+        // 「Generation: すべて」のような前置き＋値
+        var prefixes = DisplayDict.PrefixByLang[lang];
+        if (prefixes is null || prefixes.Count == 0) return null;
+        foreach (var pair in prefixes)
+            if (text.Length > pair.Key.Length && text.StartsWith(pair.Key, System.StringComparison.Ordinal))
+                return pair.Value + text.Substring(pair.Key.Length);
+        return null;
     }
 
 #if ANDROID
