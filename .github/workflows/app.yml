@@ -173,12 +173,20 @@ jobs:
             git commit -m "多言語版: 辞書・除外リストを更新（本家 $REF）"
             git pull --rebase -q && git push -q
           fi
+      - name: 固定名の APK とソースの zip を用意（直リンク用）
+        if: success()
+        run: |
+          mkdir -p dist
+          cp release/PKForge-Dex-v${VERSION}-arm64.apk dist/PKForge-Dex-arm64.apk
+          # 多言語化・テーマ適用済みのソース一式（PKForge.sln を Visual Studio / Rider で開けばビルドできる）
+          (cd up && zip -qr ../dist/PKForge-Dex-source.zip . -x '.git/*' '*/.git/*' '*/bin/*' '*/obj/*')
+          ls -la dist
       - name: Release を公開
         if: success()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "v${VERSION}" release/* \
+          gh release create "v${VERSION}" release/* dist/* \
             --repo "$GITHUB_REPOSITORY" --latest \
             --title "PKForge Dex v${VERSION}（多言語版・本家 ${REF}）" \
             --notes "$(cat <<EOF
@@ -192,6 +200,9 @@ jobs:
           - 本家が更新されると自動で新しい版が出て、アプリ内で通知されます
 
           **PKForge-Dex-v${VERSION}-arm64.apk** をダウンロードしてインストールしてください。
+
+          - いつでも最新版: https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/PKForge-Dex-arm64.apk
+          - ソース（多言語化済み）: PKForge-Dex-source.zip
           EOF
           )"
       - name: 結果をブランチ ci-app に保存（Claude が読めるように）
