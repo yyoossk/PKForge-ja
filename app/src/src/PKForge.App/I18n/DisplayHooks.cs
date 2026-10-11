@@ -17,8 +17,10 @@ internal static class DisplayHooks
 #if ANDROID
         Microsoft.Maui.Handlers.LabelHandler.Mapper.AppendToMapping("Text", (handler, view) =>
         {
-            if (view is Label { FormattedText: null } label && Lookup(label.Text) is { } text)
+            if (view is not Label label) return;
+            if (label.FormattedText is null && Lookup(label.Text) is { } text)
                 handler.PlatformView.Text = text;
+            Fit(handler.PlatformView, label);
         });
         Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping("Text", (handler, view) =>
         {
@@ -58,6 +60,11 @@ internal static class DisplayHooks
                 return;
             }
             var min = System.Math.Max(8, (int)(max * 0.62));
+            // 短い 1 語（カードの見出しなど）は途中で改行させず、1 行に収まるまで縮める
+            var text = view.Text ?? "";
+            var shortWord = text.Length is > 0 and <= 16 && !text.Trim().Contains(' ');
+            if (shortWord && label.MaxLines != 1) view.SetMaxLines(1);
+            else if (label.MaxLines > 0) view.SetMaxLines(label.MaxLines);
             AndroidX.Core.Widget.TextViewCompat.SetAutoSizeTextTypeUniformWithConfiguration(
                 view, min, max, 1, (int)Android.Util.ComplexUnitType.Sp);
         }

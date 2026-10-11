@@ -9,6 +9,13 @@
    "min": 1
   },
   {
+   "name": "表示フック（表示時の翻訳・文字の自動縮小）を MAUI の初期化後に登録",
+   "file": "src/PKForge.App/MauiProgram.cs",
+   "find": "return builder\\.Build\\(\\);",
+   "replace": "var __pkfApp = builder.Build();\n        global::PKForgeI18n.DisplayHooks.Install();\n        return __pkfApp;",
+   "required": true
+  },
+  {
    "name": "アプリIDを分ける（本家版と共存）",
    "file": "src/PKForge.App/PKForge.App.csproj",
    "find": "<ApplicationId>org\\.pkforge\\.shurt</ApplicationId>",
@@ -347,6 +354,27 @@
    "file": "src/PKForge.App/Views/Kit.cs",
    "find": "(var item = new HorizontalStackLayout\\s*\\{\\s*)(Spacing = 7,)",
    "replace": "\\1Margin = new Thickness(11, 2), \\2",
+   "required": false
+  },
+  {
+   "name": "タブレットでは画面全体を拡大",
+   "file": "src/PKForge.App/Platforms/Android/MainActivity.cs",
+   "find": "(public sealed class MainActivity : MauiAppCompatActivity\\s*\\{)",
+   "replace": "\\1\n    protected override void AttachBaseContext(Android.Content.Context? @base)\n    {\n        base.AttachBaseContext(@base);\n        try\n        {\n            var cfg = @base?.Resources?.Configuration;\n            if (cfg is null) return;\n            var scale = global::PKForgeI18n.Responsive.ScaleFor(cfg.SmallestScreenWidthDp);\n            if (scale <= 1.01f) return;\n            var over = new Android.Content.Res.Configuration { DensityDpi = (int)(cfg.DensityDpi * scale) };\n            ApplyOverrideConfiguration(over);\n        }\n        catch\n        {\n            // 拡大できなくても本家の寸法で表示する\n        }\n    }\n",
+   "required": true
+  },
+  {
+   "name": "ホームのカードを縦持ちでは 3 列 × 2 段に",
+   "file": "src/PKForge.App/Views/HomePage.cs",
+   "find": "(Grid\\.SetColumn\\(settings, 4\\);)",
+   "replace": "\\1\\n        global::PKForgeI18n.Responsive.Cards(cards);",
+   "required": false
+  },
+  {
+   "name": "メニューの高さ見積もり（訳文が長い言語ではスクロールさせる）",
+   "file": "src/PKForge.App/Views/PadMenu.cs",
+   "find": "View list = estimate < hostHeight - 24 \\?",
+   "replace": "View list = estimate * (global::PKForgeI18n.LangSetup.Current == 0 ? 1.0 : 1.35) < hostHeight - 24 ?",
    "required": false
   }
  ]

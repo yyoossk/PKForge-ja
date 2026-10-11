@@ -52,7 +52,6 @@ public static class LangSetup
             if (index < 0)
                 index = L_App.FromCulture(DeviceLanguageTag());
             Current = index;
-            DisplayHooks.Install();
             System.AppContext.SetData("PKForgeI18n.Lang", index);
             var code = Languages[index].PkHex;
             PKHeX.Core.GameInfo.CurrentLanguage = code;
