@@ -360,7 +360,7 @@
    "name": "タブレットでは画面全体を拡大",
    "file": "src/PKForge.App/Platforms/Android/MainActivity.cs",
    "find": "(public sealed class MainActivity : MauiAppCompatActivity\\s*\\{)",
-   "replace": "\\1\n    protected override void AttachBaseContext(Android.Content.Context? @base)\n    {\n        base.AttachBaseContext(@base);\n        try\n        {\n            var cfg = @base?.Resources?.Configuration;\n            if (cfg is null) return;\n            var scale = global::PKForgeI18n.Responsive.ScaleFor(cfg.SmallestScreenWidthDp);\n            if (scale <= 1.01f) return;\n            var over = new Android.Content.Res.Configuration { DensityDpi = (int)(cfg.DensityDpi * scale) };\n            ApplyOverrideConfiguration(over);\n        }\n        catch\n        {\n            // 拡大できなくても本家の寸法で表示する\n        }\n    }\n",
+   "replace": "\\1\n    protected override void AttachBaseContext(Android.Content.Context? @base)\n    {\n        var context = @base;\n        try\n        {\n            var cfg = @base?.Resources?.Configuration;\n            var scale = cfg is null ? 1f : global::PKForgeI18n.Responsive.ScaleFor(cfg.SmallestScreenWidthDp);\n            if (cfg is not null && scale > 1.01f)\n            {\n                // 密度だけを上書き（向きが変わっても倍率が保たれるよう、幅・高さは上書きしない）\n                var over = new Android.Content.Res.Configuration { DensityDpi = (int)(cfg.DensityDpi * scale) };\n                context = @base!.CreateConfigurationContext(over) ?? @base;\n            }\n        }\n        catch\n        {\n            context = @base;\n        }\n        base.AttachBaseContext(context);\n    }\n",
    "required": true
   },
   {

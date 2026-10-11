@@ -15,6 +15,16 @@ internal static class DisplayHooks
         if (_installed) return;
         _installed = true;
 #if ANDROID
+        // MAUI は最初の Label / Button が作られたときに自分の対応表を差し替える（後から足した処理が消える）。
+        // 先にダミーを作って差し替えを済ませてから足す。
+        try
+        {
+            _ = new Label();
+            _ = new Button();
+        }
+        catch
+        {
+        }
         Microsoft.Maui.Handlers.LabelHandler.Mapper.AppendToMapping("Text", (handler, view) =>
         {
             if (view is not Label label) return;
