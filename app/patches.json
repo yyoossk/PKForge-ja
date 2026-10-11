@@ -360,7 +360,7 @@
    "name": "タブレットでは画面全体を拡大",
    "file": "src/PKForge.App/Platforms/Android/MainActivity.cs",
    "find": "(public sealed class MainActivity : MauiAppCompatActivity\\s*\\{)",
-   "replace": "\\1\n    protected override void AttachBaseContext(Android.Content.Context? @base)\n    {\n        var context = @base;\n        try\n        {\n            var cfg = @base?.Resources?.Configuration;\n            var scale = cfg is null ? 1f : global::PKForgeI18n.Responsive.ScaleFor(cfg.SmallestScreenWidthDp);\n            if (cfg is not null && scale > 1.01f)\n            {\n                // 密度だけを上書き（向きが変わっても倍率が保たれるよう、幅・高さは上書きしない）\n                var over = new Android.Content.Res.Configuration { DensityDpi = (int)(cfg.DensityDpi * scale) };\n                context = @base!.CreateConfigurationContext(over) ?? @base;\n            }\n        }\n        catch\n        {\n            context = @base;\n        }\n        base.AttachBaseContext(context);\n    }\n",
+   "replace": "\\1\n    protected override void AttachBaseContext(Android.Content.Context? @base)\n        => base.AttachBaseContext(global::PKForgeI18n.Responsive.Scaled(@base));\n",
    "required": true
   },
   {
@@ -375,6 +375,41 @@
    "file": "src/PKForge.App/Views/PadMenu.cs",
    "find": "View list = estimate < hostHeight - 24 \\?",
    "replace": "View list = estimate * (global::PKForgeI18n.LangSetup.Current == 0 ? 1.0 : 1.35) < hostHeight - 24 ?",
+   "required": false
+  },
+  {
+   "name": "タブレットでは画面全体を拡大（アプリ全体の Context も）",
+   "file": "src/PKForge.App/Platforms/Android/MainApplication.cs",
+   "find": "(protected override MauiApp CreateMauiApp\\(\\))",
+   "replace": "protected override void AttachBaseContext(Android.Content.Context? @base)\n        => base.AttachBaseContext(global::PKForgeI18n.Responsive.Scaled(@base));\n\n    \\1",
+   "required": true
+  },
+  {
+   "name": "メニューの列数を画面幅と文字幅で決める",
+   "file": "src/PKForge.App/Views/PadMenu.cs",
+   "find": "_columns = options\\.Length switch\\s*\\{[^}]*\\};",
+   "replace": "_columns = global::PKForgeI18n.Responsive.MenuColumns(options.Select(o => o.Label), options.Length, host.Width);",
+   "required": false
+  },
+  {
+   "name": "バンク: 縦画面ではボックスを上、詳細を下に",
+   "file": "src/PKForge.App/Views/BankPage.cs",
+   "find": "(private void LayOut\\(SKImageInfo info\\)\\s*\\{)",
+   "replace": "\\1\n        if (info.Height > info.Width * 1.1f)\n        {\n            var p = info.Width * 0.03f;\n            var c = Math.Min((info.Width - p * 2) / Columns, (info.Height * 0.58f - p * 2) / Rows);\n            _boxArea = SKRect.Create((info.Width - c * Columns) / 2, p, c * Columns, c * Rows);\n            _infoArea = new SKRect(p, _boxArea.Bottom + p, info.Width - p, info.Height - p);\n            if (_infoArea.Height < 140) _infoArea = SKRect.Empty;\n            return;\n        }",
+   "required": false
+  },
+  {
+   "name": "バンク: 上のボタン列を狭い画面では横スクロールに",
+   "file": "src/PKForge.App/Views/BankPage.cs",
+   "find": "(Children = \\{ DsChrome\\.TitleBar\\(\\), .*?), strip, bodyHost",
+   "replace": "\\1, global::PKForgeI18n.Responsive.ScrollIfNarrow(strip), bodyHost",
+   "required": false
+  },
+  {
+   "name": "バンク: ボタン列の行指定",
+   "file": "src/PKForge.App/Views/BankPage.cs",
+   "find": "Grid\\.SetRow\\(strip, 2\\);",
+   "replace": "Grid.SetRow((View)root.Children[2], 2);",
    "required": false
   }
  ]
