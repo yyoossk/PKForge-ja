@@ -54,7 +54,7 @@ def is_candidate(lit: Lit, src: str) -> bool:
         return False
     if _HAS_SPACE.search(vis):
         # コードっぽいもの（書式文字列・正規表現）を除外
-        if re.fullmatch(r'[\w\s.:/\\\-]+', vis) and re.search(r'(yyyy|MM|dd|HH|mm|ss)', vis):
+        if re.fullmatch(r'[\w\s.:/\\\-]+', vis) and re.search(r'(?<![A-Za-z])(yyyy|yy|MM|dd|HH|mm|ss)(?![A-Za-z])', vis):
             return False
         if re.search(r'[\\^$]\w|\(\?', lit.visible(src)) and not re.search(r'[a-z]{3,} [a-z]{3,}', vis):
             return False
