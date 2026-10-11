@@ -327,6 +327,27 @@
    "replace": "\\g<1>new(0xB3, 0x12, 0x2E);",
    "required": false,
    "min": 1
+  },
+  {
+   "name": "操作ヒント行を折り返す（縦画面・長い訳文で見切れないように）: 型",
+   "file": "src/PKForge.App/Views/Kit.cs",
+   "find": "private static HorizontalStackLayout HintRow\\(",
+   "replace": "private static Layout HintRow(",
+   "required": false
+  },
+  {
+   "name": "操作ヒント行を折り返す: FlexLayout に",
+   "file": "src/PKForge.App/Views/Kit.cs",
+   "find": "var row = new HorizontalStackLayout \\{ Spacing = 22, HorizontalOptions = LayoutOptions\\.Center \\};",
+   "replace": "var row = new FlexLayout { Wrap = Microsoft.Maui.Layouts.FlexWrap.Wrap, JustifyContent = Microsoft.Maui.Layouts.FlexJustify.Center, AlignItems = Microsoft.Maui.Layouts.FlexAlignItems.Center, AlignContent = Microsoft.Maui.Layouts.FlexAlignContent.Center };",
+   "required": false
+  },
+  {
+   "name": "操作ヒント行を折り返す: 項目の間隔",
+   "file": "src/PKForge.App/Views/Kit.cs",
+   "find": "(var item = new HorizontalStackLayout\\s*\\{\\s*)(Spacing = 7,)",
+   "replace": "\\1Margin = new Thickness(11, 2), \\2",
+   "required": false
   }
  ]
 }
