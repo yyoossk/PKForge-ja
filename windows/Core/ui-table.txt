@@ -1293,6 +1293,7 @@ E	Delete box(es) (rescue Pokémon)	ボックスを削除（ポケモンは退避
 T	Download full sprite pack ({0})	全スプライトパックをダウンロード（{0}）	
 T	Encryption constant set to {0}.	暗号化定数を{0}に設定。	
 E	Generated (legality imperfect).	生成しました（正規性は不完全）。
+E	Generated Pokémon obey trainer:	生成ポケモンはトレーナーに従う:
 E	Hide anything above this level.	このレベルより上を隠します。
 E	Hide anything below this level.	このレベルより下を隠します。
 E	It is very friendly toward you.	とてもなついています。
@@ -1569,6 +1570,7 @@ E	Catching all the sprites!	スプライトをゲットだぜ！
 E	Choose where they go next	次に配置先を選びます
 E	Compact / merge into gaps	詰める / 空きに寄せる
 E	Counting your collection…	コレクションを集計しています…
+E	Download full sprite pack	全スプライトパックをダウンロード
 E	Electrode 1 (Power Plant)	マルマイン 1（むじんはつでんしょ）
 E	Electrode 2 (Power Plant)	マルマイン 2（むじんはつでんしょ）
 T	Encryption constant · {0}	暗号化定数 · {0}	
@@ -1631,6 +1633,7 @@ E	Close / cancel / not now	閉じる / キャンセル / 後で
 T	Contest stats · {0}/1530	コンディション · {0}/1530	
 T	Could not link save: {0}	セーブをリンクできませんでした: {0}	
 T	Could not open save: {0}	セーブを開けませんでした: {0}	
+E	Download the sprite pack	スプライトパックをダウンロード
 T	Egg location: {0} → {1}.	タマゴをもらった場所: {0} → {1}。	
 E	Emulated console storage	エミュレートされた本体ストレージ
 E	Engine version mismatch.	エンジンのバージョンが一致しません。
@@ -1728,6 +1731,7 @@ T	Save export failed: {0}	セーブの書き出しに失敗しました: {0}
 T	Scan of {0} failed: {1}	{0} のスキャンに失敗: {1}	
 E	Search label or number…	ラベルや番号で検索…
 E	Select a Pokémon first.	先にポケモンを選んでください。
+E	Select all in the party	てもちをすべて選択
 E	Sharing the logs failed	ログの共有に失敗しました
 T	Shiny state: {0} → {1}.	色違い: {0} → {1}。	
 T	Show hidden saves ({0})	非表示のセーブを表示（{0}）	
@@ -1821,6 +1825,7 @@ T	Relearn {0} ({1}): {2}	思い出し技{0}（{1}）：{2}
 E	Release from the bank?	バンクから逃がしますか？
 E	Reset local connection	ローカル接続をリセット
 E	Route 24 (Yellow gift)	24ばんどうろ（ピカチュウ版でもらう）
+E	Select all in this box	このボックスをすべて選択
 T	Selected Pokémon ({0})	選択中のポケモン（{0}）	
 T	Sorted {0} Pokémon{1}.	{0}匹を並べ替えました{1}。	1
 E	Take a game's only one	1匹だけの種族も使う
@@ -2036,6 +2041,7 @@ E	Checking local copy	ローカルのコピーを確認中
 E	Choose a save file…	セーブデータを選択…
 E	Clear / susceptible	未感染にする
 T	Cloned {0} Pokémon.	{0}匹を複製しました。	
+E	Default names only:	初期名のみ:
 E	Deposit in the bank	バンクに預ける
 T	EXP {0} · max level	経験値 {0} · 最大レベル	
 E	Edit at my own risk	自己責任で編集
@@ -2134,6 +2140,7 @@ T	Fullness · {0}/255	まんぷく度 · {0}/255
 T	Gender: {0} → {1}.	性別: {0} → {1}。	
 E	Generated - legal.	生成しました - 正規。
 E	Gigantamax-capable	キョダイマックス可
+E	Grit Effort Levels	がんばレベル
 E	Grit effort levels	がんばレベル
 E	Handler friendship	現トレーナーのなつき度
 E	Hardcore mode: OFF	ハードコアモード: OFF
@@ -2204,6 +2211,7 @@ E	Transfer cancelled	転送を中止しました
 E	Unknown item gift.	不明などうぐのおくりものです。
 E	Unlock this course	このコースを解放
 T	Update failed: {0}	アップデートに失敗しました: {0}	
+E	Wallpaper for box 	ボックス壁紙 
 E	What it never does	絶対にしないこと
 E	White Forest level	ホワイトフォレストのレベル
 T	Write aborted: {0}	書き込みを中止: {0}	
@@ -2265,6 +2273,7 @@ E	Game Boy platform	Game Boy
 E	GameCube platform	GameCube
 T	Gen {0} · {1}/{2}	第{0}世代 · {1}/{2}	
 E	Good perseverance	辛抱強い
+E	Grand Underground	大地の大空洞
 E	Grand underground	地下大洞窟
 E	Happy to see you!	会えてうれしい！
 E	Hardcore mode: ON	ハードコアモード: ON
@@ -2351,6 +2360,7 @@ E	ALL BOXES MARKED	全ボックスをマーク
 T	Ability now {0}.	とくせいを{0}にしました。	
 E	Any lowest level	最低レベル指定なし
 E	Audit cancelled.	監査をキャンセルしました。
+E	Awakening Values	覚醒値
 E	Awakening values	覚醒値
 E	Background music	BGM
 T	Ball: {0} → {1}.	ボール: {0} → {1}。	
@@ -2386,11 +2396,14 @@ E	GS Ball (Celebi)	GSボール（セレビィ）
 E	Generating eggs…	タマゴを生成中…
 E	Generating team…	チームを生成中…
 E	Generation / era	世代 / 時代
+E	HP Full Recovery	HP全回復
 E	HaX mode is OFF.	HaXモードがOFFです。
 E	Handler language	現トレーナーの言語
 E	Handling trainer	現トレーナー
+E	Hatched from egg	タマゴから孵化
 E	Import .pk files	.pk ファイルをインポート
 E	Import from PKSM	PKSM から取り込む
+E	Invert the party	てもちの選択を反転
 E	It can't evolve.	進化できません。
 E	Legality unknown	正規か不明
 E	Link an emulator	エミュレータと連携
@@ -2449,6 +2462,7 @@ E	Transfer failed.	転送に失敗しました。
 E	Transfer preview	転送プレビュー
 E	Type / Tera type	タイプ / テラスタイプ
 T	Unlink {0} · {1}	連携解除 {0} · {1}	
+E	Unmark the party	てもちの選択を解除
 E	Unreadable saves	読み込めないセーブ
 T	Use {0} (female)	{0}を使う（メス）	
 E	Valley Windworks	たにまのはつでんしょ
@@ -2522,6 +2536,7 @@ T	Generation: {0}	世代: {0}
 E	HaX mode is ON.	HaXモードがONです。
 E	IVs within caps	個体値を上限内に
 E	Import .pk file	.pk ファイルを取り込み
+E	Invert this box	このボックスの選択を反転
 T	It is empty.{0}	空です。{0}	
 E	Key item events	だいじなものイベント
 E	Latios / Latias	ラティオス / ラティアス
@@ -2554,6 +2569,7 @@ T	Purchased · {0}	購入済み · {0}
 E	Received before	受け取り済み
 E	Removing shiny…	色違いを解除しています…
 T	Rename box {0}…	ボックス{0}の名前を変更…	
+E	Reset nicknames	ニックネームをリセット
 E	Resulting stats	反映後のステータス
 E	Ribbons & marks	リボンとあかし
 E	Roll this team?	このチームにしますか？
@@ -2576,6 +2592,7 @@ T	Total {0} / {1}	合計 {0} / {1}
 E	Trainer fashion	トレーナーの着せ替え
 E	Trainer records	トレーナー記録
 E	Unlink storage?	ストレージの連携を解除しますか？
+E	Unmark this box	このボックスの選択を解除
 T	Wallpaper · {0}	壁紙 · {0}	
 T	\nLanguage: {0}	\n言語: {0}	
 T	\nNickname: {0}	\nニックネーム: {0}	
@@ -2638,8 +2655,10 @@ E	Handler gender	現トレーナーの性別
 E	Handler memory	現トレーナーとの思い出
 E	Heal selection	選択を回復
 T	Held item: {0}	もちもの: {0}	
+E	Highest level:	最高レベル:
 E	Highly curious	好奇心が強い
 E	Holds nothing.	何も持たせません。
+E	Hyper Training	ハイパートレーニング
 E	Hyper training	すごいとっくん
 E	In-game trades	ゲーム内交換
 E	Into the party	てもちへ
@@ -2756,7 +2775,7 @@ E	Critical hits	急所の回数
 E	Current moves	現在のわざ
 E	DS (Gen IV-V)	DS（第4〜5世代）
 E	Delete clones	クローンを削除
-E	Dex Autopilot	図鑑オートパイロット
+E	Dex Autopilot	オート図鑑
 E	Disable event	配信を無効にする
 E	Duplicate all	すべて複製
 E	Dynamax level	ダイマックスレベル
@@ -2792,6 +2811,7 @@ T	Left out: {0}	対象外: {0}
 T	Legality: {0}	正規チェック：{0}	
 E	Level 50 flat	一律レベル50
 E	Lock / unlock	ロック / ロック解除
+E	Lowest level:	最低レベル:
 E	MARKS CLEARED	マークを解除
 E	Making shiny…	色違いにしています…
 E	Meadow memory	草原の思い出
@@ -2844,6 +2864,7 @@ T	Unknown ({0})	不明（{0}）
 E	Unknown gift.	不明なおくりものです。
 E	Unnamed block	名前のないブロック
 E	Verdant Grove	みどりの森
+E	View: one per	表示: 1つにつき
 T	Wallpaper {0}	壁紙 {0}	
 T	Where in {0}?	{0}のどこに？	
 T	\nSearch: {0}	\n検索: {0}	
@@ -2872,6 +2893,7 @@ E	8 hex digits	16進数8桁
 T	A picks: {0}	Aで決定: {0}	
 E	A single box	1つのボックス
 T	Ability #{0}	とくせい #{0}	
+E	Ability slot	特性スロット
 T	Aborted: {0}	中止: {0}	
 E	Achievements	実績
 E	All rarities	すべての希少度
@@ -3013,6 +3035,7 @@ E	Share report	レポートを共有
 T	Shiny    {0}	色違い   {0}	
 E	Showdown set	Showdownセット
 T	Sort box {0}	ボックス{0}を並べ替え	
+E	Source game:	入手元ゲーム:
 T	Species #{0}	種族 #{0}	
 E	Species name	ポケモン名
 E	Spoiler-Free	ネタバレなし
@@ -3051,6 +3074,7 @@ E	+  Add item	+  どうぐを追加
 E	All sources	すべての出身
 T	Alpha · {0}	オヤブン · {0}	
 E	Any Pokémon	ポケモンすべて
+E	Autostart: 	自動起動: 
 E	Azure Flute	てんかいのふえ
 E	Bag & items	バッグ・どうぐ
 E	Bank search	バンク検索
@@ -3065,6 +3089,7 @@ E	Cinder ring	燃えさしの輪
 E	Clear flag?	フラグをオフにしますか？
 E	Clear marks	マークを解除
 E	Copy report	レポートをコピー
+E	Delete box 	ボックス削除 
 T	Delete {0}?	{0}を削除しますか？	
 E	Depositing…	預けています…
 E	Dex actions	図鑑の操作
@@ -3083,6 +3108,7 @@ E	Fresh Water	おいしいみず
 E	Friend Ball	フレンドボール
 T	Gender: {0}	性別: {0}	
 E	Generating…	生成しています…
+E	Generation:	世代:
 E	Get started	はじめる
 E	Gift unused	未使用
 E	Grit values	がんばレベル
@@ -3126,6 +3152,7 @@ E	Region data	地域データ
 T	Relearn {0}	思い出し技{0}	
 E	Relearnable	思い出し可
 E	Release all	すべて逃がす
+E	Rename box 	ボックス名変更 
 E	Rename box…	ボックス名を変更…
 E	Repeat Ball	リピートボール
 E	Safari Ball	サファリボール
@@ -3140,6 +3167,7 @@ T	Shiny ({0})	色違い ({0})
 E	Shiny eggs?	色違いのタマゴにしますか？
 E	Shiny first	色違いが先
 E	Shiny forms	色違いフォルム
+E	Shiny only:	色違いのみ:
 E	Shiny owned	色違い所持
 E	Shiny state	色違い
 T	Shiny · {0}	色違い · {0}	
@@ -3202,10 +3230,12 @@ E	Friendship	なつき度
 E	Genderless	性別不明
 E	Generation	世代
 T	Gifts: {0}	おくりもの: {0}	
+E	Gigantamax	キョダイマックス
 E	Great Ball	スーパーボール
 T	Group: {0}	グループ: {0}	
 E	Heal party	てもちを回復
 E	Heavy Ball	ヘビーボール
+E	Held item:	もちもの:
 E	How to get	入手方法
 E	Incomplete	不完全
 T	Invert {0}	{0}を反転	
@@ -3215,6 +3245,7 @@ E	Leave park	パークを去る
 E	Legalized.	正規化しました。
 E	Level Ball	レベルボール
 E	Level band	レベル帯
+E	Light Ball	でんきだま
 E	Living dex	リビング図鑑
 E	Make shiny	色違いにする
 T	Max PP {0}	最大PP {0}	
@@ -3257,6 +3288,7 @@ E	Still busy	処理中
 E	TMs & misc	わざマシン・その他
 T	Theme: {0}	テーマ: {0}	
 E	Timer Ball	タイマーボール
+E	Trainer ID	トレーナーID
 E	Ultra Ball	ハイパーボール
 E	Unlink all	すべて解除
 E	Unmark box	選択解除
@@ -3320,6 +3352,7 @@ E	EV spread	努力値配分
 T	Eggs: {0}	タマゴ: {0}	
 E	Empty all	すべて空にする
 E	Entralink	ハイリンク
+E	Everstone	かわらずのいし
 E	Evolution	進化
 E	Fast Ball	スピードボール
 E	Fits save	セーブ対応
@@ -3332,8 +3365,11 @@ E	Heal Ball	ヒールボール
 E	Held item	もちもの
 E	Hide save	セーブを隠す
 E	Intensity	強さ
+E	Iron Ball	くろいてっきゅう
 T	Item: {0}	もちもの: {0}	
 E	Key Items	だいじなもの
+E	Language:	言語:
+E	LeafGreen	リーフグリーン
 T	Learn {0}	{0} を覚える	
 E	Learnable	習得可能
 E	Legendary	伝説
@@ -3371,6 +3407,7 @@ E	Pokémon X	ポケモン X
 E	Pokémon Y	ポケモン Y
 E	Pokérus ✓	ポケルス ✓
 E	Potential	能力
+E	Purchased	購入済み
 E	RNG / IVs	乱数 / 個体値
 E	Reset EVs	努力値リセット
 E	Ride form	ライドフォルム
@@ -3388,10 +3425,12 @@ E	Route 221	221ばんどうろ
 E	Route 222	222ばんどうろ
 E	Save data	セーブデータ
 E	Save only	セーブのみ
+E	Secret ID	裏ID
 E	See where	場所を見る
 E	Set false	false にする
 E	Set flag?	フラグをオンにしますか？
 E	Set game…	ゲームを設定…
+E	Sort box 	ボックス整理 
 E	Sort now?	並べ替えますか？
 T	Sort: {0}	並び: {0}	
 E	Starting…	開始中…
@@ -3453,10 +3492,13 @@ T	Egg #{0}	タマゴ #{0}
 E	Egg data	タマゴデータ
 E	Egg date	タマゴの日付
 E	Electric	でんき
+E	Favorite	お気に入り
 E	Features	機能
 E	Fighting	かくとう
 T	Flag {0}	フラグ {0}	
 T	Form {0}	フォルム {0}	
+E	Fullness	満腹度
+E	GEN VIII	第8世代
 T	Gave {0}	提供: {0}	
 E	Gen VIII	第8世代
 T	Gen: {0}	世代: {0}	
@@ -3487,6 +3529,7 @@ T	MOVE {0}	わざ {0}
 E	Mark all	全部マーク
 T	Mark {0}	{0}匹マーク	
 E	Markings	マーキング
+E	Mastered	マスター済み
 E	Memories	おもいで
 E	Met date	出会った日
 E	Move all	すべて移動
@@ -3502,6 +3545,7 @@ E	Now with	現在の持ち主
 E	Own type	自身のタイプ
 E	Peaceful	おだやか
 E	Physical	物理
+E	Pokémon:	ポケモン:
 E	Poképark	ポケパーク
 E	Presets…	プリセット…
 E	ROM hack	ROMハック
@@ -3513,6 +3557,7 @@ E	RoC's PC	RoC のパソコン
 E	Roamer 1	徘徊ポケモン1
 E	Roamer 2	徘徊ポケモン2
 E	STAT EXP	基礎ポイント
+E	Sapphire	サファイア
 E	Set true	true にする
 E	Settings	設定
 E	Show all	すべて表示
@@ -3543,6 +3588,7 @@ E	ABILITY	とくせい
 E	Ability	とくせい
 E	Actions	操作
 E	Adamant	いじっぱり
+E	Aquatic	水棲
 T	BOX {0}	ボックス{0}	
 E	Bandana	バンダナ
 E	Bashful	てれや
@@ -3551,6 +3597,7 @@ T	Box {0}	ボックス{0}
 E	Canines	イヌっぽい
 E	Careful	しんちょう
 E	Changes	変更点
+E	Checked	チェック済み
 E	Compact	詰める
 E	Connect	接続
 E	Content	まんぞく
@@ -3559,6 +3606,7 @@ E	Curious	きょうみしんしん
 E	Defense	ぼうぎょ
 E	Deposit	預ける
 E	Dex no.	図鑑番号
+E	Diamond	ダイヤモンド
 E	Disable	無効
 E	Discard	破棄
 E	Dragons	ドラゴン
@@ -3566,12 +3614,18 @@ E	Enabled	有効
 E	English	英語
 E	Evolve…	進化させる…
 E	Fashion	ファッション
+E	Fateful	運命的な出会い
 E	Feeling	気持ち
 E	Felines	ネコっぽい
 E	Filters	絞り込み
+E	FireRed	ファイアレッド
+E	GEN III	第3世代
+E	GEN VII	第7世代
+E	GS Ball	GSボール
 E	Gen III	第3世代
 E	Gen VII	第7世代
 T	Gen {0}	第{0}世代	
+E	Gender:	せいべつ:
 E	Goes to	送り先
 E	Habitat	すみか
 E	Handler	現在の親
@@ -3586,6 +3640,7 @@ E	Marks →	あかし →
 E	Max all	すべて最大
 E	Mesprit	エムリット
 E	Missing	未所持
+E	Mystery	ふしぎ
 E	NO DATA	データなし
 E	NOT NOW	今はしない
 E	Naughty	やんちゃ
@@ -3594,12 +3649,15 @@ E	Not now	今はしない
 E	Not set	未設定
 E	Offline	オフライン
 E	Options	オプション
+E	Order: 	順序: 
 E	Paradox	パラドックス
 E	Pick up	持ち上げる
 E	Playful	わんぱく
+E	Pokédex	ポケモン図鑑
 E	Pokérus	ポケルス
 E	Presets	プリセット
 E	Psychic	エスパー
+E	Rarity:	レア度:
 E	Receive	受け取る
 E	Relaxed	のんき
 E	Relearn	思出
@@ -3618,7 +3676,10 @@ E	Shuffle	シャッフル
 E	Sp. Atk	とくこう
 E	Sp. Def	とくぼう
 E	Spanish	スペイン語
+E	Special	特別
 E	Species	ポケモン
+E	Starter	スターター
+E	Status:	状態:
 E	Stellar	ステラ
 E	Storage	ボックス
 E	Suggest	提案
@@ -3672,15 +3733,21 @@ E	Docile	すなお
 E	Dragon	ドラゴン
 E	Dreamy	ゆめごこち
 E	Enable	有効
+E	Event:	イベント:
 E	Events	配信
 E	Evolve	進化させる
 E	Export	書き出し
+E	Female	メス
 E	Filter	絞り込み
 E	Flying	ひこう
 E	Forget	消す
 E	Format	形式
 E	Fossil	化石
 E	French	フランス語
+E	GEN II	第2世代
+E	GEN IV	第4世代
+E	GEN IX	第9世代
+E	GEN VI	第6世代
 E	GENDER	性別
 E	Gen II	第2世代
 E	Gen IV	第4世代
@@ -3689,9 +3756,12 @@ E	Gen VI	第6世代
 E	Gender	性別
 E	Gentle	おとなしい
 E	German	ドイツ語
+E	Gifts:	配布:
 E	Got it	わかった
 E	Ground	じめん
+E	Group:	グループ:
 E	Healed	回復:
+E	Height	たかさ
 E	Hidden	隠れ特性
 E	Impish	わんぱく
 E	Import	取り込み
@@ -3706,6 +3776,7 @@ E	MOVE 1	わざ1
 E	MOVE 2	わざ2
 E	MOVE 3	わざ3
 E	MOVE 4	わざ4
+E	Marked	マーク済み
 E	Max DV	DV最大
 E	Max IV	個体値最大
 E	Medium	中
@@ -3720,13 +3791,16 @@ E	ORIGIN	出身
 E	Oldest	古い順
 E	Origin	出身
 E	PP UPS	ポイントアップ
+E	PP Ups	ポイントアップ
 E	PP ups	ポイントアップ
+E	Paldea	パルデア
 E	Poison	どく
 E	Quirky	きまぐれ
 E	Raikou	ライコウ
 E	Rarity	希少度
 E	Rename	名前を変更
 E	Revive	げんきのかけら
+E	Ribbon	リボン
 E	Search	検索
 E	Select	選択
 E	Set ON	オンにする
@@ -3735,18 +3809,22 @@ E	Sinnoh	シンオウ
 E	Slot 1	特性1
 E	Slot 2	特性2
 E	Square	四角
+E	Static	固定
 E	Status	状態
+E	Sturdy	頑丈
 E	System	システム
 E	Trades	交換
 E	Unlink	連携解除
 E	Unlock	解放
 E	Unused	未使用
 E	Update	更新
+E	Weight	おもさ
 E	its OT	親
 E	no egg	タマゴなし
 E	⇄ swap	⇄ 入替
 E	0 Exp	基礎P 0
 E	Allow	許可
+E	Alola	アローラ
 E	Amber	アンバー
 E	Apply	適用
 E	Balls	ボール
@@ -3763,11 +3841,16 @@ E	Coral	コーラル
 E	Cycle	切り替え
 E	Dex #	図鑑#
 E	Done!	完了！
+E	Eggs:	タマゴ:
 E	Empty	空にする
 E	Entei	エンテイ
+E	Event	イベント
 E	FIRST	事前
 E	Fairy	フェアリー
 E	Forms	フォルム
+E	GEN I	第1世代
+E	GEN V	第5世代
+E	Galar	ガラル
 E	Games	ゲーム
 E	Gen 1	第1世代
 E	Gen I	第1世代
@@ -3779,7 +3862,9 @@ E	Hardy	がんばりや
 E	Hasty	せっかち
 E	Hatch	孵化
 E	Heart	ハート
+E	Hisui	ヒスイ
 E	Hoenn	ホウエン
+E	Item 	どうぐ 
 E	Items	道具
 E	Johto	ジョウト
 E	Jolly	ようき
@@ -3793,6 +3878,7 @@ E	MOVES	わざ
 E	Marks	あかし
 E	Money	おこづかい
 E	More…	その他…
+E	Move 	わざ 
 E	Moved	移動
 E	Moves	わざ
 E	Music	音楽
@@ -3802,12 +3888,14 @@ E	Owned	所持
 E	PARTY	てもち
 E	Party	てもち
 E	Pause	一時停止
+E	Pearl	パール
 E	Place	配置
 E	Pouch	ポケット
 E	Power	強さ
 E	Quiet	れいせい
 E	READY	準備完了
 E	Ready	準備完了
+E	Relax	リラックス
 E	Reset	リセット
 E	SHINY	色違い
 E	STATS	ステータス
@@ -3819,6 +3907,7 @@ E	Shiny	色違い
 E	Slate	スレート
 E	Smart	かしこさ
 E	Snack	おやつ
+E	Sort:	並び替え:
 E	Speed	すばやさ
 E	Spicy	からい
 E	Stats	ステータス
@@ -3834,12 +3923,15 @@ E	Tough	たくましさ
 E	Trade	交換
 E	Trait	個性
 E	Tutor	教え
+E	Type:	タイプ:
 E	Types	タイプ
 E	Unova	イッシュ
 E	Value	実数値
+E	View:	表示:
 E	Water	みず
 E	Watts	ワット
 E	Write	書き込む
+E	Year:	年:
 E	Yours	あなた
 E	0 EV	努力値0
 E	Also	ほか
@@ -3875,6 +3967,7 @@ E	Form	フォルム
 E	Free	空き
 E	Full	満杯
 E	Game	ゲーム
+E	Gift	おくりもの
 E	Grab	つかむ
 E	Hide	隠す
 E	High	高
@@ -3887,6 +3980,7 @@ E	Leaf	リーフ
 E	Link	連携
 E	MALE	オス
 E	MOVE	移動
+E	Male	オス
 E	Mark	マーク
 E	Menu	メニュー
 E	Mild	おっとり
@@ -3899,11 +3993,13 @@ E	None	なし
 E	Open	開く
 E	PICK	決定
 E	Page	ページ
+E	Pink	ピンク
 E	Play	再生
 E	Quit	終了
 E	Rare	レア
 E	Rash	うっかりや
 E	Rock	いわ
+E	Ruby	ルビー
 E	Save	保存
 E	Send	送る
 E	Show	表示
@@ -3913,6 +4009,7 @@ E	Sour	すっぱい
 E	Star	星
 E	Stat	能力
 E	Swap	入れ替え
+E	Talk	話す
 E	Teal	ティール
 E	Type	タイプ
 E	Used	使用済み
@@ -3925,6 +4022,7 @@ E	ALL	すべて
 E	ANY	指定なし
 E	ATK	こうげき
 E	AVs	覚醒値
+E	Add	追加
 E	All	すべて
 E	Any	すべて
 E	Atk	攻撃
@@ -3939,6 +4037,7 @@ E	Def	防御
 E	Dry	しぶい
 E	EVS	努力値
 E	EVs	努力値
+E	Egg	タマゴ
 E	Evo	進化
 E	Exp	基礎P
 E	GVs	がんばレベル
@@ -3952,6 +4051,7 @@ E	Met	出会い
 E	NOW	現在
 E	New	新規
 E	Now	現在
+E	Off	オフ
 E	SPA	とくこう
 E	SPD	とくぼう
 E	SPE	すばやさ
@@ -3964,5 +4064,6 @@ E	YES	はい
 E	EV	努力値
 E	IV	個体値
 E	It	このポケモン
+E	NO	いいえ
 E	OT	親
 E	On	オン
