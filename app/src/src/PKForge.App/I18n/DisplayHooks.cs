@@ -63,32 +63,80 @@ internal static class DisplayHooks
     }
 
 #if ANDROID
+    private sealed class FitState
+    {
+        public Label Label = null!;
+        public bool Hooked;
+    }
+
+    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Android.Widget.TextView, FitState> States = new();
+
+    /// <summary>
+    /// 行数・幅が決まっているラベルは、レイアウト後に「本当にはみ出しているときだけ」文字を小さくする。
+    /// （Android 標準の自動縮小は、文字に合わせて幅が決まるラベルで誤判定して小さくしすぎるため使わない）
+    /// </summary>
     private static void Fit(Android.Widget.TextView view, Label label)
+    {
+        try
+        {
+            var state = States.GetValue(view, _ => new FitState());
+            state.Label = label;
+            if (!state.Hooked)
+            {
+                state.Hooked = true;
+                view.LayoutChange += (sender, _) =>
+                {
+                    if (sender is Android.Widget.TextView tv && States.TryGetValue(tv, out var st))
+                        Shrink(tv, st.Label);
+                };
+            }
+            Shrink(view, label);
+        }
+        catch
+        {
+            // 縮められなくても表示はそのまま
+        }
+    }
+
+    private static void Shrink(Android.Widget.TextView view, Label label)
     {
         try
         {
             var bounded = label.MaxLines > 0
                 || label.LineBreakMode is LineBreakMode.NoWrap or LineBreakMode.TailTruncation
                     or LineBreakMode.HeadTruncation or LineBreakMode.MiddleTruncation;
-            var max = (int)System.Math.Round(label.FontSize);
-            if (!bounded || max < 9)
-            {
-                AndroidX.Core.Widget.TextViewCompat.SetAutoSizeTextTypeWithDefaults(view, AndroidX.Core.Widget.TextViewCompat.AutoSizeTextTypeNone);
-                return;
-            }
-            var min = System.Math.Max(8, (int)(max * 0.62));
-            // 短い 1 語（カードの見出しなど）は途中で改行させず、1 行に収まるまで縮める
+            if (!bounded || label.FontSize < 9) return;
             var text = view.Text ?? "";
-            var shortWord = text.Length is > 0 and <= 16 && !text.Trim().Contains(' ');
-            if (shortWord && label.MaxLines != 1) view.SetMaxLines(1);
-            else if (label.MaxLines > 0) view.SetMaxLines(label.MaxLines);
-            AndroidX.Core.Widget.TextViewCompat.SetAutoSizeTextTypeUniformWithConfiguration(
-                view, min, max, 1, (int)Android.Util.ComplexUnitType.Sp);
+            var avail = view.Width - view.TotalPaddingLeft - view.TotalPaddingRight;
+            if (text.Length == 0 || avail <= 0) return;
+
+            var metrics = view.Resources?.DisplayMetrics;
+            if (metrics is null) return;
+            var original = Android.Util.TypedValue.ApplyDimension(Android.Util.ComplexUnitType.Sp, (float)label.FontSize, metrics);
+            var minimum = original * 0.6f;
+            // 短い 1 語（カード見出しなど）は 1 行に収める。それ以外はラベルの行数（NoWrap/省略は 1 行）
+            var shortWord = text.Length <= 16 && !text.Trim().Contains(' ');
+            var lines = shortWord || label.MaxLines <= 0 ? 1 : label.MaxLines;
+            if (shortWord && view.MaxLines != 1) view.SetMaxLines(1);
+
+            using var paint = new Android.Text.TextPaint(view.Paint);
+            var size = original;
+            while (size > minimum && !Fits(paint, text, avail, lines, size)) size -= original * 0.04f;
+            if (System.Math.Abs(view.TextSize - size) > 0.5f)
+                view.Post(() => view.SetTextSize(Android.Util.ComplexUnitType.Px, size));
         }
         catch
         {
-            // 縮められなくても表示はそのまま
         }
+    }
+
+    private static bool Fits(Android.Text.TextPaint paint, string text, int width, int lines, float size)
+    {
+        paint.TextSize = size;
+        if (lines <= 1) return paint.MeasureText(text) <= width;
+        if (!System.OperatingSystem.IsAndroidVersionAtLeast(23)) return true;
+        using var layout = Android.Text.StaticLayout.Builder.Obtain(text, 0, text.Length, paint, width).Build();
+        return layout.LineCount <= lines;
     }
 #endif
 }
