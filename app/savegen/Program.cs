@@ -1,10 +1,10 @@
-// 起動テスト用: ポケモン入りの日本語版プラチナのセーブを作る
+// 起動テスト用: ポケモン入りの日本語版エメラルドのセーブを作る
 //   dotnet run --project app/savegen -p:PKHeXCore=<PKHeX.Core.csproj> -- out.sav
 using PKHeX.Core;
 
 var output = args.Length > 0 ? args[0] : "PKForgeTest.sav";
-var sav = BlankSaveFile.Get(GameVersion.Pt, "ヒカリ", LanguageID.Japanese);
-ushort[] species = [387, 390, 393, 25, 133, 448, 445, 151, 150, 6, 9, 3, 143, 149, 248, 384, 483, 484, 487, 491, 492, 493, 175, 196, 197, 470, 471, 206, 94, 130];
+var sav = BlankSaveFile.Get(GameVersion.E, "ハルカ", LanguageID.Japanese);
+ushort[] species = [252, 255, 258, 25, 133, 282, 334, 151, 150, 6, 9, 3, 143, 149, 248, 384, 382, 383, 380, 381, 385, 386, 175, 196, 197, 359, 373, 206, 94, 130];
 var lang = (int)LanguageID.Japanese;
 
 PKM Make(ushort sp, byte level, int seed)
@@ -13,11 +13,11 @@ PKM Make(ushort sp, byte level, int seed)
     pk.Species = sp;
     pk.CurrentLevel = level;
     pk.Language = lang;
-    pk.Nickname = SpeciesName.GetSpeciesNameGeneration(sp, lang, 4);
+    pk.Nickname = SpeciesName.GetSpeciesNameGeneration(sp, lang, 3);
     pk.IsNicknamed = false;
     pk.OriginalTrainerName = sav.OT;
     pk.ID32 = sav.ID32;
-    pk.Version = GameVersion.Pt;
+    pk.Version = GameVersion.E;
     pk.Ball = 4;
     pk.MetLevel = level;
     pk.MetLocation = 16;
