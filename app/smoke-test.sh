@@ -139,8 +139,12 @@ save_tour() {   # $1 名前, $2 解像度, $3 dpi, $4 ロケール, $5 初回（
     fi
     sleep 15
   else
-    adb shell input keyevent KEYCODE_DPAD_LEFT; sleep 1
-    adb shell input keyevent KEYCODE_BUTTON_A; sleep 15
+    if ! tap_text テスト; then                                            # 棚のカートリッジ（主人公名）を押す
+      adb shell input keyevent KEYCODE_DPAD_UP; sleep 1
+      adb shell input keyevent KEYCODE_DPAD_LEFT; sleep 1
+      adb shell input keyevent KEYCODE_BUTTON_A
+    fi
+    sleep 15
   fi
   adb exec-out screencap -p > "$dir/1-box.png"
   adb shell input keyevent KEYCODE_BUTTON_START; sleep 4                  # カーソルのポケモンのメニュー
@@ -148,7 +152,6 @@ save_tour() {   # $1 名前, $2 解像度, $3 dpi, $4 ロケール, $5 初回（
   adb shell input keyevent KEYCODE_BUTTON_A; sleep 6                      # 先頭の項目（詳細など）
   adb exec-out screencap -p > "$dir/3-first-item.png"
   adb shell input keyevent KEYCODE_BUTTON_B; sleep 3
-  adb shell input keyevent KEYCODE_BUTTON_B; sleep 2
   adb shell input keyevent KEYCODE_BUTTON_X; sleep 4                      # ツール
   adb exec-out screencap -p > "$dir/4-tools.png"
   adb shell input keyevent KEYCODE_BUTTON_B; sleep 2

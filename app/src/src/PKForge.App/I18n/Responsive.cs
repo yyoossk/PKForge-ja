@@ -131,4 +131,77 @@ public static class Responsive
         };
         return scroll;
     }
+
+    private sealed class SplitState
+    {
+        public View Main = null!;
+        public View Side = null!;
+        public double SideWidth;
+        public bool? Narrow;
+    }
+
+    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Grid, SplitState> Splits = new();
+
+    /// <summary>
+    /// 「左に本体・右に固定幅の詳細パネル」の 2 列レイアウト。幅が狭い（縦持ちのスマホなど）ときは
+    /// 本体を上、詳細を下に積む。
+    /// </summary>
+    public static void SidePanel(Grid grid, View main, View side, double sideWidth)
+    {
+        var state = new SplitState { Main = main, Side = side, SideWidth = sideWidth };
+        Splits.AddOrUpdate(grid, state);
+        grid.SizeChanged += (_, _) =>
+        {
+            if (grid.Width <= 0 || grid.Height <= 0) return;
+            var narrow = grid.Width < sideWidth * 2.1 || grid.Height > grid.Width * 1.05;
+            if (narrow == state.Narrow) return;
+            state.Narrow = narrow;
+            Apply(grid, state);
+        };
+        side.PropertyChanged += (_, args) =>
+        {
+            if (args.PropertyName == nameof(View.IsVisible) && state.Narrow is not null) Apply(grid, state);
+        };
+    }
+
+    /// <summary>詳細パネルを元に戻すとき（本家は列幅を固定値に戻すので、その代わりに呼ぶ）</summary>
+    public static void RestoreSide(Grid grid)
+    {
+        if (Splits.TryGetValue(grid, out var state) && state.Narrow is not null)
+        {
+            Apply(grid, state);
+            return;
+        }
+        if (grid.ColumnDefinitions.Count > 1) grid.ColumnDefinitions[1].Width = new GridLength(state?.SideWidth ?? 330);
+        grid.ColumnSpacing = 12;
+    }
+
+    private static void Apply(Grid grid, SplitState state)
+    {
+        var visible = state.Side.IsVisible;
+        if (state.Narrow == true)
+        {
+            if (grid.ColumnDefinitions.Count > 1) grid.ColumnDefinitions[1].Width = new GridLength(0);
+            grid.ColumnSpacing = 0;
+            grid.RowDefinitions.Clear();
+            grid.RowDefinitions.Add(new RowDefinition(new GridLength(1.25, GridUnitType.Star)));
+            grid.RowDefinitions.Add(new RowDefinition(visible ? new GridLength(1, GridUnitType.Star) : new GridLength(0)));
+            grid.RowSpacing = visible ? 10 : 0;
+            Grid.SetRow(state.Main, 0);
+            Grid.SetColumn(state.Main, 0);
+            Grid.SetRow(state.Side, 1);
+            Grid.SetColumn(state.Side, 0);
+        }
+        else
+        {
+            grid.RowDefinitions.Clear();
+            grid.RowSpacing = 0;
+            if (grid.ColumnDefinitions.Count > 1) grid.ColumnDefinitions[1].Width = visible ? new GridLength(state.SideWidth) : new GridLength(0);
+            grid.ColumnSpacing = visible ? 12 : 0;
+            Grid.SetRow(state.Main, 0);
+            Grid.SetColumn(state.Main, 0);
+            Grid.SetRow(state.Side, 0);
+            Grid.SetColumn(state.Side, 1);
+        }
+    }
 }

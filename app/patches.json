@@ -411,6 +411,34 @@
    "find": "Grid\\.SetRow\\(strip, 2\\);",
    "replace": "Grid.SetRow((View)root.Children[2], 2);",
    "required": false
+  },
+  {
+   "name": "ボックス画面: 狭い画面ではボックスを上・詳細パネルを下に",
+   "file": "src/PKForge.App/Views/BoxBrowserPage.cs",
+   "find": "(Grid\\.SetColumn\\(_sidePanel, 1\\);)",
+   "replace": "\\1\\n        global::PKForgeI18n.Responsive.SidePanel(_storageContent, screen, _sidePanel, 330);",
+   "required": false
+  },
+  {
+   "name": "ボックス画面: 詳細パネルを戻すときも画面幅に合わせる",
+   "file": "src/PKForge.App/Views/BoxBrowserPage.cs",
+   "find": "_storageContent\\.ColumnDefinitions\\[1\\]\\.Width = new GridLength\\(330\\);\\s*_storageContent\\.ColumnSpacing = 12;",
+   "replace": "global::PKForgeI18n.Responsive.RestoreSide(_storageContent);",
+   "required": false
+  },
+  {
+   "name": "正規チェックの説明文を表示言語で（PKHeX の公式訳）",
+   "file": "src/PKForge.Engine/**/*.cs",
+   "find": "LegalityLocalizationContext\\.Create\\((\\w+)\\)",
+   "replace": "LegalityLocalizationContext.Create(\\1, GameInfo.CurrentLanguage)",
+   "required": false
+  },
+  {
+   "name": "正規チェックの報告を表示言語で（PKHeX の公式訳）",
+   "file": "src/PKForge.Engine/**/*.cs",
+   "find": "\\.Report\\(verbose: false\\)",
+   "replace": ".Report(GameInfo.CurrentLanguage, verbose: false)",
+   "required": false
   }
  ]
 }
