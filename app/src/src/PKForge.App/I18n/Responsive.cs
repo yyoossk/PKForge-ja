@@ -66,6 +66,34 @@ public static class Responsive
             return context;
         }
     }
+
+    /// <summary>
+    /// アプリ全体の Resources の密度も上げる（MAUI は最初に見た密度を覚えておくので、MAUI の初期化前に呼ぶ）。
+    /// </summary>
+    public static void ScaleApp(Android.Content.Context app)
+    {
+        try
+        {
+            var res = app.Resources;
+            var cfg = res?.Configuration;
+            var metrics = res?.DisplayMetrics;
+            if (res is null || cfg is null || metrics is null) return;
+            var scale = ScaleFor(cfg.SmallestScreenWidthDp);
+            if (scale <= 1.01f) return;
+            var dpi = (int)(cfg.DensityDpi * scale);
+            var updated = new Android.Content.Res.Configuration(cfg) { DensityDpi = dpi };
+#pragma warning disable CS0618, CA1422
+            metrics.DensityDpi = (Android.Util.DisplayMetricsDensity)dpi;
+            metrics.Density = dpi / 160f;
+            metrics.ScaledDensity = metrics.Density * cfg.FontScale;
+            res.UpdateConfiguration(updated, metrics);
+#pragma warning restore CS0618, CA1422
+        }
+        catch
+        {
+            // 拡大できなくても本家の寸法で表示する
+        }
+    }
 #endif
 
     /// <summary>メニューの列数を、画面の実際の幅と文字の幅（全角は 2 文字分）から決める。</summary>

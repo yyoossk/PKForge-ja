@@ -381,7 +381,7 @@
    "name": "タブレットでは画面全体を拡大（アプリ全体の Context も）",
    "file": "src/PKForge.App/Platforms/Android/MainApplication.cs",
    "find": "(protected override MauiApp CreateMauiApp\\(\\))",
-   "replace": "protected override void AttachBaseContext(Android.Content.Context? @base)\n        => base.AttachBaseContext(global::PKForgeI18n.Responsive.Scaled(@base));\n\n    \\1",
+   "replace": "public override void OnCreate()\n    {\n        global::PKForgeI18n.Responsive.ScaleApp(this);\n        base.OnCreate();\n    }\n\n    \\1",
    "required": true
   },
   {
