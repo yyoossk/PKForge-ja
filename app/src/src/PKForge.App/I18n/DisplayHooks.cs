@@ -22,7 +22,7 @@ internal static class DisplayHooks
         });
         Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping("Text", (handler, view) =>
         {
-            if (Lookup(view.Text) is { } text)
+            if (view is Button button && Lookup(button.Text) is { } text)
                 handler.PlatformView.Text = text;
         });
         foreach (var key in new[] { "Font", "MaxLines", "LineBreakMode" })
