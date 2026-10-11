@@ -167,11 +167,11 @@ if [[ -n "$save" && -f "$save" ]]; then
   adb push "$save" /sdcard/Download/PKForgeTest.sav
   adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/Download/PKForgeTest.sav >/dev/null 2>&1 || true
   save_tour phone-portrait 1080x2400 420 ja-JP yes
-  save_tour phone-portrait 1080x2400 420 de-DE no
-  save_tour phone-landscape 2400x1080 420 ja-JP no
-  save_tour tablet-landscape 2560x1600 320 ja-JP no
-  save_tour tablet-portrait 1600x2560 320 ko-KR no
-  save_tour thor-1080p 1920x1080 280 ja-JP no
+  save_tour phone-portrait 1080x2400 420 de-DE yes
+  save_tour phone-landscape 2400x1080 420 ja-JP yes
+  save_tour tablet-landscape 2560x1600 320 ja-JP yes
+  save_tour tablet-portrait 1600x2560 320 ko-KR yes
+  save_tour thor-1080p 1920x1080 280 ja-JP yes
 fi
 adb shell wm size reset; adb shell wm density reset
 
