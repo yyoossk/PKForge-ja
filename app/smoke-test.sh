@@ -77,10 +77,15 @@ run_layout() {   # $1 名前, $2 解像度, $3 dpi, $4 ロケール
   adb shell input keyevent KEYCODE_BUTTON_START; sleep 4
   adb exec-out screencap -p > "$dir/3-settings.png"
   adb shell input keyevent KEYCODE_BUTTON_B; sleep 2
-  adb shell input keyevent KEYCODE_BUTTON_R1; sleep 4      # 次のゾーン（バンク等のカード）
-  adb shell input keyevent KEYCODE_BUTTON_A; sleep 6
-  adb exec-out screencap -p > "$dir/4-next.png"
-  adb shell input keyevent KEYCODE_BUTTON_B; sleep 2
+  adb shell input keyevent KEYCODE_DPAD_DOWN; sleep 1                   # カードの段へ
+  local n=4
+  for name in bank autopilot park events; do
+    adb shell input keyevent KEYCODE_BUTTON_A; sleep 7
+    adb exec-out screencap -p > "$dir/$n-$name.png"
+    n=$((n + 1))
+    adb shell input keyevent KEYCODE_BUTTON_B; sleep 3
+    adb shell input keyevent KEYCODE_DPAD_RIGHT; sleep 1
+  done
   adb shell pidof "$pkg" >/dev/null 2>&1 && echo "$1 $4: OK" || echo "$1 $4: 落ちた"
 }
 run_layout phone-portrait 1080x2400 420 ja-JP
