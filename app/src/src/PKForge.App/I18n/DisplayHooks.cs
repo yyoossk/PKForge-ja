@@ -1,0 +1,70 @@
+// PKForge Dex（多言語版）: 表示まわりの共通フック。
+//  1. 比較に使われていてソース上は英語のまま残した文字列を、表示の直前にだけ訳す
+//  2. 行数・幅が決まっているラベルは、長い訳文でも見切れないように文字を自動で縮める
+#nullable enable
+using Microsoft.Maui.Controls;
+
+namespace PKForgeI18n;
+
+internal static class DisplayHooks
+{
+    private static bool _installed;
+
+    public static void Install()
+    {
+        if (_installed) return;
+        _installed = true;
+#if ANDROID
+        Microsoft.Maui.Handlers.LabelHandler.Mapper.AppendToMapping("Text", (handler, view) =>
+        {
+            if (view is Label { FormattedText: null } label && Lookup(label.Text) is { } text)
+                handler.PlatformView.Text = text;
+        });
+        Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping("Text", (handler, view) =>
+        {
+            if (Lookup(view.Text) is { } text)
+                handler.PlatformView.Text = text;
+        });
+        foreach (var key in new[] { "Font", "MaxLines", "LineBreakMode" })
+            Microsoft.Maui.Handlers.LabelHandler.Mapper.AppendToMapping(key, (handler, view) =>
+            {
+                if (view is Label label) Fit(handler.PlatformView, label);
+            });
+#endif
+    }
+
+    /// <summary>表示用の訳（無ければ null）</summary>
+    public static string? Lookup(string? text)
+    {
+        if (string.IsNullOrEmpty(text)) return null;
+        var lang = LangSetup.Current;
+        if (lang <= 0 || lang >= DisplayDict.ByLang.Length) return null;
+        var dict = DisplayDict.ByLang[lang];
+        return dict is not null && dict.TryGetValue(text, out var hit) ? hit : null;
+    }
+
+#if ANDROID
+    private static void Fit(Android.Widget.TextView view, Label label)
+    {
+        try
+        {
+            var bounded = label.MaxLines > 0
+                || label.LineBreakMode is LineBreakMode.NoWrap or LineBreakMode.TailTruncation
+                    or LineBreakMode.HeadTruncation or LineBreakMode.MiddleTruncation;
+            var max = (int)System.Math.Round(label.FontSize);
+            if (!bounded || max < 9)
+            {
+                AndroidX.Core.Widget.TextViewCompat.SetAutoSizeTextTypeWithDefaults(view, AndroidX.Core.Widget.TextViewCompat.AutoSizeTextTypeNone);
+                return;
+            }
+            var min = System.Math.Max(8, (int)(max * 0.62));
+            AndroidX.Core.Widget.TextViewCompat.SetAutoSizeTextTypeUniformWithConfiguration(
+                view, min, max, 1, (int)Android.Util.ComplexUnitType.Sp);
+        }
+        catch
+        {
+            // 縮められなくても表示はそのまま
+        }
+    }
+#endif
+}

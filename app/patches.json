@@ -1,6 +1,14 @@
 {
  "code_patches": [
   {
+   "name": "画面の向きを固定しない（縦持ち・タブレット対応）",
+   "file": "src/PKForge.App/Platforms/Android/MainActivity.cs",
+   "find": "ScreenOrientation = ScreenOrientation\\.SensorLandscape",
+   "replace": "ScreenOrientation = ScreenOrientation.FullUser",
+   "required": true,
+   "min": 1
+  },
+  {
    "name": "アプリIDを分ける（本家版と共存）",
    "file": "src/PKForge.App/PKForge.App.csproj",
    "find": "<ApplicationId>org\\.pkforge\\.shurt</ApplicationId>",

@@ -61,5 +61,35 @@ run_lang en-US yes
 run_lang ja-JP yes
 for loc in zh-CN zh-TW ko-KR fr-FR de-DE es-ES it-IT; do run_lang "$loc" no; done
 
+# ---- 画面サイズごとの表示確認（日本語・ドイツ語） ----
+run_layout() {   # $1 名前, $2 解像度, $3 dpi, $4 ロケール
+  local dir="$out/layout-$1-$4"
+  mkdir -p "$dir"
+  adb shell wm size "$2"; adb shell wm density "$3"
+  adb shell settings put system accelerometer_rotation 0; adb shell settings put system user_rotation 0
+  adb shell am force-stop "$pkg"; adb shell cmd locale set-app-locales "$pkg" --locales "$4" || true
+  sleep 3
+  adb shell am start -W -n "$act" >/dev/null 2>&1
+  sleep 35
+  adb exec-out screencap -p > "$dir/1-start.png"
+  for k in 1 2 3 4 5 6 7 8; do adb shell input keyevent KEYCODE_BUTTON_A; sleep 1.5; done
+  adb exec-out screencap -p > "$dir/2-home.png"
+  adb shell input keyevent KEYCODE_BUTTON_START; sleep 4
+  adb exec-out screencap -p > "$dir/3-settings.png"
+  adb shell input keyevent KEYCODE_BUTTON_B; sleep 2
+  adb shell input keyevent KEYCODE_BUTTON_R1; sleep 4      # 次のゾーン（バンク等のカード）
+  adb shell input keyevent KEYCODE_BUTTON_A; sleep 6
+  adb exec-out screencap -p > "$dir/4-next.png"
+  adb shell input keyevent KEYCODE_BUTTON_B; sleep 2
+  adb shell pidof "$pkg" >/dev/null 2>&1 && echo "$1 $4: OK" || echo "$1 $4: 落ちた"
+}
+run_layout phone-portrait 1080x2400 420 ja-JP
+run_layout phone-portrait 1080x2400 420 de-DE
+run_layout phone-landscape 2400x1080 420 ja-JP
+run_layout tablet-landscape 2560x1600 320 ja-JP
+run_layout tablet-portrait 1600x2560 320 ja-JP
+run_layout thor-1080p 1920x1080 280 fr-FR
+adb shell wm size reset; adb shell wm density reset
+
 echo "起動できた言語: $ok / 9"
 [[ $ok -ge 8 ]] || exit 1
