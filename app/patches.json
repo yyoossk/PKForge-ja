@@ -568,6 +568,57 @@
    "find": "(base\\.OnCreate\\(savedInstanceState\\);\\s*if \\(savedInstanceState is null\\) MoveToMainScreenIfLaunchedBelow\\(\\);)",
    "replace": "\\1\\n        global::PKForgeI18n.Responsive.ApplyOrientation(this);",
    "required": true
+  },
+  {
+   "name": "エディタのポケモン名・わざ・とくせい・せいかく・ボールを表示言語で（どうぐはアイコン名と結びつくので英語のまま）",
+   "file": "src/PKForge.Engine/GameDataService.cs",
+   "find": "public IReadOnlyList<string> (SpeciesNames|MoveNames|AbilityNames|NatureNames|BallNames) => _strings\\.",
+   "replace": "public IReadOnlyList<string> \\1 => GameInfo.Strings.",
+   "required": true,
+   "min": 5
+  },
+  {
+   "name": "カートリッジの色「Gold」「Violet」も訳す（ゲーム名と同じ語で自動では訳されないため）",
+   "file": "src/PKForge.Domain/SaveIdentity.cs",
+   "find": "\\(\"gold\", \"Gold\"\\)",
+   "replace": "(\"gold\", ((string)(global::PKForgeI18n.L_Domain.I switch { 1 => \"ゴールド\", 2 or 3 => \"金色\", 4 => \"골드\", 5 => \"Or\", 7 => \"Dorado\", 8 => \"Oro\", _ => \"Gold\" })))",
+   "required": true
+  },
+  {
+   "name": "カートリッジの色「Violet」",
+   "file": "src/PKForge.Domain/SaveIdentity.cs",
+   "find": "\\(\"violet\", \"Violet\"\\)",
+   "replace": "(\"violet\", ((string)(global::PKForgeI18n.L_Domain.I switch { 1 => \"バイオレット\", 2 => \"紫罗兰\", 3 => \"紫羅蘭\", 4 => \"바이올렛\", 6 => \"Violett\", 7 => \"Violeta\", 8 => \"Viola\", _ => \"Violet\" })))",
+   "required": true
+  },
+  {
+   "name": "世代だけ分かったセーブ（「第3世代」など訳された名前）も正しく判定",
+   "file": "src/PKForge.Domain/SaveIdentity.cs",
+   "find": "engineGame\\.StartsWith\\(\\(\\(string\\)\\(global::PKForgeI18n\\.L_Domain\\.I switch \\{[^}]*\\}\\)\\), StringComparison\\.Ordinal\\)",
+   "replace": "System.Text.RegularExpressions.Regex.IsMatch(engineGame, @\"^(Generation|Génération|Generación|Generazione|第 ?[0-9]+ ?世代|[0-9]+세대)\")",
+   "required": false
+  },
+  {
+   "name": "ホームの棚のゲーム名（「Pokémon」を外した短い名前）を表示言語で",
+   "file": "src/PKForge.App/ViewModels/SavePickerViewModel.cs",
+   "find": "\\? label\\[\"Pokémon \"\\.Length\\.\\.\\]\n(\\s*): label;",
+   "replace": "? global::PKForgeI18n.GameTitles.Short(label[\"Pokémon \".Length..])\n\\1: label;",
+   "required": true
+  },
+  {
+   "name": "バンクの「Pokémon <ゲーム名>」（キャンバス）を表示言語の正式タイトルで",
+   "file": "src/PKForge.App/Views/BankPage.cs",
+   "find": "\\$\"Pokémon \\{([^}\"]+)\\}\"",
+   "replace": "global::PKForgeI18n.GameTitles.Full(\\1)",
+   "required": false,
+   "min": 1
+  },
+  {
+   "name": "とくせいの無い世代（第1・2世代）で「-1」ではなく「—」を表示",
+   "file": "src/PKForge.App/Views/BoxBrowserPage.cs",
+   "find": "(private sealed class IdNameConverter[\\s\\S]*?)return value as string \\?\\? \"\";",
+   "replace": "\\1return value is string __neg && __neg.StartsWith('-') ? \"—\" : value as string ?? \"\";",
+   "required": true
   }
  ]
 }

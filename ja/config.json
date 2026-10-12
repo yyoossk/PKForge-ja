@@ -10,7 +10,9 @@
   "src/PKForge.Engine/RadicalRed/RadicalRedData.cs"
  ],
  "force_translate": [],
- "never_translate": [],
+ "never_translate": [
+  "Pokémon {0}"
+ ],
  "code_patches": [
   {
    "name": "アプリIDを分ける（本家版と共存できるように）",

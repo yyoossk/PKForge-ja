@@ -49,6 +49,13 @@ internal static class DisplayHooks
     public static string? Lookup(string? text)
     {
         if (string.IsNullOrEmpty(text)) return null;
+        var hit = LookupDict(text);
+        // 文中の「Pokémon Yellow」などのゲーム名は各言語の正式タイトルに
+        return GameTitles.Localize(hit ?? text) ?? hit;
+    }
+
+    private static string? LookupDict(string text)
+    {
         var lang = LangSetup.Current;
         if (lang <= 0 || lang >= DisplayDict.ByLang.Length) return null;
         var dict = DisplayDict.ByLang[lang];
