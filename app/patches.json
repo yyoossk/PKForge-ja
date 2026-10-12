@@ -462,6 +462,69 @@
    "replace": "\\1\\n        font = global::PKForgeI18n.FontFallback.Covering(font, text);",
    "required": false,
    "min": 1
+  },
+  {
+   "name": "フォント統一: 画面の文字（ピクセルフォント指定）をシステムフォントに",
+   "file": "src/PKForge.App/Views/DsKit.cs",
+   "find": "public const string PixelFont = \"PixelUI\";",
+   "replace": "public const string PixelFont = \"sans-serif\";",
+   "required": false
+  },
+  {
+   "name": "フォント統一: 個別指定（PixelUI / Rounded）をシステムフォントに",
+   "file": "src/PKForge.App/**/*.cs",
+   "find": "FontFamily = \"(?:PixelUI|Rounded|RoundedBold|RoundedBlack)\"",
+   "replace": "FontFamily = \"sans-serif\"",
+   "required": false
+  },
+  {
+   "name": "フォント統一: キャンバスの文字（PixelFont.Face）をシステムフォントに",
+   "file": "src/PKForge.App/Views/PixelFont.cs",
+   "find": "public static SKTypeface Face\\s*\\{",
+   "replace": "public static SKTypeface Face => global::PKForgeI18n.SystemFont.Face;\n    public static SKTypeface BundledFace\n    {",
+   "required": false
+  },
+  {
+   "name": "フォント統一: キャンバスの代替フォントもシステムフォントに",
+   "file": "src/PKForge.App/Views/PixelFont.cs",
+   "find": "public static SKTypeface FallbackFace\\s*\\{",
+   "replace": "public static SKTypeface FallbackFace => global::PKForgeI18n.SystemFont.Face;\n    public static SKTypeface BundledFallbackFace\n    {",
+   "required": false
+  },
+  {
+   "name": "フォント統一: ピクセルフォント用の太字加工をやめる",
+   "file": "src/PKForge.App/Views/PixelFont.cs",
+   "find": "Embolden = true",
+   "replace": "Embolden = false",
+   "required": false
+  },
+  {
+   "name": "フォント統一: ボックス画面のキャンバス文字",
+   "file": "src/PKForge.App/Views/BoxBrowserPage.cs",
+   "find": "internal static SKTypeface PixelTypeface\\(\\)\\s*\\{",
+   "replace": "internal static SKTypeface PixelTypeface() => global::PKForgeI18n.SystemFont.Bold;\n    internal static SKTypeface BundledPixelTypeface()\n    {",
+   "required": false
+  },
+  {
+   "name": "オート図鑑: 見出しと手順を狭い画面では縦に",
+   "file": "src/PKForge.App/Views/LivingDexAutopilotPage.cs",
+   "find": "var header = new Grid \\{ ColumnDefinitions = \\[new\\(GridLength\\.Star\\), new\\(GridLength\\.Auto\\)\\]",
+   "replace": "var header = new global::PKForgeI18n.StackingGrid(760) { ColumnDefinitions = [new(GridLength.Star), new(GridLength.Auto)]",
+   "required": false
+  },
+  {
+   "name": "オート図鑑: 「できること」「しないこと」を狭い画面では縦に",
+   "file": "src/PKForge.App/Views/LivingDexAutopilotPage.cs",
+   "find": "var columns = new Grid \\{ ColumnDefinitions = \\[new\\(GridLength\\.Star\\), new\\(GridLength\\.Star\\)\\]",
+   "replace": "var columns = new global::PKForgeI18n.StackingGrid(560) { ColumnDefinitions = [new(GridLength.Star), new(GridLength.Star)]",
+   "required": false
+  },
+  {
+   "name": "フォント統一: アプリ全体の既定フォント（ラベル・ボタン・入力欄）をシステムフォントに",
+   "file": "src/PKForge.App/App.cs",
+   "find": "Value = \"PixelUI\"",
+   "replace": "Value = \"sans-serif\"",
+   "required": false
   }
  ]
 }

@@ -205,3 +205,70 @@ public static class Responsive
         }
     }
 }
+
+/// <summary>
+/// 横に並べた列（タイトルと手順、「できること」と「しないこと」など）を、
+/// 幅が足りないときは縦に積む Grid。縦長スマホで文字が 1 文字ずつ縦に並ぶのを防ぐ。
+/// </summary>
+public class StackingGrid : Grid
+{
+    private readonly double _threshold;
+    private bool? _stacked;
+    private System.Collections.Generic.List<(BindableObject View, int Column, int Span)>? _items;
+    private System.Collections.Generic.List<GridLength>? _columns;
+    private double _rowSpacing;
+
+    public StackingGrid(double threshold) => _threshold = threshold;
+
+    protected override void OnSizeAllocated(double width, double height)
+    {
+        base.OnSizeAllocated(width, height);
+        if (width <= 0) return;
+        var stack = width < _threshold;
+        if (stack == _stacked) return;
+        if (_items is null)
+        {
+            if (RowDefinitions.Count > 1) return;   // 複数行の表はそのまま
+            _items = new();
+            foreach (var child in Children)
+                if (child is BindableObject b) _items.Add((b, GetColumn(b), GetColumnSpan(b)));
+            _columns = new();
+            foreach (var c in ColumnDefinitions) _columns.Add(c.Width);
+            _rowSpacing = RowSpacing;
+        }
+        _stacked = stack;
+        Dispatcher.Dispatch(() =>
+        {
+            if (stack)
+            {
+                var ordered = new System.Collections.Generic.List<(BindableObject View, int Column, int Span)>(_items!);
+                ordered.Sort((a, b) => a.Column.CompareTo(b.Column));
+                ColumnDefinitions = new ColumnDefinitionCollection(new ColumnDefinition(GridLength.Star));
+                var rows = new RowDefinitionCollection();
+                for (var i = 0; i < ordered.Count; i++) rows.Add(new RowDefinition(GridLength.Auto));
+                RowDefinitions = rows;
+                RowSpacing = System.Math.Max(_rowSpacing, ColumnSpacing > 0 ? ColumnSpacing : 10);
+                for (var i = 0; i < ordered.Count; i++)
+                {
+                    SetColumn(ordered[i].View, 0);
+                    SetColumnSpan(ordered[i].View, 1);
+                    SetRow(ordered[i].View, i);
+                }
+            }
+            else
+            {
+                var cols = new ColumnDefinitionCollection();
+                foreach (var w in _columns!) cols.Add(new ColumnDefinition(w));
+                ColumnDefinitions = cols;
+                RowDefinitions = new RowDefinitionCollection();
+                RowSpacing = _rowSpacing;
+                foreach (var (view, column, span) in _items!)
+                {
+                    SetColumn(view, column);
+                    SetColumnSpan(view, span);
+                    SetRow(view, 0);
+                }
+            }
+        });
+    }
+}
