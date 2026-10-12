@@ -60,6 +60,10 @@ public static class Responsive
             grid.RowDefinitions.Clear();
             for (var i = 0; i < rows; i++) grid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
             grid.RowSpacing = 10;
+            var windowHeight = grid.Window?.Height ?? 0;
+            var shortScreen = !narrow && windowHeight > 0 && windowHeight < 480;
+            foreach (var item in items)
+                if (item is VisualElement card) card.HeightRequest = shortScreen ? 70 : 88;
             for (var i = 0; i < items.Count; i++)
             {
                 if (items[i] is not BindableObject view) continue;
@@ -136,6 +140,25 @@ public static class Responsive
             if (longest * 8.2 <= column) return c;
         }
         return 1;
+    }
+
+    /// <summary>
+    /// ホームの棚（ゲームのカートリッジ）。横向きのスマホなど高さが足りないときは、
+    /// 下が切れないように棚の中身を縮めて全体を表示する。
+    /// </summary>
+    public static void FitShelf(ScrollView shelf, View items)
+    {
+        void Update()
+        {
+            if (shelf.Height <= 0 || items.Height <= 0) return;
+            var scale = System.Math.Min(1.0, (shelf.Height - 4) / items.Height);
+            if (System.Math.Abs(items.Scale - scale) < 0.01) return;
+            items.AnchorX = 0;
+            items.AnchorY = 0.5;
+            items.Scale = scale;
+        }
+        shelf.SizeChanged += (_, _) => Update();
+        items.SizeChanged += (_, _) => Update();
     }
 
     /// <summary>ボタンが横に並ぶ帯。幅が足りないときは横スクロールできるようにする。</summary>
