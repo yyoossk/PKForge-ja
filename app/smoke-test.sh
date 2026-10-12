@@ -182,6 +182,34 @@ if [[ -n "$save" && -f "$save" ]]; then
   save_tour tablet-portrait 1600x2560 320 ko-KR yes
   save_tour thor-1080p 1920x1080 280 ja-JP yes
 fi
+# ---- タブレットを動かしたまま回転（縦 → 横 → 縦）。アプリは再起動しない ----
+rotate_tour() {
+  local dir="$out/rotate-tablet-ja-JP"
+  mkdir -p "$dir"
+  adb shell wm size 1600x2560; adb shell wm density 320
+  adb shell settings put system accelerometer_rotation 1
+  adb shell am force-stop "$pkg"; adb shell cmd locale set-app-locales "$pkg" --locales ja-JP || true
+  adb emu rotate >/dev/null 2>&1; adb emu rotate >/dev/null 2>&1; adb emu rotate >/dev/null 2>&1; adb emu rotate >/dev/null 2>&1   # 元の向きへ
+  sleep 3
+  adb shell am start -W -n "$act" >/dev/null 2>&1
+  sleep 30
+  adb exec-out screencap -p > "$dir/1-start.png"
+  for k in 1 2 3 4 5 6; do adb shell input keyevent KEYCODE_BUTTON_A; sleep 1.5; done
+  adb exec-out screencap -p > "$dir/2-home.png"
+  adb emu rotate >/dev/null 2>&1; sleep 6
+  adb exec-out screencap -p > "$dir/3-home-rotated.png"
+  adb shell input keyevent KEYCODE_DPAD_DOWN; sleep 1; adb shell input keyevent KEYCODE_BUTTON_A; sleep 7
+  adb exec-out screencap -p > "$dir/4-bank-rotated.png"
+  adb emu rotate >/dev/null 2>&1; sleep 6
+  adb exec-out screencap -p > "$dir/5-bank-rotated-again.png"
+  adb shell input keyevent KEYCODE_BUTTON_B; sleep 3
+  adb emu rotate >/dev/null 2>&1; sleep 6
+  adb exec-out screencap -p > "$dir/6-home-back.png"
+  adb shell pidof "$pkg" >/dev/null 2>&1 && echo "rotate tablet: OK" || echo "rotate tablet: 落ちた"
+  adb shell settings put system accelerometer_rotation 0
+}
+rotate_tour
+
 adb shell wm size reset; adb shell wm density reset
 
 echo "起動できた言語: $ok / 9"

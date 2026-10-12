@@ -10,15 +10,18 @@ public static class Responsive
     /// 画面の密度（タブレットで拡大しているときは拡大後の値）。
     /// 本家は DeviceDisplay の実際の密度を直接使う箇所があり、そのままだと拡大した画面で文字だけ小さくなる。
     /// </summary>
+    private static double _density;
+
     public static double Density
     {
         get
         {
+if (_density > 0) return _density;
 #if ANDROID
             try
             {
                 var d = Android.App.Application.Context.Resources?.DisplayMetrics?.Density;
-                if (d is > 0) return d.Value;
+                if (d is > 0) return _density = d.Value;
             }
             catch
             {
@@ -45,13 +48,15 @@ public static class Responsive
     /// </summary>
     public static void Cards(Grid grid)
     {
-        var lastNarrow = (bool?)null;
+        var lastMode = -1;
         grid.SizeChanged += (_, _) =>
         {
             if (grid.Width <= 0) return;
             var narrow = grid.Width < 520;
-            if (narrow == lastNarrow) return;
-            lastNarrow = narrow;
+            var windowHeightNow = grid.Window?.Height ?? 0;
+            var mode = narrow ? 0 : windowHeightNow > 0 && windowHeightNow < 480 ? 1 : windowHeightNow >= 500 ? 3 : 2;
+            if (mode == lastMode) return;
+            lastMode = mode;
             var items = new System.Collections.Generic.List<IView>(grid.Children);
             var columns = narrow ? 3 : System.Math.Max(1, items.Count);
             grid.ColumnDefinitions.Clear();
@@ -61,11 +66,12 @@ public static class Responsive
             for (var i = 0; i < rows; i++) grid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
             grid.RowSpacing = 10;
             var windowHeight = grid.Window?.Height ?? 0;
-            var shortScreen = !narrow && windowHeight > 0 && windowHeight < 480;
+            var shortScreen = mode == 1;
+            var tall = mode == 3;   // タブレットの横向きなど、高さに余裕がある横長
             foreach (var item in items)
             {
                 if (item is not Grid card) continue;
-                card.HeightRequest = shortScreen ? 70 : 88;
+                card.HeightRequest = shortScreen ? 70 : tall ? 112 : 88;
                 // カードの中身（アイコン・余白）も一緒に縮めて、下の文字が切れないようにする
                 foreach (var child in card.Children)
                 {
@@ -74,8 +80,8 @@ public static class Responsive
                     stack.Spacing = shortScreen ? 2 : 7;
                     if (stack.Children.Count > 0 && stack.Children[0] is VisualElement icon)
                     {
-                        icon.WidthRequest = shortScreen ? 28 : 36;
-                        icon.HeightRequest = shortScreen ? 28 : 36;
+                        icon.WidthRequest = shortScreen ? 28 : tall ? 46 : 36;
+                        icon.HeightRequest = shortScreen ? 28 : tall ? 46 : 36;
                     }
                 }
             }
@@ -89,6 +95,24 @@ public static class Responsive
     }
 
 #if ANDROID
+    /// <summary>
+    /// 画面の向き。タブレット（最小幅 600dp 以上）は本体の傾きに合わせて自動で縦横を切り替える（回転ロック中でも）。
+    /// スマホは端末の「自動回転」設定に従う。
+    /// </summary>
+    public static void ApplyOrientation(Android.App.Activity activity)
+    {
+        try
+        {
+            var sw = activity.Resources?.Configuration?.SmallestScreenWidthDp ?? 0;
+            activity.RequestedOrientation = sw >= 600
+                ? Android.Content.PM.ScreenOrientation.FullSensor
+                : Android.Content.PM.ScreenOrientation.FullUser;
+        }
+        catch
+        {
+        }
+    }
+
     /// <summary>大きい画面なら密度を上げた Context を返す（Activity と Application の両方で使う）</summary>
     public static Android.Content.Context? Scaled(Android.Content.Context? context)
     {

@@ -561,6 +561,13 @@
    "find": "(BlockNativeFocus\\(_shelf\\);)",
    "replace": "\\1\\n        global::PKForgeI18n.Responsive.FitShelf(_shelf, _shelfItems);",
    "required": false
+  },
+  {
+   "name": "画面の向き: タブレットは傾きで自動回転、スマホは端末の設定に従う",
+   "file": "src/PKForge.App/Platforms/Android/MainActivity.cs",
+   "find": "(base\\.OnCreate\\(savedInstanceState\\);\\s*if \\(savedInstanceState is null\\) MoveToMainScreenIfLaunchedBelow\\(\\);)",
+   "replace": "\\1\\n        global::PKForgeI18n.Responsive.ApplyOrientation(this);",
+   "required": true
   }
  ]
 }
