@@ -638,7 +638,7 @@
    "name": "GS ボールのイベントのリセット: どうぐ名は英語の表で探す",
    "file": "src/PKForge.Engine/EventResetService.cs",
    "find": "var names = session\\.GetItemNames\\(\\);(\\s*)var gsBall",
-   "replace": "var names = GameInfo.GetStrings(\"en\").GetItemStrings(EntityContext.Gen2, GameVersion.C);\\1var gsBall",
+   "replace": "IReadOnlyList<string> names = GameInfo.GetStrings(\"en\").GetItemStrings(EntityContext.Gen2, GameVersion.C);\\1var gsBall",
    "required": true
   },
   {
