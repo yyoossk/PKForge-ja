@@ -430,7 +430,7 @@ namespace PKForgeI18n
             return t.TryGetValue("Red", out var red) ? red.Full.Replace(red.Short, s) : "Pokémon " + s;
         }
 
-        /// <summary>文中の「Pokémon <ゲーム名>」を正式タイトルに置き換える。変わらなければ null。</summary>
+        /// <summary>文中の「Pokémon ゲーム名」を正式タイトルに置き換える。変わらなければ null。</summary>
         public static string? Localize(string? text)
         {
             if (string.IsNullOrEmpty(text) || Table is not { } t) return null;
