@@ -118,6 +118,9 @@ internal static class DisplayHooks
             var shortWord = text.Length <= 16 && !text.Trim().Contains(' ');
             var lines = shortWord || label.MaxLines <= 0 ? 1 : label.MaxLines;
             if (shortWord && view.MaxLines != 1) view.SetMaxLines(1);
+            else if (!shortWord && label.MaxLines > 0 && view.MaxLines != label.MaxLines) view.SetMaxLines(label.MaxLines);
+            else if (!shortWord && label.MaxLines <= 0 && label.LineBreakMode is LineBreakMode.WordWrap or LineBreakMode.CharacterWrap && view.MaxLines == 1)
+                view.SetMaxLines(int.MaxValue);
 
             using var paint = new Android.Text.TextPaint(view.Paint);
             var size = original;

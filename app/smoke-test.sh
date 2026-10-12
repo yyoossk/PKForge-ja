@@ -85,6 +85,14 @@ run_layout() {   # $1 名前, $2 解像度, $3 dpi, $4 ロケール
     for ((r = 0; r < i; r++)); do adb shell input keyevent KEYCODE_DPAD_RIGHT; sleep 0.5; done
     adb shell input keyevent KEYCODE_BUTTON_A; sleep 7
     adb exec-out screencap -p > "$dir/$n-$name.png"
+    if [[ "$name" == autopilot ]]; then                                  # 使い方 → 移動先 → 確認
+      adb shell input keyevent KEYCODE_BUTTON_A; sleep 5
+      adb exec-out screencap -p > "$dir/$n-$name-b.png"
+      adb shell input keyevent KEYCODE_BUTTON_A; sleep 10
+      adb exec-out screencap -p > "$dir/$n-$name-c.png"
+      adb shell input keyevent KEYCODE_BUTTON_B; sleep 2
+      adb shell input keyevent KEYCODE_BUTTON_B; sleep 2
+    fi
     n=$((n + 1)); i=$((i + 1))
     adb shell input keyevent KEYCODE_BUTTON_B; sleep 3
   done

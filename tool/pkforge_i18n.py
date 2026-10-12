@@ -380,6 +380,10 @@ def write_display_dict(root: Path, b: 'Builder'):
 def cmd_apply(args):
     root = Path(args.src)
     exclude = set(P.load_json(Path(args.exclude), [])) if args.exclude and Path(args.exclude).exists() else set()
+    # 書き換え前に当てるパッチ（英語の断片をつなげた文を、翻訳できる文単位に直すなど）
+    pre = P.load_json(REPO / 'app' / 'prepatches.json', {})
+    for m in P.apply_code_patches(root, pre, {'repo': args.repo}):
+        print('（書き換え前）' + m)
     b = Builder(root, exclude)
     files = b.apply()
     sitemap = {}

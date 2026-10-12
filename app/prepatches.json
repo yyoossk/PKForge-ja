@@ -1,0 +1,11 @@
+{
+ "code_patches": [
+  {
+   "name": "オート図鑑: 「Press A to show all N」を文単位にして翻訳できるように",
+   "file": "src/PKForge.App/Views/LivingDexAutopilotPage.cs",
+   "find": "Detail = \\$\"\\{group\\.Detail\\}\\{\\(group\\.Detail\\.EndsWith\\(\\'\\.\\'\\) \\? \"\" : \"\\.\"\\)\\} Press A to \\{\\(open \\? \"hide\" : \"show\"\\)\\} \\{\\(group\\.Steps\\.Count == 1 \\? \"it\" : \\$\"all \\{group\\.Steps\\.Count\\}\"\\)\\}\\.\",",
+   "replace": "Detail = $\"{group.Detail}{(group.Detail.EndsWith('.') ? \"\" : \".\")} \" + (open ? (group.Steps.Count == 1 ? \"Press A to hide it.\" : $\"Press A to hide all {group.Steps.Count}.\") : (group.Steps.Count == 1 ? \"Press A to show it.\" : $\"Press A to show all {group.Steps.Count}.\")),",
+   "required": false
+  }
+ ]
+}
