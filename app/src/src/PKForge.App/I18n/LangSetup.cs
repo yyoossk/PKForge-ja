@@ -56,6 +56,8 @@ public static class LangSetup
             var code = Languages[index].PkHex;
             PKHeX.Core.GameInfo.CurrentLanguage = code;
             PKHeX.Core.GameInfo.Strings = PKHeX.Core.GameInfo.GetStrings(code);
+            // アイコンのファイル名は英語のどうぐ名から作るので、表示言語の名前は英語に戻してから
+            PKForge.Domain.SpritePack.ItemNameToEnglish = ItemL10n.ToEnglish;
         }
         catch
         {

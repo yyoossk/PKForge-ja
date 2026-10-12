@@ -570,14 +570,6 @@
    "required": true
   },
   {
-   "name": "エディタのポケモン名・わざ・とくせい・せいかく・ボールを表示言語で（どうぐはアイコン名と結びつくので英語のまま）",
-   "file": "src/PKForge.Engine/GameDataService.cs",
-   "find": "public IReadOnlyList<string> (SpeciesNames|MoveNames|AbilityNames|NatureNames|BallNames) => _strings\\.",
-   "replace": "public IReadOnlyList<string> \\1 => GameInfo.Strings.",
-   "required": true,
-   "min": 5
-  },
-  {
    "name": "カートリッジの色「Gold」「Violet」も訳す（ゲーム名と同じ語で自動では訳されないため）",
    "file": "src/PKForge.Domain/SaveIdentity.cs",
    "find": "\\(\"gold\", \"Gold\"\\)",
@@ -619,6 +611,50 @@
    "find": "(private sealed class IdNameConverter[\\s\\S]*?)return value as string \\?\\? \"\";",
    "replace": "\\1return value is string __neg && __neg.StartsWith('-') ? \"—\" : value as string ?? \"\";",
    "required": true
+  },
+  {
+   "name": "エディタのポケモン名・わざ・どうぐ・とくせい・せいかく・ボールを表示言語で（どうぐのアイコンは英語名に戻して探す）",
+   "file": "src/PKForge.Engine/GameDataService.cs",
+   "find": "public IReadOnlyList<string> (SpeciesNames|MoveNames|ItemNames|AbilityNames|NatureNames|BallNames) => _strings\\.",
+   "replace": "public IReadOnlyList<string> \\1 => GameInfo.Strings.",
+   "required": true,
+   "min": 6
+  },
+  {
+   "name": "どうぐのアイコン: 表示言語のどうぐ名を英語名に戻してからファイル名に",
+   "file": "src/PKForge.Domain/SpritePack.cs",
+   "find": "(public static string ItemSlug\\(string itemName\\)\\s*\\{\\s*ArgumentNullException\\.ThrowIfNull\\(itemName\\);)",
+   "replace": "\\1\n        itemName = ItemNameToEnglish?.Invoke(itemName) ?? itemName;",
+   "required": true
+  },
+  {
+   "name": "どうぐのアイコン: 英語名へ戻す関数の置き場所",
+   "file": "src/PKForge.Domain/SpritePack.cs",
+   "find": "(/// <summary>PokeAPI's item file stem)",
+   "replace": "/// <summary>PKForge Dex: 表示言語のどうぐ名 → 英語名（アプリが起動時に設定）</summary>\n    public static Func<string, string>? ItemNameToEnglish;\n\n    \\1",
+   "required": true
+  },
+  {
+   "name": "GS ボールのイベントのリセット: どうぐ名は英語の表で探す",
+   "file": "src/PKForge.Engine/EventResetService.cs",
+   "find": "var names = session\\.GetItemNames\\(\\);(\\s*)var gsBall",
+   "replace": "var names = GameInfo.GetStrings(\"en\").GetItemStrings(EntityContext.Gen2, GameVersion.C);\\1var gsBall",
+   "required": true
+  },
+  {
+   "name": "バッグのまとめ入れ（ボール・回復）: 表示言語のどうぐ名でも英語名でも照合",
+   "file": "src/PKForge.App/Views/BoxBrowserPage.cs",
+   "find": "if \\(desired\\.TryGetValue\\(name, out var count\\)\\)",
+   "replace": "if (desired.TryGetValue(name, out var count) || desired.TryGetValue(global::PKForgeI18n.ItemL10n.ToEnglish(name), out count))",
+   "required": true
+  },
+  {
+   "name": "キャンバスの文字の中の「Pokémon <ゲーム名>」も表示言語の正式タイトルに",
+   "file": "src/PKForge.Chrome/PksmPaint.cs",
+   "find": "(\\n(\\s*)font = global::PKForgeI18n\\.FontFallback\\.Covering\\(font, (text|label)\\);)",
+   "replace": "\\n\\2\\3 = global::PKForgeI18n.GameTitles.Localize(\\3) ?? \\3;\\1",
+   "required": true,
+   "min": 3
   }
  ]
 }

@@ -398,7 +398,7 @@ namespace PKForgeI18n
         {
             get
             {
-                var lang = LangSetup.Current;
+                var lang = L_Chrome.I;
                 return lang > 0 && lang < ByLang.Length ? ByLang[lang] : null;
             }
         }
@@ -490,7 +490,7 @@ namespace PKForgeI18n
     }
 }
 '''
-    dest = root / 'src/PKForge.App/PKForgeI18n.GameTitles.g.cs'
+    dest = root / 'src/PKForge.Chrome/PKForgeI18n.GameTitles.g.cs'
     dest.write_text(code.replace('%ROWS%', '\n'.join(rows)), encoding='utf-8')
     print(f'ゲーム名の訳: {count} 件')
 
