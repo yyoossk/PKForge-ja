@@ -446,6 +446,22 @@
    "find": "private static readonly GameStrings Strings = GameInfo\\.GetStrings\\(\"en\"\\);",
    "replace": "private static GameStrings Strings => GameInfo.Strings;",
    "required": false
+  },
+  {
+   "name": "キャンバスの見出し文字: 足りない文字は端末フォントで（韓国語の□対策）",
+   "file": "src/PKForge.Chrome/PksmPaint.cs",
+   "find": "(public static void (?:HeaderStrip|BoxNameBar)\\(SKCanvas c, SKRect r, string label, SKFont font[^)]*\\)\\s*\\{)",
+   "replace": "\\1\\n        font = global::PKForgeI18n.FontFallback.Covering(font, label);",
+   "required": false,
+   "min": 2
+  },
+  {
+   "name": "キャンバスの文字: 足りない文字は端末フォントで",
+   "file": "src/PKForge.Chrome/PksmPaint.cs",
+   "find": "(public static void (?:DrawText|ShadowText|CenterText)\\(SKCanvas c, string text[^)]*\\)\\s*\\{)",
+   "replace": "\\1\\n        font = global::PKForgeI18n.FontFallback.Covering(font, text);",
+   "required": false,
+   "min": 1
   }
  ]
 }
