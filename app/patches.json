@@ -538,14 +538,14 @@
    "name": "オート図鑑: 行の高さに上限（縦長画面で行と文字が巨大になり省略されるのを防ぐ）",
    "file": "src/PKForge.App/Views/LivingDexAutopilotPage.cs",
    "find": "private float RowHeight\\(SKImageInfo info\\) => _stage == Stage\\.Destination\\s*\\? Math\\.Max\\(60, info\\.Height / 4\\.6f\\)\\s*: Math\\.Max\\(44, info\\.Height / 6\\.6f\\);",
-   "replace": "private float RowHeight(SKImageInfo info)\n    {\n        var dp = _list.Width > 0 ? info.Width / (float)_list.Width : 1f;\n        return _stage == Stage.Destination\n            ? Math.Max(60, Math.Min(info.Height / 4.6f, 78 * dp))\n            : Math.Max(44, Math.Min(info.Height / 6.6f, 54 * dp));\n    }",
+   "replace": "private float RowHeight(SKImageInfo info)\n    {\n        var dp = _list.Width > 0 ? info.Width / (float)_list.Width : 1f;\n        return _stage == Stage.Destination\n            ? Math.Clamp(info.Height / 4.6f, 56 * dp, 78 * dp)\n            : Math.Clamp(info.Height / 6.6f, 42 * dp, 54 * dp);\n    }",
    "required": true
   },
   {
    "name": "オート図鑑: 文字の大きさに上限",
    "file": "src/PKForge.App/Views/LivingDexAutopilotPage.cs",
    "find": "var unit = Math\\.Max\\(44, info\\.Height / 6\\.6f\\) / 48f;",
-   "replace": "var unit = Math.Min(Math.Max(44, info.Height / 6.6f), 52f * (_list.Width > 0 ? info.Width / (float)_list.Width : 1f)) / 48f;",
+   "replace": "var unit = Math.Clamp(info.Height / 6.6f, 42f * (_list.Width > 0 ? info.Width / (float)_list.Width : 1f), 52f * (_list.Width > 0 ? info.Width / (float)_list.Width : 1f)) / 48f;",
    "required": true
   }
  ]
