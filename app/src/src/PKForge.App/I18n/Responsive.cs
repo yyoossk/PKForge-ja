@@ -63,7 +63,22 @@ public static class Responsive
             var windowHeight = grid.Window?.Height ?? 0;
             var shortScreen = !narrow && windowHeight > 0 && windowHeight < 480;
             foreach (var item in items)
-                if (item is VisualElement card) card.HeightRequest = shortScreen ? 70 : 88;
+            {
+                if (item is not Grid card) continue;
+                card.HeightRequest = shortScreen ? 70 : 88;
+                // カードの中身（アイコン・余白）も一緒に縮めて、下の文字が切れないようにする
+                foreach (var child in card.Children)
+                {
+                    if (child is not VerticalStackLayout stack) continue;
+                    stack.Padding = shortScreen ? new Thickness(8, 4, 8, 5) : new Thickness(12, 9, 12, 11);
+                    stack.Spacing = shortScreen ? 2 : 7;
+                    if (stack.Children.Count > 0 && stack.Children[0] is VisualElement icon)
+                    {
+                        icon.WidthRequest = shortScreen ? 28 : 36;
+                        icon.HeightRequest = shortScreen ? 28 : 36;
+                    }
+                }
+            }
             for (var i = 0; i < items.Count; i++)
             {
                 if (items[i] is not BindableObject view) continue;
