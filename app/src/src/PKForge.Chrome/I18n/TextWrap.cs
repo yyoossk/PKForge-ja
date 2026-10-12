@@ -38,6 +38,8 @@ namespace PKForgeI18n
             // 英語などは単語の切れ目まで戻す
             var space = s.LastIndexOf(' ', System.Math.Min(fit, s.Length - 1));
             if (space > fit / 2 && !IsCjk(s[fit - 1])) return space + 1;
+            // 「PKForge バンク」のように、空白の後ろが短い語（カタカナ語など）なら語の途中で切らず空白で改行
+            if (space > 0 && fit - space <= 8 && fit < s.Length && !char.IsWhiteSpace(s[fit])) return space + 1;
             // 行頭に句読点が来ないようにする
             while (fit > 1 && fit < s.Length && NoLineStart.IndexOf(s[fit]) >= 0) fit--;
             return fit;
