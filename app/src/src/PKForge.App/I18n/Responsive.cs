@@ -7,6 +7,28 @@ namespace PKForgeI18n;
 public static class Responsive
 {
     /// <summary>
+    /// 画面の密度（タブレットで拡大しているときは拡大後の値）。
+    /// 本家は DeviceDisplay の実際の密度を直接使う箇所があり、そのままだと拡大した画面で文字だけ小さくなる。
+    /// </summary>
+    public static double Density
+    {
+        get
+        {
+#if ANDROID
+            try
+            {
+                var d = Android.App.Application.Context.Resources?.DisplayMetrics?.Density;
+                if (d is > 0) return d.Value;
+            }
+            catch
+            {
+            }
+#endif
+            return Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Density;
+        }
+    }
+
+    /// <summary>
     /// タブレットなど大きい画面では、本家の寸法（6 インチ前後の横長携帯機向け）のままだと
     /// 文字もボタンも小さすぎるので、画面全体を拡大する倍率（1 = そのまま）。
     /// 最小幅が 520dp 相当になるように拡大し、上限は 1.6 倍。

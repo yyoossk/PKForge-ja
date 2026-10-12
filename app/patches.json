@@ -525,6 +525,14 @@
    "find": "Value = \"PixelUI\"",
    "replace": "Value = \"sans-serif\"",
    "required": false
+  },
+  {
+   "name": "画面密度は拡大後の値を使う（タブレットで文字だけ小さくならないように）",
+   "file": "src/PKForge.App/Views/*.cs",
+   "find": "DeviceDisplay\\.MainDisplayInfo\\.Density",
+   "replace": "global::PKForgeI18n.Responsive.Density",
+   "required": false,
+   "min": 5
   }
  ]
 }
