@@ -220,11 +220,3 @@ jobs:
           git -c user.name=ci -c user.email=ci@example.com add -A
           git -c user.name=ci -c user.email=ci@example.com commit -qm "run ${{ github.run_number }}" || true
           git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" ci-app
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: pkforge-dex
-          path: |
-            release/
-            smoke/
-            logs/

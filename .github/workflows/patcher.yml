@@ -79,6 +79,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
+          retention-days: 1
           name: test-result
           path: |
             PKForge-ja.apk
@@ -106,6 +107,7 @@ jobs:
           -p:EnableCompressionInSingleFile=true -o out
       - uses: actions/upload-artifact@v4
         with:
+          retention-days: 1
           name: PKForgeJaPatcher
           path: out/PKForgeJaPatcher.exe
       - name: リリース
