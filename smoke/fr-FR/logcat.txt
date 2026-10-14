@@ -1,0 +1,2 @@
+10-13 23:38:34.490  6986  6986 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_lockPixels' may fail
+10-13 23:38:34.552  6986  6986 W monodroid-assembly: Shared library 'libjnigraphics.so' not loaded, p/invoke 'AndroidBitmap_unlockPixels' may fail

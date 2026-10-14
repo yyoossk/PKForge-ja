@@ -1,0 +1,14 @@
+  Determining projects to restore...
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/up/src/PKForge.Infrastructure/PKForge.Infrastructure.csproj (in 163 ms).
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/up/src/PKForge.Engine/PKForge.Engine.csproj (in 163 ms).
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/up/external/PKHeX/PKHeX.Core/PKHeX.Core.csproj (in 3 ms).
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/up/src/PKForge.Domain/PKForge.Domain.csproj (in 2 ms).
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/up/src/PKForge.AutoMod/PKForge.AutoMod.csproj (in 3 ms).
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/up/src/PKForge.Chrome/PKForge.Chrome.csproj (in 1.14 sec).
+  Restored /home/runner/work/PKForge-ja/PKForge-ja/up/src/PKForge.App/PKForge.App.csproj (in 6.33 sec).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:03:18.09
